@@ -50,7 +50,7 @@ spec:
       {{- if .Values.init }}
       initContainers:
         - name: wait-for-init-repo
-          image: {{ include "rundeck.init.image" . }}
+          image: {{ include "common.images.image" ( dict "imageRoot" .Values.init.image ) }}
           imagePullPolicy: {{ .Values.init.image.pullPolicy | quote }}
           command:
             - /bin/sh
@@ -75,7 +75,7 @@ spec:
           {{- end  }}
 
         - name: wait-for-mariadb
-          image: {{ include "rundeck.init.image" . }}
+          image: {{ include "common.images.image" ( dict "imageRoot" .Values.init.image ) }}
           imagePullPolicy: {{ .Values.init.image.pullPolicy | quote }}
           command:
             - /bin/sh
@@ -91,7 +91,7 @@ spec:
 
       containers:
         - name: rundeck
-          image: {{ include "rundeck.image" . }}
+          image: {{ include "common.images.image" ( dict "imageRoot" .Values.image "global" .Values.global ) }}
           imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
           {{- if .Values.securityContext.enabled }}
           securityContext:

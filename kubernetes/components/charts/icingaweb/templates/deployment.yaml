@@ -46,7 +46,7 @@ spec:
       # Init contaiter: change own for icingaweb config directory and waiting for icinga master
       initContainers:
       - name: icingaweb-init
-        image: {{ .Values.init.image.repository }}:{{ .Values.init.image.tag }}
+        image: {{ include "common.images.image" ( dict "imageRoot" .Values.init.image ) }} # {{ .Values.init.image.repository }}:{{ .Values.init.image.tag }}
         imagePullPolicy: {{ .Values.init.image.pullPolicy | quote }}
         command:
           - /bin/sh
@@ -70,7 +70,7 @@ spec:
       containers:
       # icingaweb container
       - name: icingaweb
-        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        image: {{ include "common.images.image" ( dict "imageRoot" .Values.image "global" .Values.global ) }} # {{ .Values.image.repository }}:{{ .Values.image.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
         {{- if .Values.securityContext.enabled }}
         securityContext:
@@ -118,7 +118,7 @@ spec:
       # director module container
       {{- if .Values.modules.director.enabled }}
       - name: director
-        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        image: {{ include "common.images.image" ( dict "imageRoot" .Values.image "global" .Values.global ) }} # {{ .Values.image.repository }}:{{ .Values.image.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
         ## ENV
         env:

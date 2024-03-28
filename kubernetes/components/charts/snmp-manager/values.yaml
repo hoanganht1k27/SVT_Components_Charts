@@ -4,7 +4,6 @@
 clusterDomain: cluster.local
 
 image:
-  registry: docker.io
   repository: svtechnmaa/svtech_snmp_manager
   tag: v1.0.0
   pullPolicy: IfNotPresent

@@ -5,10 +5,8 @@ global:
 timezone: Asia/Ho_Chi_Minh
 
 image:
-  registry: docker.io
   repository: svtechnmaa/debuger
   tag: "latest"
-
   pullPolicy: IfNotPresent
   # debug: true
 

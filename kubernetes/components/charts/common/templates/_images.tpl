@@ -4,9 +4,9 @@ Return the proper image name
 {{ include "common.images.image" ( dict "imageRoot" .Values.path.to.the.image "global" $) }}
 */}}
 {{- define "common.images.image" -}}
-{{- $registryName := .imageRoot.registry -}}
 {{- $repositoryName := .imageRoot.repository -}}
 {{- $tag := .imageRoot.tag | toString -}}
+{{- $registryName := .imageRoot.registry -}}
 {{- if .global }}
     {{- if .global.imageRegistry }}
      {{- $registryName = .global.imageRegistry -}}

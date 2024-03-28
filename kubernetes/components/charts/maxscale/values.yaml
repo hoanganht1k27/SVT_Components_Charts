@@ -1,10 +1,10 @@
 init:
   image:
+    registry: ghcr.io/moophat
     repository: svtechnmaa/svtech_debuger
     tag: v1.0.1
 
 image:
-  registry: docker.io
   repository: svtechnmaa/svtech_maxscale
   tag: v1.0.2
   pullPolicy: IfNotPresent

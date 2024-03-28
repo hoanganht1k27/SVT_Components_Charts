@@ -8,7 +8,6 @@ init:
     tag: "1.33"
     pullPolicy: IfNotPresent
 image:
-  registry: docker.io
   repository: svtechnmaa/svtech_icingaweb2
   tag: v1.0.0
   pullPolicy: IfNotPresent

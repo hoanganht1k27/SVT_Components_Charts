@@ -13,7 +13,6 @@ init:
     pullPolicy: IfNotPresent
 
 image:
-  registry: docker.io
   repository: svtechnmaa/svtech_rundeck_option_provider
   tag: "latest"
 

@@ -41,7 +41,7 @@ spec:
       # Containers config
       containers:
       - name: snmp-manager
-        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        image: {{ include "common.images.image" ( dict "imageRoot" .Values.image "global" .Values.global ) }} # {{ .Values.image.repository }}:{{ .Values.image.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
         {{- if .Values.securityContext.enabled }}
         securityContext:

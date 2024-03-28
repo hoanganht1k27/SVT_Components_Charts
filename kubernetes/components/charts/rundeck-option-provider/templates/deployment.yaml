@@ -51,7 +51,7 @@ spec:
       {{- if .Values.init }}
       initContainers:
         - name: wait-for-init-repo
-          image: {{ include "rundeck-option-provider.init.image" . }}
+          image: {{ include "common.images.image" ( dict "imageRoot" .Values.init.image ) }}
           imagePullPolicy: {{ .Values.init.image.pullPolicy | quote }}
           command:
             - /bin/sh
@@ -78,7 +78,7 @@ spec:
 
       containers:
         - name: "rundeck-option-provider"
-          image: {{ include "rundeck-option-provider.image" . }}
+          image: {{ include "common.images.image" ( dict "imageRoot" .Values.image "global" .Values.global ) }}
           imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
           {{- if .Values.securityContext.enabled }}
           securityContext:

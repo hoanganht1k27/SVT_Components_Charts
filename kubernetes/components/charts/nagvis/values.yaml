@@ -5,9 +5,8 @@ global:
 timezone: Asia/Ho_Chi_Minh
 
 image:
-  registry: docker.io
   repository: svtechnmaa/svtech_nagvis
-  tag: "latest"
+  tag: "v1.2.1"
 
   pullPolicy: IfNotPresent
   # debug: true

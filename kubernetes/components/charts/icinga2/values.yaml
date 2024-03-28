@@ -12,10 +12,8 @@ init:
     pullPolicy: IfNotPresent
 
 image:
-  registry: docker.io
   repository: svtechnmaa/svtech_icinga2
   tag: "latest"
-
   pullPolicy: IfNotPresent
   # debug: true
 

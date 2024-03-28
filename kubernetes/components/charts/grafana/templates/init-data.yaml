@@ -13,7 +13,7 @@ spec:
       restartPolicy: Never
       initContainers:
         - name: wait-for-init-repo
-          image: {{ include "rundeck.init.image" . }}
+          image: {{ include "common.images.image" ( dict "imageRoot" .Values.init.image "global" .Values.global ) }}
           imagePullPolicy: {{ .Values.init.image.pullPolicy | quote }}
           command:
             - /bin/sh
@@ -38,7 +38,7 @@ spec:
           {{- end  }}      
       containers:
       - name: init-data
-        image: {{ include "grafana.image" . }}
+        image: {{ include "common.images.image" ( dict "imageRoot" .Values.image "global" .Values.global ) }}
         imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
         command:
           - bash

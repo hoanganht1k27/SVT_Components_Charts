@@ -5,7 +5,7 @@
 # Global var that use for enable the chart that you want
 # See the dependencies condition at Chart.yaml
 global:
-  imageRegistry: docker.io
+  imageRegistry: ghcr.io/moophat
   timezone: Asia/Ho_Chi_Minh
   # Set ip for the LoadBalancer service (ingress-nginx)
   frontendVip: "" # Auto-assign with metalLB or set your own IP
@@ -447,7 +447,6 @@ preparation:
 ############################################################
 proxy:
   image:
-    registry: docker.io
     repository: svtechnmaa/svtech_proxy
     tag: v1.0.0
 
@@ -527,11 +526,11 @@ debuger:
 maxscale:
   init:
     image:
+      registry: docker.io
       repository: mysql
       tag: 8.2.0
 
   image:
-    registry: docker.io
     repository: svtechnmaa/svtech_maxscale
     tag: v1.0.2
     pullPolicy: IfNotPresent
@@ -828,16 +827,14 @@ icinga2:
       pullPolicy: IfNotPresent
 
   image:
-    registry: docker.io
     repository: svtechnmaa/svtech_icinga2
     tag: "v1.1.5"
     pullPolicy: IfNotPresent
 
   sidecar:
     image:
-      registry: docker.io
       repository: svtechnmaa/svtech_icinga2
-      tag: "v1.1.4"
+      tag: "v1.1.5"
       pullPolicy: IfNotPresent
 
   commonAnnotations:
@@ -909,7 +906,6 @@ icinga2:
     # icingadb container
     icingadb:
       image:
-        registry: docker.io
         repository: svtechnmaa/svtech_icingadb
         tag: v1.1.2
         pullPolicy: IfNotPresent
@@ -979,7 +975,6 @@ icinga2:
 ############################################################
 postfix:
   image:
-    registry: docker.io
     repository: svtechnmaa/svtech_postfix
     tag: "v1.0.1"
     pullPolicy: IfNotPresent
@@ -1027,7 +1022,6 @@ postfix:
 ############################################################
 thruk:
   image:
-    registry: docker.io
     repository: svtechnmaa/svtech_http_thruk
     tag: "v1.0.1"
     pullPolicy: IfNotPresent
@@ -1103,7 +1097,6 @@ thruk:
 ############################################################
 gitlist:
   image:
-    registry: docker.io
     repository: svtechnmaa/svtech_gitlist
     tag: "v1.0.0"
     pullPolicy: IfNotPresent
@@ -1149,9 +1142,8 @@ grafana:
       pullPolicy: IfNotPresent
 
   image:
-    registry: docker.io
     repository: svtechnmaa/svtech_grafana
-    tag: "v1.2.1"
+    tag: "v1.2.2"
     pullPolicy: IfNotPresent
 
   commonAnnotations:
@@ -1265,9 +1257,8 @@ icinga2-report:
 ############################################################
 nagvis:
   image:
-    registry: docker.io
     repository: svtechnmaa/svtech_nagvis
-    tag: "v1.1.0"
+    tag: "v1.2.1"
     pullPolicy: IfNotPresent
 
   commonAnnotations:
@@ -1319,11 +1310,9 @@ rundeck:
       registry: docker.io
       repository: busybox
       tag: "1.33"
-
       pullPolicy: IfNotPresent
 
   image:
-    registry: docker.io
     repository: svtechnmaa/svtech_rundeck
     tag: "v1.2.0"
 
@@ -1410,7 +1399,6 @@ rundeck-option-provider:
   #     pullPolicy: IfNotPresent
 
   image:
-    registry: docker.io
     repository: svtechnmaa/svtech_rundeck_option_provider
     tag: "v1.0.1"
 
@@ -1496,7 +1484,6 @@ csv-view:
     helm.sh/hook-weight: "0"
 
   image:
-    registry: docker.io
     repository: svtechnmaa/svtech_csv
     tag: "v1.0.0"
 
@@ -1544,7 +1531,6 @@ csv-view:
 ############################################################
 syncthing:
   image:
-    registry: docker.io
     repository: svtechnmaa/svtech_syncthing
     tag: v1.0.2
     pullPolicy: IfNotPresent
@@ -1603,7 +1589,6 @@ icingaweb:
       tag: "1.33"
       pullPolicy: IfNotPresent
   image:
-    registry: docker.io
     repository: svtechnmaa/svtech_icingaweb2
     tag: v1.0.1
     pullPolicy: IfNotPresent
@@ -1668,9 +1653,8 @@ icingaweb:
 ############################################################
 snmp-manager:
   image:
-    registry: docker.io
     repository: svtechnmaa/svtech_snmp_manager
-    tag: v1.0.0
+    tag: v1.0.1
     pullPolicy: IfNotPresent
     debug: false
   containerPort:

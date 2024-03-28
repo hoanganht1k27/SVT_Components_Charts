@@ -5,7 +5,6 @@ global:
 timezone: Asia/Ho_Chi_Minh
 
 image:
-  registry: docker.io
   repository: svtechnmaa/svtech_csv
   tag: "latest"
 

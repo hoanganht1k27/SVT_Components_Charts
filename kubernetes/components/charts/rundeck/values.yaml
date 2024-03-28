@@ -9,11 +9,9 @@ init:
     registry: docker.io
     repository: busybox
     tag: "1.33"
-
     pullPolicy: IfNotPresent
 
 image:
-  registry: docker.io
   repository: svtechnmaa/svtech_rundeck
   tag: "latest"
 

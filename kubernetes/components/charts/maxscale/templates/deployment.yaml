@@ -17,7 +17,7 @@ spec:
     spec:
       initContainers:
         - name: wait-for-mariadb
-          image: {{ .Values.init.image.repository }}:{{ .Values.init.image.tag }}
+          image: {{ include "common.images.image" ( dict "imageRoot" .Values.init.image ) }} # {{ .Values.init.image.repository }}:{{ .Values.init.image.tag }}
           env:
             {{- if index (index .Values.global "mariadb-galera") "enabled" }}
             - name: SERVER
@@ -70,7 +70,7 @@ spec:
 
       containers:
         - name: maxscale
-          image: {{ include "maxscale.image" . }}
+          image: {{ include "common.images.image" ( dict "imageRoot" .Values.image ) }}
           env:
             {{- if index (index .Values.global "mariadb-galera") "enabled" }}
             - name: SERVER
