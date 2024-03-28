@@ -907,7 +907,7 @@ icinga2:
     icingadb:
       image:
         repository: svtechnmaa/svtech_icingadb
-        tag: v1.1.2
+        tag: "v1.1.4"
         pullPolicy: IfNotPresent
         debug: false
       env:
