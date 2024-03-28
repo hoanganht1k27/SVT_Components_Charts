@@ -1,8 +1,0 @@
-.DS_Store
-.baseDir.ts
-.idea
-bower_components
-node_modules
-package-lock.json
-dist
-coverage

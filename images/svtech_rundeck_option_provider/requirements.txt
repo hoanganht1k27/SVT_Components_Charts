@@ -1,7 +1,0 @@
-flask
-influxdb
-pyyaml
-argparse
-configparser
-mysql.connector
-gevent
