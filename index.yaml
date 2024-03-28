@@ -3,7 +3,7 @@ entries:
   components:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-03-28T10:04:58.526921901+07:00"
+    created: "2024-03-28T10:33:26.505238381+07:00"
     dependencies:
     - condition: global.sharedVolume.enabled
       name: sharedVolume
@@ -114,10 +114,10 @@ entries:
       repository: ""
       version: 1.x.x
     description: SVTECH Project Containers all components charts
-    digest: 07872bbf7caa508a992e57bbc6974f5a017aec5ea03c76ed1d7e426017cdcd24
+    digest: 4281455783f41645135fbf7acb63e7ddc1115741c9d8641ae6f0f465f38d038a
     name: components
     type: application
     urls:
     - components-0.1.0.tgz
     version: 0.1.0
-generated: "2024-03-28T10:04:58.478872298+07:00"
+generated: "2024-03-28T10:33:26.459331001+07:00"
