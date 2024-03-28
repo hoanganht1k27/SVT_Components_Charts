@@ -448,7 +448,7 @@ preparation:
 proxy:
   image:
     repository: svtechnmaa/svtech_proxy
-    tag: v1.0.0
+    tag: v1.0.1
 
     pullPolicy: IfNotPresent
 
@@ -496,7 +496,7 @@ debuger:
   image:
     registry: docker.io
     repository: svtechnmaa/svtech_debuger
-    tag: "v1.0.0"
+    tag: "v1.0.1"
     pullPolicy: IfNotPresent
 
   commonAnnotations:
@@ -532,7 +532,7 @@ maxscale:
 
   image:
     repository: svtechnmaa/svtech_maxscale
-    tag: v1.0.2
+    tag: v1.0.3
     pullPolicy: IfNotPresent
 
   service:
@@ -828,13 +828,13 @@ icinga2:
 
   image:
     repository: svtechnmaa/svtech_icinga2
-    tag: "v1.1.5"
+    tag: "v1.1.6"
     pullPolicy: IfNotPresent
 
   sidecar:
     image:
       repository: svtechnmaa/svtech_icinga2
-      tag: "v1.1.5"
+      tag: "v1.1.6"
       pullPolicy: IfNotPresent
 
   commonAnnotations:
@@ -976,7 +976,7 @@ icinga2:
 postfix:
   image:
     repository: svtechnmaa/svtech_postfix
-    tag: "v1.0.1"
+    tag: "v1.0.2"
     pullPolicy: IfNotPresent
 
   commonAnnotations:
@@ -1023,7 +1023,7 @@ postfix:
 thruk:
   image:
     repository: svtechnmaa/svtech_http_thruk
-    tag: "v1.0.1"
+    tag: "v1.0.2"
     pullPolicy: IfNotPresent
 
   commonAnnotations:
@@ -1098,7 +1098,7 @@ thruk:
 gitlist:
   image:
     repository: svtechnmaa/svtech_gitlist
-    tag: "v1.0.0"
+    tag: "v1.0.1"
     pullPolicy: IfNotPresent
 
   commonAnnotations:
@@ -1314,7 +1314,7 @@ rundeck:
 
   image:
     repository: svtechnmaa/svtech_rundeck
-    tag: "v1.2.0"
+    tag: "v1.2.1"
 
     pullPolicy: IfNotPresent
 
@@ -1400,7 +1400,7 @@ rundeck-option-provider:
 
   image:
     repository: svtechnmaa/svtech_rundeck_option_provider
-    tag: "v1.0.1"
+    tag: "v1.1.1"
 
     pullPolicy: IfNotPresent
 
@@ -1532,7 +1532,7 @@ csv-view:
 syncthing:
   image:
     repository: svtechnmaa/svtech_syncthing
-    tag: v1.0.2
+    tag: "v1.0.4"
     pullPolicy: IfNotPresent
     debug: false
 
@@ -1590,7 +1590,7 @@ icingaweb:
       pullPolicy: IfNotPresent
   image:
     repository: svtechnmaa/svtech_icingaweb2
-    tag: v1.0.1
+    tag: "v1.0.2"
     pullPolicy: IfNotPresent
     debug: false
   containerPort:
