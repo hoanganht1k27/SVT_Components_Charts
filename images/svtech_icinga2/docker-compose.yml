@@ -1,0 +1,54 @@
+version: '3.7'
+services:
+  icinga2:
+    image: hadnat/svtech_icinga2:v1.0.0
+    container_name: svtech_icinga2
+    hostname: NMS
+    # volumes:
+
+    environment:
+      ROLE: master
+      COMMON_NAME: NMS
+      ZONE: master
+
+      # For master
+      ICINGA_HOST: localhost
+      ICINGA_PORT: 5665
+
+      # For satellite
+      PARENT_NAME: NMS01
+      PARENT_ZONE: master
+      PARENT_HOST: 10.98.0.132
+      PARENT_PORT: 5665
+      TRUSTEDCERT: /var/lib/icinga2/certs/trusted-parent.crt
+
+      # Influxdb info
+      INFLUXDB_ENABLE: "false"
+      INFLUXDB_HOST: 10.98.0.132
+      INFLUXDB_PORT: 8086
+      INFLUXDB_DATABASE: influxdb_nms
+      INFLUXDB_USER: juniper
+      INFLUXDB_PASSWORD: juniper@123
+
+      # IDO-MYSQL
+      IDO_ENABLE: "true"
+      IDO_HOST: 10.98.0.132
+      IDO_PORT: 3306
+      IDO_USER: icinga
+      IDO_PASSWORD: icinga
+      IDO_DATABASE: icinga
+      IDO_CATEGORIES: '["DbCatConfig", "DbCatState", "DbCatAcknowledgement", "DbCatComment", "DbCatDowntime", "DbCatEventHandler", "DbCatFlapping", "DbCatNotification", "DbCatProgramStatus", "DbCatRetention", "DbCatStateHistory"]'
+      IDO_CLEANUP_STATEHISTORY: 90d
+      IDO_CLEANUP_NOTIFICAION: 90d
+      IDO_CLEANUP_SERVICECHECK: 7d
+
+      # Notifications
+      NOTI_ENABLE: "true"
+      MAILHUB_HOST: "10.98.0.133"
+      MAILHUB_PORT: 25
+      RELAY_EMAIL: "ha.do@svtech.com.vn"
+
+    restart: always
+    ports:
+      - 5665:5665
+      - 6558:6558

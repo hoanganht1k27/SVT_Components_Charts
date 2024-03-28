@@ -1,0 +1,11 @@
+grafana:
+  image: grafana/grafana:7.0.4
+  #image: grafana/grafana:6.7.2
+  #image: grafana/grafana:6.6.2
+  #image: grafana/grafana:6.5.3
+  ports:
+    - "3000:3000"
+  volumes:
+    - ./:/var/lib/grafana/plugins/briangann-datatable-panel
+  environment:
+    - TERM=linux

@@ -1,0 +1,990 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "$$hashKey": "object:22",
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "iteration": 1587098344346,
+  "links": [],
+  "panels": [
+    {
+      "columns": [],
+      "datasource": "grafana_thruk",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Hostgroup",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "See all of Host group ${__cell_1}",
+          "linkUrl": "/grafana/d/host-list/host-list?orgId=1$__all_variables&var-hostgroup=${__cell_1}",
+          "mappingType": 1,
+          "pattern": "name",
+          "preserveFormat": false,
+          "sanitize": false,
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "Host UP",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "See Host UP of Host group ${__cell_1}",
+          "linkUrl": "/grafana/d/host-list/host-list?orgId=1$__all_variables&var-hostgroup=${__cell_1}&var-hoststate=0",
+          "mappingType": 1,
+          "pattern": "num_hosts_up",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Host DOWN",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "See Host DOWN of Host group ${__cell_1}",
+          "linkUrl": "/grafana/d/host-list/host-list?orgId=1$__all_variables&var-hostgroup=${__cell_1}&var-hoststate=1",
+          "mappingType": 1,
+          "pattern": "num_hosts_down",
+          "thresholds": [
+            "0.1",
+            "1"
+          ],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Host UNREACHABLE",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "See Host UNREACHABLE of Host group ${__cell_1}",
+          "linkUrl": "/grafana/d/host-list/host-list?orgId=1$__all_variables&var-hostgroup=${__cell_1}&var-hoststate=2",
+          "mappingType": 1,
+          "pattern": "num_hosts_unreach",
+          "thresholds": [
+            "0.1",
+            "1"
+          ],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Total Host",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "See Total Host of Host group ${__cell_1}",
+          "linkUrl": "/grafana/d/host-list/host-list?orgId=1$__all_variables&var-hostgroup=${__cell_1}",
+          "mappingType": 1,
+          "pattern": "num_hosts",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Service OK",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "See Service OK of Host group ${__cell_1}",
+          "linkUrl": "/grafana/d/service-list/service-list?orgId=1$__all_variables&var-hostgroup=${__cell_1}&var-servicestate=0",
+          "mappingType": 1,
+          "pattern": "num_services_ok",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Service WARNING",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "See Service WARNING of Host group ${__cell_1}",
+          "linkUrl": "/grafana/d/service-list/service-list?orgId=1$__all_variables&var-hostgroup=${__cell_1}&var-servicestate=1",
+          "mappingType": 1,
+          "pattern": "num_services_warn",
+          "thresholds": [
+            "0.1",
+            "10"
+          ],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Service CRTICAL",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "See Service CRITICAL of Host group ${__cell_1}",
+          "linkUrl": "/grafana/d/service-list/service-list?orgId=1$__all_variables&var-hostgroup=${__cell_1}&var-servicestate=2",
+          "mappingType": 1,
+          "pattern": "num_services_crit",
+          "thresholds": [
+            "0.1",
+            "10"
+          ],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Service UNKNOWN",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "See Service UNKNOWN of Host group ${__cell_1}",
+          "linkUrl": "/grafana/d/service-list/service-list?orgId=1$__all_variables&var-hostgroup=${__cell_1}&var-servicestate=3",
+          "mappingType": 1,
+          "pattern": "num_services_unknown",
+          "thresholds": [
+            "0.1",
+            "10"
+          ],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Total Service",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "See Total Service of Host group ${__cell_1}",
+          "linkUrl": "/grafana/d/service-list/service-list?orgId=1$__all_variables&var-hostgroup=${__cell_1}&var-servicestate=All",
+          "mappingType": 1,
+          "pattern": "num_services",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "livestatus_name",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "hide": false,
+          "query": {
+            "datasource": [
+              "hostgroups",
+              "SELECT",
+              "name",
+              "num_hosts_up",
+              "num_hosts_down",
+              "num_hosts_unreach",
+              "num_hosts",
+              "num_services_ok",
+              "num_services_warn",
+              "num_services_crit",
+              "num_services_unknown",
+              "num_services",
+              "FROM",
+              "${datasource:csv}"
+            ],
+            "hostFilter": [],
+            "serviceFilter": []
+          },
+          "refId": "A",
+          "segments": [
+            "SELECT",
+            "name",
+            "num_hosts_up",
+            "num_hosts_down",
+            "num_hosts_unreach",
+            "num_hosts",
+            "num_services_ok",
+            "num_services_warn",
+            "num_services_crit",
+            "num_services_unknown",
+            "num_services",
+            "FROM",
+            "${datasource:csv}",
+            "WHERE",
+            "name",
+            "~",
+            "(${hostgroup:pipe})",
+            "*"
+          ],
+          "target": "hostgroups",
+          "type": "timeserie"
+        }
+      ],
+      "title": "Hostgroup Summary Per Item",
+      "transform": "table",
+      "type": "table"
+    },
+    {
+      "columns": [],
+      "datasource": "grafana_thruk",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "id": 4,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 1,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Host",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "See detail information of ${__cell}",
+          "linkUrl": "/grafana/d/device-dashboard-detail/device-dashboard-detail?orgId=1&var-hostname=${__cell_2}&var-datasource=${__cell_0}",
+          "mappingType": 1,
+          "pattern": "display_name",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "Status",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "#e0752d",
+            "#508642",
+            "#bf1b00"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "state",
+          "thresholds": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "text": "UP",
+              "value": "0"
+            },
+            {
+              "text": "DOWN",
+              "value": "1"
+            },
+            {
+              "text": "UNREACHABLE",
+              "value": "2"
+            },
+            {
+              "text": "PENDING",
+              "value": "3"
+            }
+          ]
+        },
+        {
+          "alias": "Last Check",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "last_check",
+          "thresholds": [],
+          "type": "date",
+          "unit": "short"
+        },
+        {
+          "alias": "Status Information",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "plugin_output",
+          "preserveFormat": true,
+          "sanitize": true,
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "action_url_expanded",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "livestatus_name",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "hide": false,
+          "query": {
+            "datasource": [
+              "hosts",
+              "SELECT",
+              "action_url_expanded",
+              "display_name",
+              "state",
+              "last_check",
+              "plugin_output",
+              "FROM",
+              "${datasource:csv}"
+            ],
+            "hostFilter": [],
+            "serviceFilter": []
+          },
+          "refId": "A",
+          "segments": [
+            "SELECT",
+            "action_url_expanded",
+            "display_name",
+            "state",
+            "last_check",
+            "plugin_output",
+            "FROM",
+            "${datasource:csv}",
+            "WHERE",
+            "display_name",
+            "~",
+            "(${host:pipe})",
+            "AND",
+            "groups",
+            "~",
+            "(${hostgroup:pipe})",
+            "AND",
+            "state",
+            "~",
+            "(${hoststate:pipe})",
+            "*",
+            "*",
+            "*"
+          ],
+          "target": "hosts",
+          "type": "timeserie"
+        }
+      ],
+      "title": "Host Status Details For All Host Groups",
+      "transform": "table",
+      "type": "table"
+    },
+    {
+      "columns": [],
+      "datasource": "grafana_thruk",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "id": 6,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 1,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Last Check",
+          "align": "auto",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "last_check",
+          "preserveFormat": true,
+          "sanitize": true,
+          "type": "string",
+          "unit": "dateTimeAsIso"
+        },
+        {
+          "alias": "State",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "#bf1b00",
+            "#ff9933"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "state",
+          "preserveFormat": false,
+          "sanitize": false,
+          "thresholds": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "text": "OK",
+              "value": "0"
+            },
+            {
+              "text": "WARNING",
+              "value": "1"
+            },
+            {
+              "text": "CRITICAL",
+              "value": "2"
+            },
+            {
+              "text": "UNKNOWN",
+              "value": "3"
+            },
+            {
+              "text": "PENDING",
+              "value": "4"
+            }
+          ]
+        },
+        {
+          "alias": "Service",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "See detail information of service ${__cell}",
+          "linkUrl": "/grafana/dashboard/script/service_detail_dashboard.js?reportds=grafana_thruk&service=${__cell}&host=${__cell_2}&var-influx=influxdb_nms&livename=${__cell_0}",
+          "mappingType": 1,
+          "pattern": "display_name",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "Host",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "linkTooltip": "See detail information of host ${__cell}",
+          "linkUrl": "/grafana/d/device-dashboard-detail/device-dashboard-detail?orgId=1&var-hostname=${__cell_2}&var-datasource=${__cell_0}",
+          "mappingType": 1,
+          "pattern": "host_name",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "State type",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "state_type",
+          "preserveFormat": true,
+          "sanitize": true,
+          "thresholds": [],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "text": "SOFT",
+              "value": "0"
+            },
+            {
+              "text": "HARD",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "alias": "Status Infomation",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "plugin_output",
+          "preserveFormat": true,
+          "sanitize": true,
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "action_url_expanded",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "livestatus_name",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "hide": false,
+          "query": {
+            "datasource": [
+              "services",
+              "SELECT",
+              "display_name",
+              "host_name",
+              "state",
+              "state_type",
+              "last_check",
+              "plugin_output",
+              "action_url_expanded",
+              "FROM",
+              "${datasource:csv}"
+            ],
+            "hostFilter": [],
+            "serviceFilter": []
+          },
+          "refId": "B",
+          "segments": [
+            "SELECT",
+            "display_name",
+            "host_name",
+            "state",
+            "state_type",
+            "last_check",
+            "plugin_output",
+            "action_url_expanded",
+            "FROM",
+            "${datasource:csv}",
+            "WHERE",
+            "host_name",
+            "~",
+            "(${host:pipe})",
+            "AND",
+            "host_state",
+            "~",
+            "(${hoststate:pipe})",
+            "AND",
+            "state",
+            "~",
+            "(${servicestate:pipe})",
+            "AND",
+            "host_groups",
+            "~",
+            "(${hostgroup:pipe})",
+            "*",
+            "*"
+          ],
+          "target": "services",
+          "type": "timeserie"
+        }
+      ],
+      "title": "Services Informations For All Host Groups",
+      "transform": "table",
+      "type": "table"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 22,
+  "style": "dark",
+  "tags": [
+    "host_info"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "text": "LiveStatus",
+          "value": [
+            "LiveStatus"
+          ]
+        },
+        "datasource": "grafana_thruk",
+        "definition": "SHOW datasources;",
+        "hide": 2,
+        "includeAll": true,
+        "index": -1,
+        "label": "Datasource",
+        "multi": true,
+        "name": "datasource",
+        "options": [],
+        "query": "SHOW datasources;",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": ".*",
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "grafana_thruk",
+        "definition": "SELECT hostgroups.name FROM ${datasource:csv};",
+        "hide": 0,
+        "includeAll": true,
+        "index": -1,
+        "label": "Hostgroup",
+        "multi": true,
+        "name": "hostgroup",
+        "options": [],
+        "query": "SELECT hostgroups.name FROM ${datasource:csv};",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": ".*",
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "grafana_thruk",
+        "definition": "show hoststate;",
+        "hide": 0,
+        "includeAll": true,
+        "index": -1,
+        "label": "Host State",
+        "multi": true,
+        "name": "hoststate",
+        "options": [],
+        "query": "show hoststate;",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": ".*",
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "grafana_thruk",
+        "definition": "SELECT hosts.display_name FROM ${datasource:csv} WHERE state ~ (${hoststate:pipe}) AND groups ~ (${hostgroup:pipe});",
+        "hide": 0,
+        "includeAll": true,
+        "index": -1,
+        "label": "Host",
+        "multi": true,
+        "name": "host",
+        "options": [],
+        "query": "SELECT hosts.display_name FROM ${datasource:csv} WHERE state ~ (${hoststate:pipe}) AND groups ~ (${hostgroup:pipe});",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": ".*",
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "grafana_thruk",
+        "definition": "show servicestate;",
+        "hide": 0,
+        "includeAll": true,
+        "index": -1,
+        "label": "Service State",
+        "multi": true,
+        "name": "servicestate",
+        "options": [],
+        "query": "show servicestate;",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": true,
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Host Groups Overview",
+  "uid": "host-groups-overview",
+  "variables": {
+    "list": []
+  }
+}

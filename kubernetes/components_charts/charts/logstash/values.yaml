@@ -1,0 +1,82 @@
+timezone: Asia/Ho_Chi_Minh
+clusterName: quickstart
+version: 8.9.1
+k8sSvcSubfix: es-http # used in the boostrap index job
+adminUser:
+  name: elastic
+  pass: juniper@123
+  role: superuser
+index:
+  name: junos_loggg # used in ILM name, template name, rollover alias, index name
+  shard: 6
+  replica: 2
+  ILM: '?'
+  mapping: '?'
+init:
+  text: smth-from-value.yaml
+
+nodes:
+  - name: master1
+    replicaCount: 1
+    role: ["data_hot", "master", "remote_cluster_client"]
+    # nodeSelector: already has local-path, need this?
+    storage:
+      name: local-path-ssd
+      size: 5G
+      mode: ReadWriteOnce
+    resourceLimit: false
+    resourceRequest: false
+    heapSize: 1G
+    affinity: {}
+  - name: master2
+    replicaCount: 1
+    role: ["data_hot", "master", "remote_cluster_client"]
+    # nodeSelector: already has local-path, need this?
+    storage:
+      name: local-path-ssd
+      size: 5G
+      mode: ReadWriteOnce
+    resourceLimit: false
+    resourceRequest: false
+    heapSize: 1G
+    affinity: {}
+  - name: master3
+    replicaCount: 1
+    role: ["data_hot", "master", "remote_cluster_client"]
+    # nodeSelector: already has local-path, need this?
+    storage:
+      name: local-path-ssd
+      size: 5G
+      mode: ReadWriteOnce
+    resourceLimit: false
+    resourceRequest: false
+    heapSize: 1G
+    affinity: {}
+  - name: data1
+    replicaCount: 1
+    role: ["data_warm", "data_frozen", "data_cold", "data_content", "ingest", "ml", "transform", "remote_cluster_client"]
+    # nodeSelector: already has local-path, need this?
+    storage:
+      name: local-path
+      size: 5G
+      mode: ReadWriteOnce
+    resourceLimit: false
+    resourceRequest: false
+    heapSize: 1G
+    affinity: {}
+
+affinity:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+    - labelSelector:
+        matchExpressions:
+        - key: "app"
+          operator: In
+          values:
+          - logstash
+      topologyKey: "kubernetes.io/hostname"
+
+service:
+  type: LoadBalancer
+
+securityContext: {}

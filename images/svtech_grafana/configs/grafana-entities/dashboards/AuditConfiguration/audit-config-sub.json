@@ -1,0 +1,585 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "$$hashKey": "object:309",
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "iteration": 1603867975970,
+  "links": [],
+  "panels": [
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPrefix": false,
+      "colorValue": false,
+      "colors": [
+        "#56A64B",
+        "#56A64B",
+        "#56A64B"
+      ],
+      "datasource": "Audit_Config",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 9,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "$$hashKey": "object:2759",
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "$$hashKey": "object:2760",
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT DATE_FORMAT(pre_time, \"%Y-%m-%d %H:%i:%S\") AS Pre_time \nFROM [[table]]_[[data]]\nWHERE runtime in ($runtime)\n",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": "0",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Snapshot time",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "$$hashKey": "object:2762",
+          "op": "=",
+          "text": "Same as RunTime",
+          "value": "null"
+        }
+      ],
+      "valueName": "first"
+    },
+    {
+      "columns": [],
+      "datasource": "Audit_Config",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 14,
+        "w": 24,
+        "x": 0,
+        "y": 2
+      },
+      "id": 10,
+      "pageSize": null,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": false
+      },
+      "styles": [
+        {
+          "$$hashKey": "object:875",
+          "alias": "Time",
+          "align": "auto",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Time",
+          "type": "date"
+        },
+        {
+          "$$hashKey": "object:876",
+          "alias": "",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "#C4162A",
+            "#56A64B",
+            "#56A64B"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "Click to view Detail Result test `${__cell_1}` of host `${__cell_2}`",
+          "linkUrl": "/grafana/d/audit-config-detail/audit-config-detail?orgId=1&var-table=$table&var-hostname=${__cell_2}&var-test_name=${__cell_1}&var-data=$data&var-runtime=$runtime",
+          "mappingType": 1,
+          "pattern": "Rate",
+          "thresholds": [
+            "1"
+          ],
+          "type": "number",
+          "unit": "percentunit"
+        },
+        {
+          "$$hashKey": "object:877",
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": false,
+          "linkTargetBlank": true,
+          "linkTooltip": "Click to view Detail Result test `${__cell_0}` of host `${__cell_1}`",
+          "linkUrl": "/grafana/d/audit-config-detail/audit-config-detail?orgId=1&var-table=$table&var-hostname=${__cell_1}&var-test_name=${__cell_0}&var-data=$data&var-runtime=$runtime",
+          "mappingType": 1,
+          "pattern": "hostname",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:878",
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": false,
+          "linkTargetBlank": true,
+          "linkTooltip": "Click to view Detail Result test `${__cell_0}` of host `${__cell_1}`",
+          "linkUrl": "/grafana/d/audit-config-detail/audit-config-detail?orgId=1&var-table=$table&var-hostname=${__cell_1}&var-test_name=${__cell_0}&var-data=$data&var-runtime=$runtime",
+          "mappingType": 1,
+          "pattern": "address",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:879",
+          "alias": "TestName",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "Click to view Detail Result test `${__cell_1}` of host `${__cell_2}`",
+          "linkUrl": "/grafana/d/audit-config-detail/audit-config-detail?orgId=1&var-table=$table&var-hostname=${__cell_2}&var-test_name=${__cell_1}&var-data=$data&var-runtime=$runtime",
+          "mappingType": 1,
+          "pattern": "test_name",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:480",
+          "alias": "",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "#C4162A",
+            "#56A64B",
+            "#56A64B"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "mappingType": 1,
+          "pattern": "PASSED_items",
+          "thresholds": [
+            "1"
+          ],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:1153",
+          "alias": "",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "#56A64B",
+            "#C4162A",
+            "#C4162A"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "mappingType": 1,
+          "pattern": "FAILED_items",
+          "thresholds": [
+            "1"
+          ],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:1164",
+          "alias": "",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "#56A64B",
+            "#B877D9",
+            "#B877D9"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "mappingType": 1,
+          "pattern": "SKIPPED_items",
+          "thresholds": [
+            "1"
+          ],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "hide": false,
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT  audit_type,\r\n        test_name, \r\n        hostname, \r\n        address, \r\n        PASSED_items,\r\n        FAILED_items,\r\n        SKIPPED_items,\r\n        Rate,\r\n        Runtime\r\nFROM\r\n(\r\n    SELECT \r\n      CASE\r\n        WHEN INSTR(\"[[table]]\", \"snapcheck\") THEN \"snapcheck\"\r\n        WHEN INSTR(\"[[table]]\", \"compare\") THEN \"compare\"\r\n      END\r\n      as audit_type,\r\n      test_name,\r\n      hostname, \r\n      address, \r\n      SUM(if(result = 0, 1, 0)) as PASSED_items,\r\n      SUM(if(result = 1, 1, 0)) as FAILED_items,\r\n      SUM(if(result = 2, 1, 0)) as SKIPPED_items,\r\n      IF(SUM(if(result = 0, 1, 0)) + SUM(if(result = 1, 1, 0)) = 0, null, (SUM(if(result = 0, 1, 0))/( SUM(if(result = 0, 1, 0)) + SUM(if(result = 1, 1, 0)) ) )) as Rate,\r\n      runtime as Runtime\r\n    FROM [[table]]_history\r\n    WHERE hostname in ($hostname) \r\n        and address in ($address) \r\n        and test_name in ($test_name) \r\n        and runtime in ($runtime)\r\n        and UNIX_TIMESTAMP(lastUpdated) BETWEEN $__unixEpochFrom() AND $__unixEpochTo()\r\n    GROUP BY hostname, test_name\r\n)\r\nas clause\r\nHAVING Rate [[condition]]",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "chassisinventory",
+          "timeColumn": "time",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Test Result Overview",
+      "transform": "table",
+      "type": "table-old"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 25,
+  "style": "dark",
+  "tags": [
+    "audit"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "text": "jsnapy_snapcheck",
+          "value": "jsnapy_snapcheck"
+        },
+        "datasource": "Audit_Config",
+        "definition": "show tables;",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Table",
+        "multi": false,
+        "name": "table",
+        "options": [],
+        "query": "show tables;",
+        "refresh": 1,
+        "regex": "(.*)_current",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "history",
+          "value": "history"
+        },
+        "hide": 1,
+        "includeAll": false,
+        "label": "Data",
+        "multi": false,
+        "name": "data",
+        "options": [
+          {
+            "selected": false,
+            "text": "current",
+            "value": "current"
+          },
+          {
+            "selected": true,
+            "text": "history",
+            "value": "history"
+          }
+        ],
+        "query": "current,history",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "Audit_Config",
+        "definition": "select hostname from [[table]]_[[data]]",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Hostname",
+        "multi": true,
+        "name": "hostname",
+        "options": [],
+        "query": "select hostname from [[table]]_[[data]]",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "Audit_Config",
+        "definition": "select address from [[table]]_[[data]] where hostname in ($hostname)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Address",
+        "multi": true,
+        "name": "address",
+        "options": [],
+        "query": "select address from [[table]]_[[data]] where hostname in ($hostname)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "2020-05-28T09:16:44Z",
+          "value": "2020-05-28T09:16:44Z"
+        },
+        "datasource": "Audit_Config",
+        "definition": "select runtime from [[table]]_[[data]] where hostname in ($hostname)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "RunTime",
+        "multi": true,
+        "name": "runtime",
+        "options": [],
+        "query": "select runtime from [[table]]_[[data]] where hostname in ($hostname)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "Audit_Config",
+        "definition": "select test_name from [[table]]_[[data]] where runtime in ($runtime) and hostname in ($hostname)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Test Name",
+        "multi": true,
+        "name": "test_name",
+        "options": [],
+        "query": "select test_name from [[table]]_[[data]] where runtime in ($runtime) and hostname in ($hostname)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "<1",
+          "value": "<1"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "condition",
+        "options": [
+          {
+            "$$hashKey": "object:178",
+            "selected": false,
+            "text": "<1",
+            "value": "<1"
+          },
+          {
+            "$$hashKey": "object:179",
+            "selected": false,
+            "text": "=1",
+            "value": "=1"
+          },
+          {
+            "$$hashKey": "object:180",
+            "selected": true,
+            "text": ">=0",
+            "value": ">=0"
+          }
+        ],
+        "query": "<1,=1,>=0",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-30d",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "utc",
+  "title": "Audit Config Sub",
+  "uid": "audit-config-sub"
+}

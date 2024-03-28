@@ -1,0 +1,91 @@
+apiVersion: v2
+name: components
+description: SVTECH Project Containers all components charts
+engine: gotpl
+type: application
+
+version: 0.1.0
+appVersion: "1.16.0"
+
+dependencies:
+  - name: sharedVolume
+    version: 1.x.x
+    condition: global.sharedVolume.enabled
+  - name: preparation
+    version: 1.x.x
+    condition: global.preparation.enabled
+  - name: metallb
+    version: 3.x.x
+    condition: global.metallb.enabled
+  - name: proxy
+    version: 1.x.x
+    condition: global.proxy.enabled
+  - name: debuger
+    version: 1.x.x
+    condition: global.debuger.enabled
+  - name: mariadb-galera
+    version: 5.x.x
+    condition: global.mariadb-galera.enabled
+  - name: influxdb
+    version: 2.x.x
+    condition: global.influxdb.enabled
+  - name: icinga2
+    version: 1.x.x
+    condition: global.icinga2.enabled
+  - name: postfix
+    version: 1.x.x
+    condition: global.postfix.enabled
+  - name: thruk
+    version: 1.x.x
+    condition: global.thruk.enabled
+  - name: nagvis
+    version: 1.x.x
+    condition: global.nagvis.enabled
+  - name: gitlist
+    version: 1.x.x
+    condition: global.gitlist.enabled
+  - name: grafana
+    version: 1.x.x
+    condition: global.grafana.enabled
+  - name: icinga2-report
+    version: 1.x.x
+    condition: global.icinga2-report.enabled
+  - name: rundeck
+    version: 1.x.x
+    condition: global.rundeck.enabled
+  - name: rundeck-option-provider
+    version: 1.x.x
+    condition: global.rundeck-option-provider.enabled
+  - name: csv-view
+    version: 1.x.x
+    condition: global.csv-view.enabled
+  - name: hostPathPV
+    version: 1.x.x
+    condition: global.hostPathPV.enabled
+  - name: icingaweb
+    version: 1.x.x
+    condition: global.icingaweb.enabled
+  - name: maxscale
+    version: 1.x.x
+    condition: global.maxscale.enabled
+  - name: elasticsearch
+    version: 1.x.x
+    condition: global.elasticsearch.enabled
+  - name: kibana
+    version: 1.x.x
+    condition: global.kibana.enabled
+  - name: logstash
+    version: 1.x.x
+    condition: global.logstash.enabled
+  - name: filebeat
+    version: 1.x.x
+    condition: global.filebeat.enabled
+  - name: snmp-manager
+    version: 0.x.x
+    condition: global.snmp-manager.enabled
+  - name: syncthing
+    version: 1.x.x
+    condition: global.syncthing.enabled
+  - name: ingress-nginx
+    version: 1.x.x
+    condition: global.ingress-nginx.enabled

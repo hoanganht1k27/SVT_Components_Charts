@@ -1,0 +1,42 @@
+FROM php:7.3.10-apache
+
+LABEL org.opencontainers.image.source=https://github.com/moophat/SVTECH_Projects_Container
+
+
+
+RUN a2enmod headers \
+&& a2enmod rewrite \
+&& a2enmod proxy \
+&& a2enmod ssl \
+&& a2enmod proxy_fcgi \
+&& a2enmod proxy_balancer \
+&& a2enmod proxy_http
+
+RUN apt update \
+&& apt-get -y -qq --no-install-recommends install gnupg lsb-release \
+&& curl -s "https://labs.consol.de/repo/stable/RPM-GPG-KEY" | apt-key add - \
+&& echo "deb http://labs.consol.de/repo/stable/debian $(lsb_release -cs) main" > /etc/apt/sources.list.d/labs-consol-stable.list \
+&& apt-get update \
+&& apt-get -y -qq --no-install-recommends install thruk \
+&& apt-get -y remove gnupg lsb-release \
+&& rm -r /var/lib/apt/lists/* \
+&& chmod -R 777 /var/cache/thruk \
+&& chmod -R 777 /var/lib/thruk \
+&& chmod -R 775 /etc/thruk/thruk_local.conf \
+&& mkdir -p /var/backup/thruk \
+&& cp -rf /etc/thruk /var/backup/ \
+&& chown -R www-data:www-data /etc/thruk /var/backup/thruk
+
+COPY ./configs/conf.d/ /etc/apache2/sites-enabled
+COPY ./configs/php.ini /usr/local/etc/php/php.ini
+COPY ./configs/www /var/www/html
+COPY ./configs/menu.conf /etc/thruk/menu_local.conf
+
+ENV BACKEND_NAME=NMS \
+    BACKEND_ID=NMS \
+    BACKEND_TYPE=livestatus \
+    BACKEND_IP= \
+    BACKEND_PORT=6558
+
+COPY ./scripts/entrypoint.sh /entrypoint.sh
+ENTRYPOINT [ "/entrypoint.sh" ]

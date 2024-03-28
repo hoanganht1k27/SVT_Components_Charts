@@ -1,0 +1,29 @@
+{
+  "type": "panel",
+  "name": "Icinga2 Report",
+  "id": "icinga2-report-panel",
+
+  "info": {
+    "description": "Companion panel for Icinga2 Report",
+    "author": {
+      "name": "Tung Dao",
+      "url": "https://tungdao.com"
+    },
+    "keywords": ["icinga2", "panel"],
+    "logos": {
+      "small": "logo_small.png",
+      "large": "logo_large.png"
+    },
+    "links": [
+      {"name": "Project site", "url": "https://github.com/moophat/icinga2-report"},
+      {"name": "Apache License 2.0", "url": " http://www.apache.org/licenses/LICENSE-2.0"}
+    ],
+    "version": "0.0.1",
+    "updated": "2017-11-20"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "4.6",
+    "plugins": []
+  }
+}

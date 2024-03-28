@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  postfix:
+    image: hadnat/svtech_postfix:v1.0.0
+    container_name: svtech_postfix
+    hostname: Postfix
+
+    environment:
+      MTP_RELAY: smtp-relay.gmail.com
+      MTP_PORT: 25
+      MTP_USER: ha.do@svtech.com.vn
+      MTP_PASS: Ha.Do@123456
+      MTP_MESSAGE_SIZE_LIMIT: "102400000"
+      MTP_MAILBOX_SIZE_LIMIT: "51200000000"
+      MAIL_LOG_FILE: /dev/stdout
+    ports:
+      - "25:25"
+    restart: always
+

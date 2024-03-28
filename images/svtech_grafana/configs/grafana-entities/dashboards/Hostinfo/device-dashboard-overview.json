@@ -1,0 +1,2354 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "iteration": 1618545675473,
+  "links": [
+    {
+      "$$hashKey": "object:190",
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": true,
+      "tags": [],
+      "targetBlank": true,
+      "title": "DEFAULT",
+      "type": "dashboards"
+    }
+  ],
+  "panels": [
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 8,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": true,
+          "colorValue": false,
+          "colors": [
+            "#508642",
+            "#f9934e",
+            "#bf1b00"
+          ],
+          "datasource": "influxdb_nms",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 5,
+            "x": 0,
+            "y": 1
+          },
+          "id": 1,
+          "interval": null,
+          "links": [],
+          "mappingType": 2,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "100",
+              "text": "DOWN",
+              "to": "100"
+            },
+            {
+              "from": "0",
+              "text": "UP",
+              "to": "10"
+            },
+            {
+              "from": "11",
+              "text": "WARNING",
+              "to": "30"
+            },
+            {
+              "from": "31",
+              "text": "CRITICAL",
+              "to": "99"
+            }
+          ],
+          "repeat": null,
+          "repeatDirection": "v",
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "MANE_AGG02_RE0",
+              "value": "MANE_AGG02_RE0"
+            }
+          },
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "0"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "hostalive",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "pl"
+                }
+              ]
+            }
+          ],
+          "thresholds": "10,50",
+          "timeFrom": null,
+          "title": "STATUS",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "DOWN",
+              "value": "100"
+            },
+            {
+              "op": "=",
+              "text": "UP",
+              "value": "any"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "aliasColors": {
+            "PL": "#bf1b00",
+            "RTA": "#70dbed"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 5,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 19,
+            "x": 5,
+            "y": 1
+          },
+          "height": "",
+          "hiddenSeries": false,
+          "id": 2,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [
+            {
+              "url": "/"
+            }
+          ],
+          "maxPerRow": 2,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "h",
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "MANE_AGG02_RE0",
+              "value": "MANE_AGG02_RE0"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "alias": "PL",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "RTA",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "ping4",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"ping4\" WHERE (\"metric\" = 'pl' AND \"hostname\" =~ /^$hostname$/) AND $timeFilter GROUP BY time($interval) fill(null)",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "rta"
+                }
+              ],
+              "timeField": "@timestamp"
+            },
+            {
+              "alias": "PL",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "ping4",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"ping4\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'pl') AND $timeFilter GROUP BY time($__interval) fill(null)",
+              "rawQuery": false,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "pl"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Ping4",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "s",
+              "label": "RTA",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "percent",
+              "label": "PL",
+              "logBase": 1,
+              "max": "100",
+              "min": "0",
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "CPU Load": "#eab839",
+            "CPU Load (%)": "#447ebc",
+            "CPU Load RE0": "#0a437c",
+            "CPU Load RE1": "#5195ce",
+            "Last": "#eab839"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "decimals": null,
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 5,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 0,
+            "y": 8
+          },
+          "height": "",
+          "hiddenSeries": false,
+          "id": 4,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 2,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "MANE_AGG02_RE0",
+              "value": "MANE_AGG02_RE0"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "alias": "CPU Load (%)",
+              "yaxis": 1
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_service",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "service"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "snmp",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"snmp\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'CPU RE0' AND \"service\" = 'Juniper CPU ACX') AND $timeFilter GROUP BY time($__interval), \"hostname\"",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=~",
+                  "value": "/^CPU.*.RE.*/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "!~",
+                  "value": "/^CPU.*.RE\\d_mem\\d.*/"
+                }
+              ],
+              "timeField": "@timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "CPU LOAD",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "percent",
+              "label": "",
+              "logBase": 1,
+              "max": "100",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "Memory RE0": "#3f6833",
+            "Memory RE1": "#7eb26d"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 5,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 8,
+            "y": 8
+          },
+          "height": "",
+          "hiddenSeries": false,
+          "id": 13,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 2,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "MANE_AGG02_RE0",
+              "value": "MANE_AGG02_RE0"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_service",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "service"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "snmp",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"snmp\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"service\" =~ /Juniper Memory~/ AND \"metric\" = 'MEM_RE0') AND $timeFilter GROUP BY time($__interval) fill(linear)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=~",
+                  "value": "/^MEM.*.RE.*/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "!~",
+                  "value": "/^MEM.*.RE\\d_mem\\d.*/"
+                }
+              ],
+              "target": "select metric",
+              "type": "timeserie"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "MEMORY",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": "100",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "TEMPERATURE (C)": "#e24d42",
+            "Temperature": "#052b51",
+            "Temperature ACX": "#890f02",
+            "Temperature RE0": "#890f02",
+            "Temperature RE1": "#e0752d"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "decimals": 0,
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 5,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 16,
+            "y": 8
+          },
+          "height": "",
+          "hiddenSeries": false,
+          "id": 5,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 2,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "MANE_AGG02_RE0",
+              "value": "MANE_AGG02_RE0"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_service",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "service"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "snmp",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=~",
+                  "value": "/TEMP.*.RE.*|Temp_Chassis/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "!~",
+                  "value": "/^TEMP.*.RE\\d_mem\\d.*/"
+                }
+              ],
+              "target": "select metric",
+              "type": "timeserie"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "TEMPERATURE",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "celsius",
+              "label": "",
+              "logBase": 1,
+              "max": "100",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "CPU Load": "#eab839",
+            "CPU Load (%)": "#447ebc",
+            "CPU Load RE0": "#0a437c",
+            "CPU Load RE1": "#5195ce",
+            "Last": "#eab839"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "decimals": null,
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 5,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 8,
+            "x": 0,
+            "y": 15
+          },
+          "height": "",
+          "hiddenSeries": false,
+          "id": 14,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 2,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "MANE_AGG02_RE0",
+              "value": "MANE_AGG02_RE0"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "alias": "CPU Load (%)",
+              "yaxis": 1
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "CPU Load $tag_service",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "service"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "snmp",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"snmp\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'CPU RE0' AND \"service\" = 'Juniper CPU ACX') AND $timeFilter GROUP BY time($__interval), \"hostname\"",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "CPU_FPC"
+                }
+              ],
+              "timeField": "@timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "CPU LOAD FPC",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "percent",
+              "label": "",
+              "logBase": 1,
+              "max": "100",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "CPU Load": "#eab839",
+            "CPU Load (%)": "#447ebc",
+            "CPU Load RE0": "#0a437c",
+            "CPU Load RE1": "#5195ce",
+            "Last": "#eab839"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "decimals": null,
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 5,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 8,
+            "x": 8,
+            "y": 15
+          },
+          "height": "",
+          "hiddenSeries": false,
+          "id": 15,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 2,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "MANE_AGG02_RE0",
+              "value": "MANE_AGG02_RE0"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "alias": "CPU Load (%)",
+              "yaxis": 1
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "MEM Load $tag_service",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "service"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "snmp",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT last(\"value\") FROM \"snmp\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'MEM_FPC') AND $timeFilter GROUP BY time($__interval), \"service\" fill(previous)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "MEM_FPC"
+                }
+              ],
+              "timeField": "@timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "MEM LOAD FPC",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "percent",
+              "label": "",
+              "logBase": 1,
+              "max": "100",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "CPU Load": "#eab839",
+            "CPU Load (%)": "#447ebc",
+            "CPU Load RE0": "#0a437c",
+            "CPU Load RE1": "#5195ce",
+            "Last": "#eab839",
+            "Temperature FPCTemp-FPC2": "#bf1b00",
+            "Temperature FPCTemp-FPC3": "#629e51",
+            "Temperature FPCTemp-FPC7": "#e0752d"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "decimals": null,
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 2,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 8,
+            "x": 16,
+            "y": 15
+          },
+          "height": "",
+          "hiddenSeries": false,
+          "id": 16,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 2,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": true,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "MANE_AGG02_RE0",
+              "value": "MANE_AGG02_RE0"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Temperature $tag_service",
+              "bucketAggs": [
+                {
+                  "field": "@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto",
+                    "min_doc_count": 0,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "service"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "snmp",
+              "metrics": [
+                {
+                  "field": "select field",
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"snmp\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'CPU RE0' AND \"service\" = 'Juniper CPU ACX') AND $timeFilter GROUP BY time($__interval), \"hostname\"",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "TEMP_FPC"
+                }
+              ],
+              "timeField": "@timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "TEMPERATURE FPC",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "celsius",
+              "label": "",
+              "logBase": 1,
+              "max": "100",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        }
+      ],
+      "repeat": "hostname",
+      "scopedVars": {
+        "hostname": {
+          "selected": true,
+          "text": "MANE_AGG02_RE0",
+          "value": "MANE_AGG02_RE0"
+        }
+      },
+      "title": "$hostname Information",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 9,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 3
+          },
+          "hiddenSeries": false,
+          "id": 7,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [
+            {
+              "url": "/"
+            }
+          ],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$hostname-total-InBit",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "2m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT SUM(mean) FROM (SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" = '$hostname' AND \"service\" !~ /.*ae.*/ AND \"metric\" = 'in_bits') AND $timeFilter GROUP BY time(2m), service) GROUP BY time(2m);\n",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "!=",
+                  "value": "ae"
+                }
+              ]
+            },
+            {
+              "alias": "$hostname-total-OutBit",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "2m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT SUM(mean) FROM (SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" = '$hostname' AND \"service\" !~ /.*ae.*/ AND \"metric\" = 'out_bits') AND $timeFilter GROUP BY time(2m), service) GROUP BY time(2m);\n",
+              "rawQuery": true,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "!=",
+                  "value": "ae"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Bandwidth Total Physical Interface",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:400",
+              "decimals": null,
+              "format": "bps",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "$$hashKey": "object:401",
+              "format": "bps",
+              "label": null,
+              "logBase": 2,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        }
+      ],
+      "repeat": null,
+      "title": "Bandwith Total",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 2
+      },
+      "id": 22,
+      "panels": [
+        {
+          "datasource": "grafana_thruk",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {
+                "align": "center"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 2,
+            "w": 24,
+            "x": 0,
+            "y": 4
+          },
+          "id": 20,
+          "options": {
+            "showHeader": false
+          },
+          "pluginVersion": "7.0.3",
+          "scopedVars": {
+            "interface": {
+              "selected": true,
+              "text": "ae0",
+              "value": "ae0"
+            }
+          },
+          "targets": [
+            {
+              "refId": "A",
+              "segments": [
+                "SELECT",
+                "plugin_output",
+                "FROM",
+                "LiveStatus",
+                "WHERE",
+                "host_name",
+                "=",
+                "$hostname",
+                "AND",
+                "display_name",
+                "=",
+                "IfCheck-[[interface]]",
+                "*",
+                "*",
+                "*"
+              ],
+              "target": "services",
+              "type": "timeserie"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$interface Infomation",
+          "transformations": [
+            {
+              "id": "organize",
+              "options": {
+                "excludeByName": {
+                  "livestatus_name": true
+                },
+                "indexByName": {},
+                "renameByName": {}
+              }
+            }
+          ],
+          "transparent": true,
+          "type": "table"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 6
+          },
+          "hiddenSeries": false,
+          "id": 11,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [
+            {
+              "url": "/"
+            }
+          ],
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "h",
+          "scopedVars": {
+            "interface": {
+              "selected": true,
+              "text": "ae0",
+              "value": "ae0"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$hostname-$interface-InBit",
+              "dsType": "influxdb",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[interface]]$/"
+                }
+              ]
+            },
+            {
+              "alias": "$hostname-$interface-OutBit",
+              "dsType": "influxdb",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[interface]]$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$interface",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:245",
+              "decimals": null,
+              "format": "bps",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "$$hashKey": "object:246",
+              "format": "bps",
+              "label": null,
+              "logBase": 2,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        }
+      ],
+      "repeat": "interface",
+      "scopedVars": {
+        "interface": {
+          "selected": true,
+          "text": "ae0",
+          "value": "ae0"
+        }
+      },
+      "title": "Bandwidth $interface",
+      "type": "row"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 25,
+  "style": "dark",
+  "tags": [
+    "Host_info"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": "grafana_thruk",
+        "definition": "SHOW datasources;",
+        "hide": 2,
+        "includeAll": true,
+        "label": "Datasource",
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "SHOW datasources;",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "MX960",
+          "value": "MX960"
+        },
+        "datasource": "grafana_thruk",
+        "definition": "SELECT hosts.vars.device_type FROM $datasource;",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Device Type",
+        "multi": false,
+        "name": "device_type",
+        "options": [],
+        "query": "SELECT hosts.vars.device_type FROM $datasource;",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "BTN.MX960.201",
+          "value": "BTN.MX960.201"
+        },
+        "datasource": "grafana_thruk",
+        "definition": "SELECT hosts.display_name FROM $datasource WHERE vars.device_type = $device_type;",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Device name",
+        "multi": false,
+        "name": "hostname",
+        "options": [],
+        "query": "SELECT hosts.display_name FROM $datasource WHERE vars.device_type = $device_type;",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [
+          {
+            "selected": false,
+            "text": "hosts"
+          },
+          {
+            "selected": false,
+            "text": "services"
+          },
+          {
+            "selected": false,
+            "text": "hostgroups"
+          },
+          {
+            "selected": false,
+            "text": "servicegroups"
+          },
+          {
+            "selected": false,
+            "text": "contacts"
+          },
+          {
+            "selected": false,
+            "text": "contactgroups"
+          }
+        ],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "isNone": true,
+          "selected": false,
+          "text": "None",
+          "value": ""
+        },
+        "datasource": "grafana_thruk",
+        "definition": "SELECT hosts.address FROM $datasource WHERE display_name = $hostname AND vars.device_type = $device_type;",
+        "hide": 2,
+        "includeAll": false,
+        "label": "IP address",
+        "multi": false,
+        "name": "address",
+        "options": [],
+        "query": "SELECT hosts.address FROM $datasource WHERE display_name = $hostname AND vars.device_type = $device_type;",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "ae1",
+          "value": [
+            "ae1"
+          ]
+        },
+        "datasource": "grafana_thruk",
+        "definition": "SELECT services.display_name FROM $datasource WHERE display_name ~ IfCheck AND host_name ~ $hostname;",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Interface-check",
+        "multi": true,
+        "name": "interface",
+        "options": [],
+        "query": "SELECT services.display_name FROM $datasource WHERE display_name ~ IfCheck AND host_name ~ $hostname;",
+        "refresh": 1,
+        "regex": "/-([ae|xe|ge|reth].*)/",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "FPC3",
+          "value": [
+            "FPC3"
+          ]
+        },
+        "datasource": "grafana_thruk",
+        "definition": "SELECT services.display_name FROM $datasource WHERE host_name ~ $hostname AND display_name ~ FPC;",
+        "hide": 0,
+        "includeAll": false,
+        "label": "FPC",
+        "multi": true,
+        "name": "FPC",
+        "options": [],
+        "query": "SELECT services.display_name FROM $datasource WHERE host_name ~ $hostname AND display_name ~ FPC;",
+        "refresh": 1,
+        "regex": ".*-(FPC[\\d]+).*",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "grafana_thruk",
+          "value": "grafana_thruk"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "label": "",
+        "multi": false,
+        "name": "grafana_ds",
+        "options": [],
+        "query": "icinga2-report-datasource",
+        "refresh": 1,
+        "regex": "grafana.*",
+        "skipUrlSync": false,
+        "type": "datasource"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Device Dashboard Overview",
+  "uid": "device-dashboard-overview"
+}

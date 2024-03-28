@@ -1,0 +1,1150 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "$$hashKey": "object:33",
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "iteration": 1618540356397,
+  "links": [
+    {
+      "$$hashKey": "object:63",
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": true,
+      "tags": [],
+      "targetBlank": true,
+      "title": "DEFAULT",
+      "type": "dashboards"
+    }
+  ],
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 8,
+      "panels": [],
+      "repeat": "hostname",
+      "scopedVars": {
+        "hostname": {
+          "selected": true,
+          "text": "ME_RRNA01",
+          "value": "ME_RRNA01"
+        }
+      },
+      "title": "$hostname - $address",
+      "type": "row"
+    },
+    {
+      "columns": [],
+      "datasource": "grafana_thruk",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 17,
+        "w": 11,
+        "x": 0,
+        "y": 1
+      },
+      "id": 23,
+      "links": [],
+      "pageSize": null,
+      "scopedVars": {
+        "hostname": {
+          "selected": true,
+          "text": "ME_RRNA01",
+          "value": "ME_RRNA01"
+        }
+      },
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Service",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "display_name",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Check Command",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "check_command_expanded",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Current Status",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)",
+            "#ff9933"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "state",
+          "thresholds": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "text": "OK",
+              "value": "0"
+            },
+            {
+              "text": "WARNING",
+              "value": "1"
+            },
+            {
+              "text": "CRITICAL",
+              "value": "2"
+            },
+            {
+              "text": "UNKNOWN",
+              "value": "3"
+            },
+            {
+              "text": "PENDING",
+              "value": "4"
+            }
+          ]
+        },
+        {
+          "alias": "State Type",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "state_type",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "text": "SOFT",
+              "value": "0"
+            },
+            {
+              "text": "HARD",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "alias": "Notification  Enable",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "notifications_enabled",
+          "thresholds": [
+            "0.5",
+            "1"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "text": "NO",
+              "value": "0"
+            },
+            {
+              "text": "YES",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "alias": "Status Information",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "plugin_output",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Last Check Time",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "last_check",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Last State Change",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "last_state_change",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Performance Data (raw data)",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "perf_data",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Process Pef. Data",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "process_performance_data",
+          "thresholds": [
+            "0.5",
+            " 1"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "text": "NO",
+              "value": "0"
+            },
+            {
+              "text": "YES",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "alias": "Check Type",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "check_type",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "text": "Active",
+              "value": "0"
+            },
+            {
+              "text": "Passive",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "alias": "Last Hard State",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "last_hard_state",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "text": "OK",
+              "value": "0"
+            },
+            {
+              "text": "WARNING",
+              "value": "1"
+            },
+            {
+              "text": "CRITICAL",
+              "value": "2"
+            },
+            {
+              "text": "UNKNOWN",
+              "value": "3"
+            },
+            {
+              "text": "PENDING",
+              "value": "4"
+            }
+          ]
+        },
+        {
+          "alias": "Last Hard State Change",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "last_hard_state_change",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Last Notification",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "last_notification",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Current Notification Number",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "current_notification_number",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Next Check",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "next_check",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Checked",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "has_been_checked",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "text": "NO",
+              "value": "0"
+            },
+            {
+              "text": "YES",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "alias": "Check Period",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "check_period",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Check Interval",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "check_interval",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Retry Interval",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "retry_interval",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Notification Interval",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "mappingType": 1,
+          "pattern": "notification_interval",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Latency",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 5,
+          "mappingType": 1,
+          "pattern": "latency",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Execution Time",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 5,
+          "mappingType": 1,
+          "pattern": "execution_time",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Groups",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "groups",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Host Name",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "host_name",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "Livestatus Back-end",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "livestatus_name",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "hide": false,
+          "query": {
+            "datasource": [
+              "services",
+              "SELECT",
+              "display_name",
+              "host_name",
+              "check_command_expanded",
+              "state",
+              "state_type",
+              "notifications_enabled",
+              "plugin_output",
+              "last_check",
+              "last_state_change",
+              "perf_data",
+              "process_performance_data",
+              "check_type",
+              "last_hard_state",
+              "last_hard_state_change",
+              "last_notification",
+              "current_notification_number",
+              "next_check",
+              "has_been_checked",
+              "check_period",
+              "check_interval",
+              "retry_interval",
+              "notification_interval",
+              "latency",
+              "execution_time",
+              "groups",
+              "FROM",
+              "LiveStatus"
+            ],
+            "hostFilter": [],
+            "serviceFilter": []
+          },
+          "refId": "A",
+          "segments": [
+            "SELECT",
+            "display_name",
+            "host_name",
+            "check_command_expanded",
+            "state",
+            "state_type",
+            "notifications_enabled",
+            "plugin_output",
+            "last_check",
+            "last_state_change",
+            "perf_data",
+            "process_performance_data",
+            "check_type",
+            "last_hard_state",
+            "last_hard_state_change",
+            "last_notification",
+            "current_notification_number",
+            "next_check",
+            "has_been_checked",
+            "check_period",
+            "check_interval",
+            "retry_interval",
+            "notification_interval",
+            "latency",
+            "execution_time",
+            "groups",
+            "FROM",
+            "LiveStatus",
+            "WHERE",
+            "host_name",
+            "=",
+            "$hostname",
+            "*",
+            "AND",
+            "display_name",
+            "=",
+            "$servicename",
+            "*",
+            "*",
+            "*"
+          ],
+          "target": "services",
+          "type": "timeserie"
+        }
+      ],
+      "title": "Detail Service Information",
+      "transform": "table",
+      "type": "icinga2-report-panel-transposed"
+    },
+    {
+      "content": "<div align=\"center\">\n<button onClick=\"send_command('SCHEDULE_FORCED_SVC_CHECK', host, service, livestatus_name)\" style=\"color: black\">Force Check</button>\n<button onClick=\"send_command('ENABLE_SVC_NOTIFICATIONS', host, service, livestatus_name)\" style=\"color: black\">Enable Notification</button>\n<button onClick=\"send_command('DISABLE_SVC_NOTIFICATIONS', host, service, livestatus_name)\" style=\"color: black\">Disable Notification</button>\n<script type=\"text/javascript\">\n  var host = '$hostname';\n  var service = '$servicename';\n  var livestatus_name = '$datasource';\n  var datasource = '$grafana_ds';\nfunction getURL() {\n    source_url = window.location;\n}\ngetURL();\nfunction send_command(type, host, service, livestatus_name) {\n  //Get the url datasource in grafana - Start\n  var r = confirm(\"Do you want to send the '\" + type + \"' command to livestatus ?\");\n  if (r == true) {\n    var req = new XMLHttpRequest();\n    req.open(\"GET\", \"/grafana/api/datasources/name/\" + datasource, false);\n    req.send(null);\n    console.log(req.status);\n    if (req.status == \"200\") {\n      var obj = JSON.parse(req.responseText);\n      var url = \"\";\n      url = source_url.protocol + \"//\" + source_url.host + \"/grafana/send_request/api/v1/\" + obj.name + \"/command?type=\" + encodeURIComponent(type) + \"&host=\" + encodeURIComponent(host) + \"&service=\" + encodeURIComponent(service) + \"&livename=\" + encodeURIComponent(livestatus_name);\n      console.log(url);\n      req.open(\"GET\", url, true);\n      req.addEventListener('load', function(){\n        console.log(req.status);\n        console.log(req.responseText);\n        setTimeout(continueExecution, 1000);\n      });\n      req.send(null);\n    }\n    else {\n      console.log(\"Error\");\n    }\n  }\n}\nfunction continueExecution() {\n  history.go(0);\n}\n</script>",
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 13,
+        "x": 11,
+        "y": 1
+      },
+      "id": 25,
+      "links": [],
+      "mode": "html",
+      "scopedVars": {
+        "hostname": {
+          "selected": true,
+          "text": "ME_RRNA01",
+          "value": "ME_RRNA01"
+        }
+      },
+      "title": "ACTION",
+      "type": "text"
+    },
+    {
+      "aliasColors": {
+        "PL": "#bf1b00",
+        "RTA": "#70dbed"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "influxdb_nms",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 5,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 15,
+        "w": 13,
+        "x": 11,
+        "y": 3
+      },
+      "height": "",
+      "hiddenSeries": false,
+      "id": 2,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [
+        {
+          "url": "/"
+        }
+      ],
+      "maxPerRow": 2,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "repeat": null,
+      "repeatDirection": "h",
+      "scopedVars": {
+        "hostname": {
+          "selected": true,
+          "text": "ME_RRNA01",
+          "value": "ME_RRNA01"
+        }
+      },
+      "seriesOverrides": [
+        {
+          "$$hashKey": "object:128",
+          "alias": "PL",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_metric",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "metric"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "service"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "/^$command$/",
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"value\") FROM \"ping4\" WHERE (\"metric\" = 'pl' AND \"hostname\" =~ /^$hostname$/) AND $timeFilter GROUP BY time($interval) fill(null)",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "hostname",
+              "operator": "=",
+              "value": "$hostname"
+            },
+            {
+              "condition": "AND",
+              "key": "service",
+              "operator": "=",
+              "value": "$servicename"
+            }
+          ],
+          "timeField": "@timestamp"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Graph of \"$servicename\" on $hostname",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:172",
+          "decimals": null,
+          "format": "bps",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:173",
+          "decimals": null,
+          "format": "none",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 25,
+  "style": "dark",
+  "tags": [
+    "service_info"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "LiveStatus",
+          "value": "LiveStatus"
+        },
+        "datasource": "grafana_thruk",
+        "definition": "SHOW datasources;",
+        "hide": 2,
+        "includeAll": false,
+        "label": "Datasource",
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "SHOW datasources;",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "Regional",
+          "value": "Regional"
+        },
+        "datasource": "grafana_thruk",
+        "definition": "SELECT hosts.vars.device_type FROM $datasource;",
+        "hide": 2,
+        "includeAll": false,
+        "label": "Device Type",
+        "multi": false,
+        "name": "device_type",
+        "options": [],
+        "query": "SELECT hosts.vars.device_type FROM $datasource;",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "ME_RRNA01",
+          "value": "ME_RRNA01"
+        },
+        "datasource": "grafana_thruk",
+        "definition": "SELECT hosts.display_name FROM $datasource ",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Device name",
+        "multi": false,
+        "name": "hostname",
+        "options": [],
+        "query": "SELECT hosts.display_name FROM $datasource ",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "10.250.28.1",
+          "value": "10.250.28.1"
+        },
+        "datasource": "grafana_thruk",
+        "definition": "SELECT hosts.address FROM $datasource WHERE display_name ~ $hostname ",
+        "hide": 2,
+        "includeAll": false,
+        "label": "IP address",
+        "multi": false,
+        "name": "address",
+        "options": [],
+        "query": "SELECT hosts.address FROM $datasource WHERE display_name ~ $hostname ",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "AF1_Queue-ae0",
+          "value": "AF1_Queue-ae0"
+        },
+        "datasource": "grafana_thruk",
+        "definition": "SELECT services.display_name FROM $datasource WHERE host_name ~ $hostname;",
+        "hide": 0,
+        "includeAll": false,
+        "label": "servicename",
+        "multi": false,
+        "name": "servicename",
+        "options": [],
+        "query": "SELECT services.display_name FROM $datasource WHERE host_name ~ $hostname;",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "snmp",
+          "value": "snmp"
+        },
+        "datasource": "grafana_thruk",
+        "definition": "SELECT services.check_command FROM $datasource WHERE host_name ~ $hostname  AND display_name ~ $servicename;",
+        "hide": 2,
+        "includeAll": false,
+        "label": "command",
+        "multi": false,
+        "name": "command",
+        "options": [],
+        "query": "SELECT services.check_command FROM $datasource WHERE host_name ~ $hostname  AND display_name ~ $servicename;",
+        "refresh": 1,
+        "regex": "check_(.*)\\!",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "influxdb_nms",
+          "value": "influxdb_nms"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "label": "Historical database",
+        "multi": false,
+        "name": "influx",
+        "options": [],
+        "query": "influxdb",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "grafana_thruk",
+          "value": "grafana_thruk"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "grafana_ds",
+        "options": [],
+        "query": "icinga2-report-datasource",
+        "refresh": 1,
+        "regex": "grafana.*",
+        "skipUrlSync": false,
+        "type": "datasource"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Service Detail",
+  "uid": "service-detail"
+}

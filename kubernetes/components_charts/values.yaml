@@ -1,0 +1,1726 @@
+# Author: HaDN
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Global var that use for enable the chart that you want
+# See the dependencies condition at Chart.yaml
+global:
+  imageRegistry: docker.io
+  timezone: Asia/Ho_Chi_Minh
+  # Set ip for the LoadBalancer service (ingress-nginx)
+  frontendVip: "" # Auto-assign with metalLB or set your own IP
+  backendVip: "" # Auto-assign with metalLB or set your own IP
+  # ingress-namespace
+  ingressNamespace: ingress-nginx
+  # enable snmp-manager pod
+  snmp-mananger:
+    enable: false
+
+  ingress-nginx:
+    enabled: false
+
+  syncthing:
+    enabled: false
+  
+  # change proxy configuration to clusterIP service if ci equal true. Default is ingress-frontend loadbalancer service.
+  ci: false
+
+  # enable redis container in icinga2-master sts and define redis connection
+  redis:
+    enabled: false
+    # host: redis.example.com
+    # port: 6379
+
+  # enable icingadb feature and create icingadb container in icinga2-master sts
+  icingadb:
+    enabled: false
+
+  sharedVolume:
+    enabled: false
+
+  preparation:
+    enabled: false
+
+  metallb:
+    enabled: false
+
+  proxy:
+    enabled: false
+
+  debuger:
+    enabled: false
+
+  mariadb-galera:
+    enabled: false
+    replicaCount: 3
+
+  influxdb:
+    enabled: false
+
+  icinga2:
+    enabled: false
+
+  postfix:
+    enabled: false
+
+  thruk:
+    enabled: false
+
+  nagvis:
+    enabled: false
+
+  gitlist:
+    enabled: false
+
+  grafana:
+    enabled: false
+
+  icinga2-report:
+    enabled: false
+
+  rundeck:
+    enabled: false
+    offlineLogFolder: /data/offlineLogFolder/
+
+  rundeck-option-provider:
+    enabled: false
+
+  csv-view:
+    enabled: false
+
+  neo4j:
+    enabled: false #true
+
+  hostPathPV:
+    enabled: false
+
+  icingaweb:
+    enabled: false
+
+  maxscale:
+    enabled: false
+
+  snmp-manager:
+    enabled: false
+  # Database resources
+  ## Modify the init-db file (mariadb-galera/file/docker-entrypoint-initdb.d/01_init_db.sql) if there are changes in the database_name, username or password)
+  ## Edit the host/port information if using external database. By default, the host is set to 'mariadb' and the port to '3306'
+  ## Set enabled = false if you don't want create resources on icingaweb
+  database:
+    director:
+      enabled: true
+      database: directordb
+      username:
+      password:
+      # host: mariadb
+      # port: 3306
+    icingadb:
+      enabled: true
+      database: icingadb
+      username:
+      password:
+      # host: mariadb
+      # port: 3306
+    icingaweb2:
+      enabled: true
+      database: icingaweb2db
+      username:
+      password:
+      # host: mariadb
+      # port: 3306
+    snmptt:
+      enabled: false
+      database: snmptt
+      username:
+      password:
+      # host: mariadb
+      # port: 3306
+      # unknownTable: snmptt_unknown
+
+  # Icinga2 api connection
+  api:
+    # host:  # only needed if Icinga2 runs out of cluster
+    port: 5665
+    user: icingaAdmin
+    password: icingaAdmin
+
+  # Define the base hostPath, the final hostPath will be /basePath/namespace/...
+  basePath: /opt/shared/
+
+  # Define the shared persistence volume here. So that the sub-chart will loop via this list to create the PVClaim if sub-chart name is exists in `shareFor`
+  sharedPersistenceVolume:
+    - volumeName: automation-repo-volume
+      pvcName: automation-repo-pvc
+      storageSize: 2Gi
+      path: /opt/SVTECH-Junos-Automation
+      accessModes: ReadWriteOnce #ReadWriteMany
+      shareFor:
+        - preparation
+        - rundeck
+        - rundeck-option-provider
+        - debuger
+        - csv-view
+        - init-data-grafana
+        - icinga2
+        - icinga2-satellite
+      storageClass: automation-repo-hostpath
+
+    - volumeName: icinga2-zones-volume
+      pvcName: icinga2-zones-pvc
+      storageSize: 2Gi
+      path: /etc/icinga2/zones.d
+      accessModes: ReadWriteOnce #ReadWriteMany
+      shareFor:
+        - icinga2
+        - rundeck
+        - rundeck-option-provider
+        - debuger
+      storageClass: icinga2-zones-hostpath
+
+    - volumeName: icinga2-conf-volume
+      pvcName: icinga2-conf-pvc
+      storageSize: 100Mi
+      path: /etc/icinga2/conf.d
+      accessModes: ReadWriteOnce #ReadWriteMany
+      shareFor:
+        - icinga2
+        - debuger
+      storageClass: icinga2-conf-hostpath
+
+    # - volumeName: icinga2-scripts-volume
+    #   pvcName: icinga2-scripts-pvc
+    #   storageSize: 100Mi
+    #   path: /etc/icinga2/scripts
+    #   accessModes: ReadWriteOnce #ReadWriteMany
+    #   shareFor:
+    #     - preparation
+    #     - icinga2
+    #     - debuger
+
+    - volumeName: icinga2-plugins-volume
+      pvcName: icinga2-plugins-pvc
+      storageSize: 2Gi
+      path: /usr/share/icinga2/plugins/libexec
+      accessModes: ReadWriteOnce #ReadWriteMany
+      shareFor:
+        - icinga2
+        - debuger
+        - icinga2-satellite
+      storageClass: icinga2-plugins-hostpath
+
+    # - volumeName: icinga2-output-volume
+    #   pvcName: icinga2-output-pvc
+    #   storageSize: 3Gi
+    #   path: /var/tmp/output/
+    #   accessModes: ReadWriteOnce #ReadWriteMany
+    #   shareFor:
+    #     - icinga2
+    #     - debuger
+
+    - volumeName: gitlist-data-volume
+      pvcName: gitlist-data-pvc
+      storageSize: 2Gi
+      path: /opt/gitlist
+      accessModes: ReadWriteOnce #ReadWriteMany
+      shareFor:
+        - gitlist
+        - rundeck
+        - debuger
+      storageClass: gitlist-data-hostpath
+
+    - volumeName: nagvis-maps-volume
+      pvcName: nagvis-maps-pvc
+      storageSize: 2Gi
+      path: /usr/share/nagvis/etc/maps
+      accessModes: ReadWriteOnce #ReadWriteMany
+      shareFor:
+        - nagvis
+        - rundeck
+        - debuger
+      storageClass: nagvis-maps-hostpath
+
+    - volumeName: rundeck-var-volume
+      pvcName: rundeck-var-pvc
+      storageSize: 10Gi
+      path: /home/rundeck/var
+      accessModes: ReadWriteOnce #ReadWriteMany
+      shareFor:
+        - rundeck
+        - debuger
+      storageClass: rundeck-var-hostpath
+
+    - volumeName: rundeck-project-volume
+      pvcName: rundeck-project-pvc
+      storageSize: 1Gi
+      path: /home/rundeck/projects
+      accessModes: ReadWriteOnce #ReadWriteMany
+      shareFor:
+        - rundeck
+        - debuger
+      storageClass: rundeck-project-hostpath
+
+    - volumeName: rundeck-jsnapy-volume
+      pvcName: rundeck-jsnapy-pvc
+      storageSize: 10Gi
+      path: /var/lib/rundeck/jsnapy
+      accessModes: ReadWriteOnce #ReadWriteMany
+      shareFor:
+        - rundeck
+        - rundeck-option-provider
+        - debuger
+      storageClass: rundeck-jsnapy-hostpath
+
+    - volumeName: rundeck-backup-volume
+      pvcName: rundeck-backup-pvc
+      storageSize: 10Gi
+      path: /opt/backup
+      accessModes: ReadWriteOnce #ReadWriteMany
+      shareFor:
+        - rundeck
+        - debuger
+      storageClass: rundeck-backup-hostpath
+
+    - volumeName: csv-output-volume
+      pvcName: csv-output-pvc
+      storageSize: 10Gi
+      path: /opt/csv-output
+      accessModes: ReadWriteOnce #ReadWriteMany
+      shareFor:
+        - rundeck
+        - csv-view
+        - debuger
+      storageClass: csv-output-hostpath
+
+    - volumeName: thruk-volume
+      pvcName: thruk-pvc
+      storageSize: 30Mi
+      path: /etc/thruk
+      accessModes: ReadWriteOnce #ReadWriteMany
+      shareFor:
+        - thruk
+      storageClass: thruk-hostpath
+
+    - volumeName: icingaweb-volume
+      pvcName: icingaweb-pvc
+      storageSize: 10Mi
+      path: /data
+      accessModes: ReadWriteOnce #ReadWriteMany
+      shareFor:
+        - icingaweb
+      storageClass: icingaweb-hostpath
+    
+    # snmp-manager volume
+    - volumeName: snmp-manager-volume
+      pvcName: snmp-manager-pvc
+      storageSize: 10Mi
+      path: /etc/snmptt/
+      accessModes: ReadWriteOnce #ReadWriteMany
+      shareFor:
+        - snmp-manager
+      storageClass: snmp-manager-hostpath
+
+  kibana:
+    enabled: false
+
+  logstash:
+    enabled: false
+    loadBalancerIP: 172.168.1.2
+
+  filebeat:
+    enabled: false
+
+  elasticsearch:
+    enabled: false
+    clusterName: mbf
+    version: 8.9.1
+    k8sSvcSubfix: es-http # used in the boostrap index job
+    adminUser:
+      name: elastic
+      pass: juniper@123
+      role: superuser
+    index:
+      name:
+      - junos-log # ILM name, template name, rollover alias, index name
+      - offline-log
+      shard: 5
+      replica: 1
+
+    nodes:
+      - name: master
+        replicaCount: 3
+        role: ["data_hot", "master", "remote_cluster_client"]
+        storage:
+          name: local-path #local-path-ssd
+          size: 5G
+          mode: ReadWriteOnce
+        heapSize: 2001m
+        # nodeSelector:
+        #   kubernetes.io/hostname: mbf-syslog-01
+        resources:
+          limits:
+          #   cpu: 100m
+            memory: 4001Mi
+          requests: {}
+          #   cpu: 100m
+          #   memory: 128Mi
+      - name: data
+        replicaCount: 2
+        role: ["data_warm", "data_frozen", "data_cold", "data_content", "ingest", "ml", "transform", "remote_cluster_client"]
+        storage:
+          name: local-path #local-path-ssd
+          size: 5G
+          mode: ReadWriteOnce
+        heapSize: 2002m
+        # nodeSelector:
+        #   kubernetes.io/hostname: mbf-syslog-02
+        resources:
+          limits:
+          #   cpu: 100m
+            memory: 4002Mi
+          requests: {}
+          #   cpu: 100m
+          #   memory: 128Mi
+
+############################################################
+#                     Elasticsearch
+############################################################
+
+############################################################
+#                     Kibana
+############################################################
+
+############################################################
+#                     Logstash
+############################################################
+logstash:
+  replicas: 2
+  heapSize: 1001m
+
+############################################################
+#                     Filebeat
+############################################################
+
+############################################################
+#                     Preparation
+############################################################
+preparation:
+  commonAnnotations:
+    helm.sh/hook-weight: "10"
+
+  initRepo:
+    image:
+      registry: docker.io
+      repository: svtechnmaa/svtech_debuger
+      tag: "v1.0.0"
+      pullPolicy: IfNotPresent
+
+    GH_USERNAME: moophat
+
+    # Input tag/branch folowing below intructons:
+    # For Tag:
+    ## <tag_name>: the tag that exist on the repo (example v1.1.0)
+    ## latest: the latest tag that exist on the repo
+    ## null or "None" or "": Not specific the tag name and clone the newest commit
+
+    ## The branch "master" or "main" is default. If you want to change the branch name. You can change to SVTECH-Junos-Automation:<branch-name>
+    # repoList: "repo1:latest,repo2:DevOps"
+    repoList: "SVTECH-Junos-Automation:latest"
+
+    # GH_TOKEN with Base64 encode
+    GH_TOKEN: Z2hwX3pweThLUnZPZ0pXemtXNUdPUXIxSHFIN2JJTXIxMDNESkVhYQ==
+
+  affinity: {}
+    # podAffinity:
+    #   requiredDuringSchedulingIgnoredDuringExecution:
+    #   - labelSelector:
+    #       matchLabels:
+    #         app.kubernetes.io/component: icinga2
+    #         # app.kubernetes.io/instance: nms
+    #         app.kubernetes.io/name: icinga2
+    #     topologyKey: kubernetes.io/hostname
+
+
+
+
+############################################################
+#                     Proxy
+############################################################
+proxy:
+  image:
+    registry: docker.io
+    repository: svtechnmaa/svtech_proxy
+    tag: v1.0.0
+
+    pullPolicy: IfNotPresent
+
+  replicaCount: 2
+
+  commonAnnotations:
+    helm.sh/hook-weight: "-1"
+
+  resources:
+    limits: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+    requests: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  service:
+    ## Service type
+    type: ClusterIP
+    port: 80
+
+    # externalIPs: ["10.98.0.183"]
+    # Change this loadBalancerIP to your free IP
+    loadBalancerIP: 10.98.0.184
+    annotations:
+      metallb.universe.tf/allow-shared-ip: default
+
+    ## Set the service SessionAffinity for session stickiness
+    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#proxy-mode-userspace
+    sessionAffinity: ClientIP
+
+    ## Customize the SessionAffinity configuration. The default value for sessionAffinityConfig.clientIP.timeoutSeconds is 10800 (3 hours)
+    sessionAffinityConfig:
+      clientIP:
+        timeoutSeconds: 7200
+
+
+
+
+
+############################################################
+#                     Debuger
+############################################################
+debuger:
+  image:
+    registry: docker.io
+    repository: svtechnmaa/svtech_debuger
+    tag: "v1.0.0"
+    pullPolicy: IfNotPresent
+
+  commonAnnotations:
+    helm.sh/hook-weight: "0"
+
+  replicaCount: 1
+
+  resources:
+    limits: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+    requests: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  service:
+    ## Service type
+    type: ClusterIP
+    port: 2222
+    # use VIP for this  externalIPs for debug purpose
+    # externalIPs: ["10.98.0.183"]
+
+
+############################################################
+#                     Maxscale
+############################################################
+maxscale:
+  init:
+    image:
+      repository: mysql
+      tag: 8.2.0
+
+  image:
+    registry: docker.io
+    repository: svtechnmaa/svtech_maxscale
+    tag: v1.0.2
+    pullPolicy: IfNotPresent
+
+  service:
+    externalIPs: []
+
+  maxscaleConfig:
+    # The server variable will not be used by default, it will be used only when external database is enabled
+    server:
+      - db01://10.98.3.11:3306
+      - db02://10.98.3.12:3306
+      - db03://10.98.3.13:3306
+    monitor_user: maxscale_monitor
+    monitor_user_password: maxscale@123
+    port: 4006
+
+  replicaCount: 2
+
+
+
+############################################################
+#                     Mariadb Galera
+############################################################
+mariadb-galera:
+  image:
+    registry: docker.io
+    repository: bitnami/mariadb-galera
+    tag: 10.5.8
+    pullPolicy: IfNotPresent
+    debug: false
+
+  commonAnnotations:
+    helm.sh/hook-weight: "9"
+
+  service:
+    type: ClusterIP
+    port: 3306
+    # clusterIP: None
+    # nodePort: 30001
+    externalIPs: []
+
+  securityContext:
+    enabled: true
+    fsGroup: 0
+    runAsUser: 0
+
+  rootUser:
+    user: root
+    password: "juniper@123"
+    forcePassword: false
+
+  db:
+    user: "juniper"
+    password: "juniper@123"
+    name: my_database
+    forcePassword: false
+
+  galera:
+    name: galera
+    bootstrap:
+      bootstrapFromNode: 0
+      forceSafeToBootstrap: true
+    mariabackup:
+      user: mariabackup
+      password: "juniper@123"
+      forcePassword: false
+
+  persistence:
+    enabled: true
+    # Enable persistence using an existing PVC
+    # existingClaim:
+    # Subdirectory of the volume to mount
+    # subPath:
+    # mountPath on Container
+    mountPath: /bitnami/mariadb
+    # hostPath: mount path on Host
+    hostPath: /data/mariadb
+    ## selector can be used to match an existing PersistentVolume
+    ## selector:
+    ##   matchLabels:
+    ##     app: my-app
+    ##
+    selector: {}
+    storageClass: "mariadb"
+    ## Persistent Volume Claim annotations
+    annotations:
+    ## Persistent Volume Access Mode
+    accessModes:
+      - ReadWriteOnce
+    ## Persistent Volume size
+    size: 8Gi
+
+  resources:
+    limits: {}
+    #   cpu: 0.5
+    #   memory: 256Mi
+    requests: {}
+    #   cpu: 0.5
+    #   memory: 256Mi
+
+  #
+  # affinity:
+  #   podAntiAffinity:
+  #     requiredDuringSchedulingIgnoredDuringExecution:
+  #     - labelSelector:
+  #         matchExpressions:
+  #           - key: "app"
+  #             operator: In
+  #             values:
+  #             - syncthing
+  #       topologyKey: "kubernetes.io/hostname"
+
+############################################################
+#                        Influxdb
+############################################################
+# https://github.com/influxdata/influxdb-relay
+#         ┌─────────────────┐
+#         │writes & queries │
+#         └─────────────────┘
+#                  │
+#                  ▼
+#          ┌───────────────┐
+#          │               │
+# ┌────────│ Load Balancer │─────────┐
+# │        │               │         │
+# │        └──────┬─┬──────┘         │
+# │               │ │                │
+# │               │ │                │
+# │        ┌──────┘ └────────┐       │
+# │        │ ┌─────────────┐ │       │┌──────┐
+# │        │ │/write or UDP│ │       ││/query│
+# │        ▼ └─────────────┘ ▼       │└──────┘
+# │  ┌──────────┐      ┌──────────┐  │
+# │  │ InfluxDB │      │ InfluxDB │  │
+# │  │ Relay    │      │ Relay    │  │
+# │  └──┬────┬──┘      └────┬──┬──┘  │
+# │     │    |              |  │     │
+# │     |  ┌─┼──────────────┘  |     │
+# │     │  │ └──────────────┐  │     │
+# │     ▼  ▼                ▼  ▼     │
+# │  ┌──────────┐      ┌──────────┐  │
+# │  │          │      │          │  │
+# └─▶│ InfluxDB │      │ InfluxDB │◀─┘
+#    │          │      │          │
+#    └──────────┘      └──────────┘
+
+influxdb:
+  image:
+    registry: docker.io
+    repository: bitnami/influxdb
+    tag: 1.7.9
+    pullPolicy: IfNotPresent
+    debug: true
+
+  commonAnnotations:
+    helm.sh/hook-weight: "9"
+
+  architecture: high-availability
+
+  auth:
+    enabled: true
+    ## Whether to use files to provide secrets instead of env vars.
+    usePasswordFiles: false
+    ## InfluxDB(TM) admin credentials
+    admin:
+      username: root
+      password: juniper@123
+      token:
+      ## Primary org name and id
+      org: primary
+      ## Primary bucket name and id
+      bucket: primary
+
+    createUserToken: false
+
+    ## InfluxDB(TM) credentials for user with 'admin' privileges on the db specified at 'database' parameter
+    user:
+      username: juniper
+      password: juniper@123
+      ## Org where to create the user, Default: primary.org
+      org: svtech
+      ## Whether to create a new bucket or use the primary bucket
+      ## already create. If it is not null a new bucket will be created.
+      bucket: influxdb_nms
+    ## InfluxDB(TM) credentials for user with 'read' privileges on the db specified at 'database' parameter
+    readUser:
+      username:
+      password:
+    ## InfluxDB(TM) credentials for user with 'write' privileges on the db specified at 'database' parameter
+    writeUser:
+      username:
+      password:
+    ## Secret with InfluxDB(TM) credentials
+    ## NOTE: This will override the users/passwords defined at adminUser, user, readUser and writeUser
+    existingSecret:
+
+  influxdb:
+    # initdbScripts:
+    #   my_init_script.sh: |
+    #      #!/bin/sh
+    #      echo "Do something."
+    replicaCount: 3
+    securityContext:
+      enabled: false
+      fsGroup: 1001
+      runAsUser: 1001
+    resources:
+      limits: {}
+      #   cpu: 100m
+      #   memory: 128Mi
+      requests: {}
+      #   cpu: 100m
+      #   memory: 128Mi
+    containerPorts:
+      http: 8086
+      rpc: 8088
+
+    service:
+      type: ClusterIP
+      # externalIPs: ["10.98.0.183"]
+      port: 8086
+      rpcPort: 8088
+      nodePorts:
+        http: ""
+        rpc: ""
+
+  relay:
+    image:
+      registry: docker.io
+      repository: bitnami/influxdb-relay-archived
+      tag: 0.20200717.0-scratch-r7
+      pullPolicy: IfNotPresent
+    replicaCount: 1
+    containerPorts:
+      http: 9096
+    service:
+      type: ClusterIP
+      port: 9096
+      nodePort: ""
+      annotations: {}
+
+    configuration: |-
+      [[http]]
+      # Name of the HTTP server, used for display purposes only.
+      name = "relay-server"
+
+      # TCP address to bind to, for HTTP server.
+      bind-addr = "0.0.0.0:9096"
+
+      # Array of InfluxDB(TM) instances to use as backends for Relay.
+      output = [
+          {{- $influxdbReplicaCount := int .Values.influxdb.replicaCount }}
+          {{- $influxdbFullname := include "common.names.fullname" . }}
+          {{- $influxdbHeadlessServiceName := printf "%s-headless" (.Chart.Name) }}
+          {{- $releaseName := .Release.Namespace }}
+          {{- $clusterDomain:= .Values.clusterDomain }}
+          {{- range $e, $i := until $influxdbReplicaCount }}
+          { name="{{ $influxdbFullname }}-{{ $i }}", location="http://{{ $influxdbFullname }}-{{ $i }}.{{ $influxdbHeadlessServiceName }}.{{ $releaseName }}.svc.{{ $clusterDomain }}:8086/write", timeout="10s"},
+          {{- end }}
+      ]
+
+  persistence:
+    enabled: true
+    storageClass: "influxdb"
+    accessModes:
+      - ReadWriteOnce
+    size: 8Gi
+    # mountPath on Container
+    mountPath: /bitnami/influxdb
+    # hostPath: mount path on Host
+    hostPath: /data/influxdb
+
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchLabels:
+            app.kubernetes.io/component: influxdb
+            # app.kubernetes.io/instance: nms
+            app.kubernetes.io/name: influxdb
+        topologyKey: kubernetes.io/hostname
+
+
+############################################################
+#                         Icinga2
+############################################################
+icinga2:
+  init:
+    image:
+      registry: docker.io
+      repository: busybox
+      tag: "1.33"
+      pullPolicy: IfNotPresent
+
+  image:
+    registry: docker.io
+    repository: svtechnmaa/svtech_icinga2
+    tag: "v1.1.5"
+    pullPolicy: IfNotPresent
+
+  sidecar:
+    image:
+      registry: docker.io
+      repository: svtechnmaa/svtech_icinga2
+      tag: "v1.1.4"
+      pullPolicy: IfNotPresent
+
+  commonAnnotations:
+    helm.sh/hook-weight: "0"
+
+  architecture: distribute
+
+  satellite:
+    replicaCount: 3
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/component
+                operator: In
+                values:
+                  - icinga2-satellite
+          topologyKey: kubernetes.io/hostname
+  master:
+    replicaCount: 2
+
+    resources:
+      limits: {}
+      #   cpu: 100m
+      #   memory: 128Mi
+      requests: {}
+      #   cpu: 100m
+      #   memory: 128Mi
+
+    ## Container ports
+    containerPorts:
+      icinga2Api: 5665
+      livestatus: 6558
+
+    # longhornVolume:
+    #   enabled: true
+
+    # persistence:
+    #   enabled: true
+    #   hostPath: /opt/k8s_configurations/icinga2
+
+    influxdb_connection:
+      enable: true
+      influxdb_host: influxdb-relay
+      influxdb_port: 9096
+      influxdb_database: influxdb_nms
+      influxdb_user: juniper
+      influxdb_password: juniper@123
+
+    ido_connection:
+      enable: true
+      ido_host: mariadb
+      ido_port: 3306
+      ido_user: icinga
+      ido_password: juniper@123
+      ido_database: icinga
+      ido_catagories: '["DbCatConfig", "DbCatState", "DbCatAcknowledgement", "DbCatComment", "DbCatDowntime", "DbCatEventHandler", "DbCatFlapping", "DbCatNotification", "DbCatProgramStatus", "DbCatRetention", "DbCatStateHistory"]'
+      ido_cleanup_statehistory: 90d
+      ido_cleanup_notificaion: 90d
+      ido_cleanup_servicecheck: 7d
+
+    notifications:
+      enable: true
+      mailhub_host: postfix
+      mailhub_port: 25
+      relay_email: "ha.do@svtech.com.vn"
+
+    # icingadb container
+    icingadb:
+      image:
+        registry: docker.io
+        repository: svtechnmaa/svtech_icingadb
+        tag: v1.1.2
+        pullPolicy: IfNotPresent
+        debug: false
+      env:
+        TZ: Asia/Ho_Chi_Minh
+        # RETENTION_HISTORY_DAYS: 30
+        # RETENTION_OPTION_ACKNOWLEDGEMENT: 30
+        # RETENTION_OPTION_COMMENT: 30
+        # RETENTION_OPTION_DOWNTIME: 30
+        # RETENTION_OPTION_FLAPPING: 30
+        # RETENTION_OPTION_NOTIFICATION: 30
+        # RETENTION_OPTION_STATE: 30
+    # redis container
+    redis:
+      image:
+        registry: docker.io
+        repository: redis
+        tag: 7.2.3
+        pullPolicy: IfNotPresent
+        debug: false
+      containerPort:
+        redis: 6379
+      env:
+        TZ: Asia/Ho_Chi_Minh
+      service:
+        type: ClusterIP
+        port: 6379
+      persistence:
+        enabled: false
+        storageClass: "redis"
+        accessModes:
+          - ReadWriteOnce
+        size: 1Gi
+        # mountPath: the destination inside the pod
+        mountPath: /data
+        # hostPath: mount a file or directory from the host node's filesystem into the pod
+        hostPath: /data/redis
+
+    service:
+      ## Service type
+      type: ClusterIP
+      externalIPs: []
+
+      port:
+        icinga2Api: 5665
+        livestatus: 6558
+        redis: 6379
+
+      nodePorts:
+        icinga2Api: ""
+        livestatus: ""
+
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchLabels:
+              app.kubernetes.io/component: icinga2
+              # app.kubernetes.io/instance: nms
+              app.kubernetes.io/name: icinga2
+          topologyKey: kubernetes.io/hostname
+
+
+############################################################
+#                         Postfix
+############################################################
+postfix:
+  image:
+    registry: docker.io
+    repository: svtechnmaa/svtech_postfix
+    tag: "v1.0.1"
+    pullPolicy: IfNotPresent
+
+  commonAnnotations:
+    helm.sh/hook-weight: "0"
+
+  replicaCount: 2
+
+  resources:
+    limits: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+    requests: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  persistence:
+    enabled: false
+    # # mountPath on Container
+    # mountPath: /etc/postfix
+
+    # hostPath: mount path on Host
+    hostPath: /opt/k8s_configurations/postfix
+
+  service:
+    ## Service type
+    type: ClusterIP
+    port: 25
+    externalIPs: []
+
+  mtpConfig:
+    mtpRelay: smtp-relay.gmail.com
+    mtpPort: 25
+    mtpUser: ha.do@svtech.com.vn
+    mtpPass: Ha.Do@123456
+    mtpMessageSizeLimit: "102400000"
+    mtpMailboxSizeLimit: "51200000000"
+    mailLogFile: /dev/stdout
+
+
+
+############################################################
+#                       Thruk
+############################################################
+thruk:
+  image:
+    registry: docker.io
+    repository: svtechnmaa/svtech_http_thruk
+    tag: "v1.0.1"
+    pullPolicy: IfNotPresent
+
+  commonAnnotations:
+    helm.sh/hook-weight: "0"
+
+  replicaCount: 2
+
+  resources:
+    limits: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+    requests: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  service:
+    type: ClusterIP
+    port: 80
+    # externalIPs: ["10.98.0.183"]
+    annotations: {}
+
+    ## Set the service SessionAffinity for session stickiness
+    sessionAffinity: ClientIP
+    ## Customize the SessionAffinity configuration. The default value for sessionAffinityConfig.clientIP.timeoutSeconds is 10800 (3 hours)
+    sessionAffinityConfig:
+      clientIP:
+        timeoutSeconds: 7200
+
+  thrukConfig:
+    backendName: NMS
+    backendId: NMS
+    backendType: livestatus
+    backendIp: icinga2
+    backendPort: 6558
+
+  # [Optional] Alternative for thrukConfig above
+  thruk_backend_config:
+    enable: false
+    configuration: |-
+      <Component Thruk::Backend>
+          <peer>
+            name      = NMS
+            id        = NMS
+            type      = livestatus
+            <options>
+              peer   = 10.98.0.117:6558
+            </options>
+          </peer>
+      </Component>
+
+      <Component Thruk::Backend>
+          <peer>
+            name      = NMS-116
+            id        = NMS-116
+            type      = livestatus
+            <options>
+              peer   = 10.98.0.116:6558
+            </options>
+          </peer>
+      </Component>
+
+      <configtool>
+        core_type     = icinga2
+        core_conf     = /etc/icinga2/icinga2.conf
+        obj_check_cmd = /run/icinga2/cmd/icinga2.cmd -v /run/icinga2/cmd/icinga2.cmd
+      </configtool>
+
+
+############################################################
+#                         Gitlist
+############################################################
+gitlist:
+  image:
+    registry: docker.io
+    repository: svtechnmaa/svtech_gitlist
+    tag: "v1.0.0"
+    pullPolicy: IfNotPresent
+
+  commonAnnotations:
+    helm.sh/hook-weight: "0"
+
+  replicaCount: 2
+
+  resources:
+    limits: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+    requests: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  service:
+    type: ClusterIP
+    port: 80
+
+    externalIPs: []
+    annotations: {}
+    sessionAffinity: ClientIP
+    ## Customize the SessionAffinity configuration. The default value for sessionAffinityConfig.clientIP.timeoutSeconds is 10800 (3 hours)
+    sessionAffinityConfig:
+      clientIP:
+        timeoutSeconds: 7200
+
+
+
+
+############################################################
+#                         Grafana
+############################################################
+grafana:
+
+  init:
+    image:
+      registry: docker.io
+      repository: busybox
+      tag: "1.33"
+      pullPolicy: IfNotPresent
+
+  image:
+    registry: docker.io
+    repository: svtechnmaa/svtech_grafana
+    tag: "v1.2.1"
+    pullPolicy: IfNotPresent
+
+  commonAnnotations:
+    helm.sh/hook-weight: "0"
+
+  replicaCount: 2
+
+  resources:
+    limits: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+    requests: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  service:
+    type: ClusterIP
+    port: 3000
+    externalIPs: []
+
+    annotations: {}
+    sessionAffinity: ClientIP
+    ## Customize the SessionAffinity configuration. The default value for sessionAffinityConfig.clientIP.timeoutSeconds is 10800 (3 hours)
+    sessionAffinityConfig:
+      clientIP:
+        timeoutSeconds: 7200
+
+  grafanaConfig:
+    mysqlHost: mariadb
+    mysqlPort: 3306
+    mysqlDB: grafana
+    mysqlUser: grafana
+    mysqlPassword: juniper@123
+    adminUser: thrukadmin
+    adminPassword: thrukadmin
+
+  affinity: {}
+    # podAffinity:
+    #   requiredDuringSchedulingIgnoredDuringExecution:
+    #   - labelSelector:
+    #       matchLabels:
+    #         app.kubernetes.io/component: icinga2
+    #         # app.kubernetes.io/instance: nms
+    #         app.kubernetes.io/name: icinga2
+    #     topologyKey: kubernetes.io/hostname
+
+############################################################
+#                      Icinga2-report
+############################################################
+icinga2-report:
+  image:
+    registry: docker.io
+    repository: trungkien210493/icinga2-report
+    tag: "v1.7.1"
+    pullPolicy: IfNotPresent
+
+  commonAnnotations:
+    helm.sh/hook-weight: "0"
+
+  replicaCount: 2
+
+  resources:
+    limits: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+    requests: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  service:
+    type: ClusterIP
+    port: 8888
+    externalIPs: []
+
+    annotations: {}
+    # sessionAffinity: ClientIP
+    ## Customize the SessionAffinity configuration. The default value for sessionAffinityConfig.clientIP.timeoutSeconds is 10800 (3 hours)
+    # sessionAffinityConfig:
+    #   clientIP:
+    #     timeoutSeconds: 7200
+  datasources: |-
+    - !!python/object:icinga2_report.datasource.icinga2_livestatus.Icinga2LiveStatus
+      host: icinga2:6558
+      name: LiveStatus
+      status: true
+    - !!python/object:icinga2_report.datasource.icinga2_live_attributes.Icinga2LiveAttributeDatasource
+      host: icinga2:5665
+      name: Icinga2LiveStatus
+      password: icingaAdmin
+      status: true
+      username: icingaAdmin
+    - !!python/object:icinga2_report.datasource.influx.InfluxDatasource
+      database: influxdb_nms
+      host: influxdb:8086
+      name: InfluxdbDatasource
+      password: juniper@123
+      username: juniper
+    - !!python/object:icinga2_report.datasource.icinga2_live_attributes.Icinga2LiveAttributeDatasource
+      host: icinga2:5665
+      name: adapter
+      password: icingaAdmin
+      status: true
+      username: icingaAdmin
+
+
+
+
+
+############################################################
+#                         Nagvis
+############################################################
+nagvis:
+  image:
+    registry: docker.io
+    repository: svtechnmaa/svtech_nagvis
+    tag: "v1.1.0"
+    pullPolicy: IfNotPresent
+
+  commonAnnotations:
+    helm.sh/hook-weight: "0"
+
+  replicaCount: 2
+
+  resources:
+    limits: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+    requests: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  service:
+    ## Service type
+    type: ClusterIP
+    port: 80
+
+    externalIPs: []
+    annotations: {}
+    ## Set the service SessionAffinity for session stickiness
+    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#proxy-mode-userspace
+    sessionAffinity: ClientIP
+
+    ## Customize the SessionAffinity configuration. The default value for sessionAffinityConfig.clientIP.timeoutSeconds is 10800 (3 hours)
+    sessionAffinityConfig:
+      clientIP:
+        timeoutSeconds: 7200
+
+  nagvisConfig:
+    backendName: NMS
+    backendId: NMS
+    backendType: mklivestatus
+    backendIp: icinga2
+    backendPort: 6558
+
+############################################################
+#                         rundeck
+############################################################
+rundeck:
+
+  commonAnnotations:
+    helm.sh/hook-weight: "0"
+
+  init:
+    image:
+      registry: docker.io
+      repository: busybox
+      tag: "1.33"
+
+      pullPolicy: IfNotPresent
+
+  image:
+    registry: docker.io
+    repository: svtechnmaa/svtech_rundeck
+    tag: "v1.2.0"
+
+    pullPolicy: IfNotPresent
+
+  replicaCount: 1
+
+  securityContext:
+    enabled: false
+    fsGroup: 0
+    runAsUser: 0
+
+  resources:
+    limits: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+    requests: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+
+
+  service:
+    ## Service type
+    type: ClusterIP
+    port: 4440
+
+    # loadBalancerIP:
+    # loadBalancerSourceRanges:
+    # - 10.10.10.0/24
+
+    # externalIPs: ["10.98.0.183"]
+
+    ## Set the service SessionAffinity for session stickiness
+    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#proxy-mode-userspace
+    sessionAffinity: ClientIP
+
+    ## Customize the SessionAffinity configuration. The default value for sessionAffinityConfig.clientIP.timeoutSeconds is 10800 (3 hours)
+    sessionAffinityConfig:
+      clientIP:
+        timeoutSeconds: 7200
+
+  rundeckConfig:
+    mysqlHost: mariadb
+    # Options variable
+    IMPORT_NMS_JOB: "true"
+    IMPORT_AUTOMATION_JOB: "true"
+    OVERRIDE_IMPORT_JOB: "false"
+    RUNDECK_OPTION_PROVIDER_URL: http://rundeck-option-provider:1111
+    HOST_IP: "10.98.0.184"
+    # Variable for Icinga
+    ICINGA2_REPORT_URL: http://icinga2-report:8888
+    ICINGA2_API_HOST: icinga2
+    ICINGA2_CONTAINER: "true"
+    # Base variable
+    RUNDECK_SERVER_FORWARDED: "true"
+    RUNDECK_SERVER_CONTEXT_PATH: /rundeck
+    RUNDECK_GRAILS_URL: http://rundeck:4440/rundeck
+    RUNDECK_SERVER_ADDRESS: "0.0.0.0"
+    # RUNDECK_DATABASE_URL: jdbc:h2:file:/home/rundeck/server/data/grailsdb;DB_CLOSE_ON_EXIT=FALSE;NON_KEYWORDS=MONTH,HOUR,MINUTE,YEAR,SECONDS
+    RUNDECK_DATABASE_URL: jdbc:mysql://mariadb/rundeck?autoReconnect=true&useSSL=false
+    RUNDECK_DATABASE_DRIVER: org.mariadb.jdbc.Driver
+    RUNDECK_DATABASE_USERNAME: rundeck
+    RUNDECK_DATABASE_PASSWORD: juniper@123
+    RUNDECK_ADMIN_USER: thrukadmin
+    RUNDECK_ADMIN_PASSWORD: thrukadmin
+    RUNDECK_ADMIN_TOKEN: UkTttnpfh5MC9A3O859k43wPhhWbCsf8
+    ZONE_PREFIX: zone
+    DISCOVER_FOLDER: /etc/icinga2/zones.d
+    ALL_CONFIG_FOLDER: /etc/icinga2/zones.d/all_config
+
+############################################################
+#                         rundeck-option-provider
+############################################################
+rundeck-option-provider:
+  commonAnnotations:
+    helm.sh/hook-weight: "0"
+
+  # init:
+  #   image:
+  #     registry: docker.io
+  #     repository: busybox
+  #     tag: "1.33"
+
+  #     pullPolicy: IfNotPresent
+
+  image:
+    registry: docker.io
+    repository: svtechnmaa/svtech_rundeck_option_provider
+    tag: "v1.0.1"
+
+    pullPolicy: IfNotPresent
+
+  replicaCount: 2
+
+  securityContext:
+    enabled: false
+    fsGroup: 0
+    runAsUser: 0
+
+  resources:
+    limits: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+    requests: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  service:
+    ## Service type
+    type: ClusterIP
+    port: 1111
+
+    # loadBalancerIP:
+    # loadBalancerSourceRanges:
+    # - 10.10.10.0/24
+
+    # externalIPs: ["10.98.0.183"]
+
+    annotations: {}
+    ## Set the service SessionAffinity for session stickiness
+    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#proxy-mode-userspace
+    sessionAffinity: ClientIP
+
+    # ## Customize the SessionAffinity configuration. The default value for sessionAffinityConfig.clientIP.timeoutSeconds is 10800 (3 hours)
+    # sessionAffinityConfig:
+    #   clientIP:
+    #     timeoutSeconds: 7200
+
+  datasources: |-
+    - name: Influxdb
+      type: influxdb
+      host: influxdb
+      port: 8086
+      username: juniper
+      password: juniper@123
+
+    - name: Livestatus
+      type: livestatus
+      host: icinga2
+      port: 6558
+
+    - name: Icinga2
+      type: icinga2
+      host: icinga2
+      port: 5665
+      username: icingaAdmin
+      password: icingaAdmin
+
+    - name: Mariadb
+      type: mariadb
+      host: mariadb
+      port: 3306
+      username: rundeck_option_api
+      password: juniper@123
+
+    - name: Nagvis
+      type: nagvis
+      host: icinga2
+      port: 6558
+      backend_name: NMS
+      backend_id: NMS
+      backend_type: mklivestatus
+
+############################################################
+#                         csv-view
+############################################################
+csv-view:
+  # /csv/files?directory=/opt/SVTECH-Junos-Automation
+  commonAnnotations:
+    helm.sh/hook-weight: "0"
+
+  image:
+    registry: docker.io
+    repository: svtechnmaa/svtech_csv
+    tag: "v1.0.0"
+
+    pullPolicy: IfNotPresent
+
+  replicaCount: 1
+
+  securityContext:
+    enabled: false
+    fsGroup: 0
+    runAsUser: 0
+
+  resources:
+    limits: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+    requests: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  service:
+    ## Service type
+    type: ClusterIP
+    port: 8000
+
+    # loadBalancerIP:
+    # loadBalancerSourceRanges:
+    # - 10.10.10.0/24
+
+    # externalIPs: ["10.98.0.183"]
+
+    annotations: {}
+    ## Set the service SessionAffinity for session stickiness
+    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#proxy-mode-userspace
+    sessionAffinity: ClientIP
+
+    # ## Customize the SessionAffinity configuration. The default value for sessionAffinityConfig.clientIP.timeoutSeconds is 10800 (3 hours)
+    # sessionAffinityConfig:
+    #   clientIP:
+    #     timeoutSeconds: 7200
+
+
+############################################################
+#                     syncthing
+############################################################
+syncthing:
+  image:
+    registry: docker.io
+    repository: svtechnmaa/svtech_syncthing
+    tag: v1.0.2
+    pullPolicy: IfNotPresent
+    debug: false
+
+  # commonAnnotations:
+    # helm.sh/hook-weight: "9"
+
+  uiPassword: juniper@123
+
+  env:
+    LIST_FOLDER: "syncthing_config, repo_automation, csv_output, gitlist, icinga2_plugins, icinga2_conf, icinga2_zones, nagvis_maps, rundeck_backup, rundeck_jsnapy, rundeck_projects, rundeck_var, thruk, icingaweb_conf, snmp-manager-conf"
+
+  # service:
+    # type: ClusterIP
+    # port: 3306
+    # # clusterIP: None
+    # # nodePort: 30001
+    # externalIPs: []
+
+  securityContext:
+    enabled: true
+    fsGroup: 0
+    runAsUser: 0
+
+  replicaCount: 30
+
+  resources:
+    limits: {}
+    #   cpu: 0.5
+    #   memory: 256Mi
+    requests: {}
+    #   cpu: 0.5
+    #   memory: 256Mi
+
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+            - key: "app"
+              operator: In
+              values:
+              - syncthing
+        topologyKey: "kubernetes.io/hostname"
+
+
+############################################################
+#                     icingaweb & director module
+############################################################
+icingaweb:
+  init:
+    image:
+      registry: docker.io
+      repository: busybox
+      tag: "1.33"
+      pullPolicy: IfNotPresent
+  image:
+    registry: docker.io
+    repository: svtechnmaa/svtech_icingaweb2
+    tag: v1.0.1
+    pullPolicy: IfNotPresent
+    debug: false
+  containerPort:
+    icingaweb: 8080
+  # Icingaweb authentication variables
+  auth:
+    type: db
+    #resource: # Add the name of the db resource used by Icinga Web 2 here. Default: Values.global.database.icingaweb2.database
+    admin_user: icingaweb
+    admin_password: juniper@123
+  # Icingaweb module variables
+  modules:
+    director:
+      enabled: true
+      kickstart: true
+    icingadb:
+      enabled: true
+    incubator:
+      enabled: true
+    grafana:
+      enabled: true
+      host: "10.98.6.16/grafana" # externalIP/grafana
+      default_dashboard: icinga2-default
+      default_dashboard_uid: icinga2-default
+      default_dashboard_panelid: "1"
+  env:
+    TZ: Asia/Ho_Chi_Minh
+  service:
+    type: ClusterIP
+    port: 8080
+    sessionAffinity: ClientIP
+    ## Customize the SessionAffinity configuration. The default value for sessionAffinityConfig.clientIP.timeoutSeconds is 10800 (3 hours)
+    sessionAffinityConfig:
+      clientIP:
+        timeoutSeconds: 7200
+  replicaCount: 2
+  persistence:
+    enabled: true
+    storageClass: "icingaweb"
+    accessModes:
+      - ReadWriteOnce
+    size: 10Mi
+    # mountPath on Container
+    mountPath: /data
+    # hostPath: mount path on Host
+    hostPath: icingaweb_conf # full path: {{ $basePath }}/{{ $namespace }}/{{ $hostPath }}. Eg: /opt/shared/default/icingaweb_config
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchLabels:
+            app.kubernetes.io/component: icingaweb
+            # app.kubernetes.io/instance: nms
+            app.kubernetes.io/name: icingaweb
+        topologyKey: app.kubernetes.io/hostname
+
+
+############################################################
+#                     snmp-manager 
+############################################################
+snmp-manager:
+  image:
+    registry: docker.io
+    repository: svtechnmaa/svtech_snmp_manager
+    tag: v1.0.0
+    pullPolicy: IfNotPresent
+    debug: false
+  containerPort:
+    snmp-manager: 162
+  env:
+    TZ: Asia/Ho_Chi_Minh
+    # Set the environment variable to enable logging events to the database. 1: enable, 0: disable
+    MYSQL_DBI_ENABLE: "1"
+  service:
+    type: ClusterIP
+    # Change the ip address to your own IP
+    loadBalancerIP: 10.98.6.17
+    port: 162
+    protocol: UDP
+    # nodePort: 30162 # comment this if you want to use LoadBalancer
+    externalTrafficPolicy: Local
+    sessionAffinity: ClientIP
+    ## Customize the SessionAffinity configuration. The default value for sessionAffinityConfig.clientIP.timeoutSeconds is 10800 (3 hours)
+    sessionAffinityConfig:
+      clientIP:
+        timeoutSeconds: 7200
+  replicaCount: 3
+  persistence:
+    enabled: true
+    storageClass: "snmp-manager"
+    accessModes:
+      - ReadWriteOnce
+    size: 10Mi
+    # mountPath on Container
+    mountPath: /etc/snmptt/
+    # hostPath: mount path on Host
+    hostPath: snmp-manager-conf # full path: {{ $basePath }}/{{ $namespace }}/{{ $hostPath }}. Eg: /opt/shared/default/snmp-manager-config
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchLabels:
+            app.kubernetes.io/component: snmp-manager
+            # app.kubernetes.io/instance: nms
+            app.kubernetes.io/name: snmp-manager
+        topologyKey: app.kubernetes.io/hostname
+
+############################################################
+#                     ingress-nginx
+############################################################
+ingress-nginx:
+  service:
+    # EXPOSE UDP/TCP PORTS FOR UDP/TCP SERVICES
+    portBackend:
+      - name: snmp-manager
+        port: 162
+        targetPort: 162
+        protocol: UDP

@@ -1,0 +1,2146 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "iteration": 1618478352958,
+  "links": [],
+  "panels": [
+    {
+      "datasource": "Elasticsearch-Junos-Log",
+      "description": "Number of Command was Executed within the Time Range",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgb(255, 255, 255)",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Count"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "rgb(172, 119, 55)",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 30,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.0.3",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "$$hashKey": "object:35",
+              "fake": true,
+              "field": "junos_command.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": 0,
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "0"
+              },
+              "type": "terms"
+            }
+          ],
+          "metrics": [
+            {
+              "$$hashKey": "object:33",
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "junos_command:* AND junos_hostname.keyword:[[device]] AND login_session.keyword:[[SID]]",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Total Commands of Session",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": "Elasticsearch-Junos-Log",
+      "description": "Number of SHOW Command was Executed within the Time Range",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-orange",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Count"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "semi-dark-green",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 0,
+        "y": 4
+      },
+      "id": 34,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.0.3",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "junos_command.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": 0,
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "0"
+              },
+              "type": "terms"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "junos_command:(\"show*\" OR \"run show*\") AND junos_hostname.keyword:[[device]] AND login_session.keyword:[[SID]]",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "SHOW",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": "Elasticsearch-Junos-Log",
+      "description": "Number of SET Command was Executed within the Time Range",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Count"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "semi-dark-blue",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 5,
+        "y": 4
+      },
+      "id": 33,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.0.3",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "junos_command.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": 0,
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "0"
+              },
+              "type": "terms"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "junos_command.keyword:set* AND junos_hostname.keyword:[[device]] AND login_session.keyword:[[SID]]",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "SET",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": "Elasticsearch-Junos-Log",
+      "description": "Number of COMMIT Command was Executed within the Time Range",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-red",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Count"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "semi-dark-orange",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 10,
+        "y": 4
+      },
+      "id": 35,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.0.3",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "junos_command.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": 0,
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "0"
+              },
+              "type": "terms"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "junos_command.keyword:delete* AND NOT junos_command.keyword:*check* AND junos_hostname.keyword:[[device]] AND login_session.keyword:[[SID]]",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "DELETE",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": "Elasticsearch-Junos-Log",
+      "description": "Number of COMMIT Command was Executed within the Time Range",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-red",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Count"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "semi-dark-red",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 15,
+        "y": 4
+      },
+      "id": 42,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.0.3",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "$$hashKey": "object:488",
+              "fake": true,
+              "field": "junos_command.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": 0,
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "0"
+              },
+              "type": "terms"
+            }
+          ],
+          "metrics": [
+            {
+              "$$hashKey": "object:486",
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "junos_command.keyword:commit* AND junos_hostname.keyword:[[device]] AND login_session.keyword:[[SID]]",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "COMMIT",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": "Elasticsearch-Junos-Log",
+      "description": "Number of Other Command was Executed within the Time Range",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-red",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Count"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "rgb(67, 72, 85)",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 20,
+        "y": 4
+      },
+      "id": 36,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.0.3",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "$$hashKey": "object:470",
+              "fake": true,
+              "field": "junos_command.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": 0,
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "0"
+              },
+              "type": "terms"
+            }
+          ],
+          "metrics": [
+            {
+              "$$hashKey": "object:468",
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "NOT junos_command:(\"show*\" OR \"run show*\" OR \"set*\" OR \"commit*\" OR \"delete*\") AND junos_hostname.keyword:[[device]] AND login_session.keyword:[[SID]]",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Other Commands",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "aliasColors": {
+        "Count": "semi-dark-green"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Elasticsearch-Junos-Log",
+      "description": "The Number of SET Command were executed on All Devices within the Time Range",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          }
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 0,
+        "y": 7
+      },
+      "hiddenSeries": false,
+      "id": 38,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "rightSide": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 2,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true,
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pluginVersion": "7.4.3",
+      "pointradius": 4,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "junos_command.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "1",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "hide": false,
+          "metrics": [
+            {
+              "field": "junos_command.keyword",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "logs"
+            }
+          ],
+          "query": "junos_command:(\"show*\" OR \"run show*\") AND junos_hostname.keyword:[[device]] AND login_session.keyword:[[SID]]",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "custom",
+          "fill": true,
+          "fillColor": "rgb(24, 39, 70)",
+          "line": false,
+          "lineColor": "rgba(31, 96, 196, 0.6)",
+          "op": "gt",
+          "value": 0,
+          "yaxis": "left"
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "SHOW Timeline (Count)",
+      "tooltip": {
+        "shared": false,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "junos_hostname",
+                "Time",
+                "Count",
+                "junos_command"
+              ]
+            }
+          }
+        }
+      ],
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": -1,
+          "format": "none",
+          "label": "Number of Commands",
+          "logBase": 1,
+          "max": null,
+          "min": "1",
+          "show": true
+        },
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "Count": "light-blue"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Elasticsearch-Junos-Log",
+      "description": "The Number of SET Command were executed on All Devices within the Time Range",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          }
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 5,
+        "y": 7
+      },
+      "hiddenSeries": false,
+      "id": 41,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "rightSide": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 2,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true,
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pluginVersion": "7.4.3",
+      "pointradius": 4,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "junos_command.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "1",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "hide": false,
+          "metrics": [
+            {
+              "field": "junos_command.keyword",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "logs"
+            }
+          ],
+          "query": "junos_command.keyword:set* AND junos_hostname.keyword:[[device]] AND login_session.keyword:[[SID]]",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "custom",
+          "fill": true,
+          "fillColor": "rgb(24, 39, 70)",
+          "line": false,
+          "lineColor": "rgba(31, 96, 196, 0.6)",
+          "op": "gt",
+          "value": 0,
+          "yaxis": "left"
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "SET Timeline (Count)",
+      "tooltip": {
+        "shared": false,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "junos_hostname",
+                "Time",
+                "Count",
+                "junos_command"
+              ]
+            }
+          }
+        }
+      ],
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": -1,
+          "format": "none",
+          "label": "Number of Commands",
+          "logBase": 1,
+          "max": null,
+          "min": "1",
+          "show": true
+        },
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "Count": "semi-dark-orange"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Elasticsearch-Junos-Log",
+      "description": "The Number of Commit Command were executed on All Devices within the Time Range",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          }
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 10,
+        "y": 7
+      },
+      "hiddenSeries": false,
+      "id": 43,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "rightSide": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 2,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true,
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pluginVersion": "7.4.3",
+      "pointradius": 4,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "junos_command.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "1",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "hide": false,
+          "metrics": [
+            {
+              "field": "junos_command.keyword",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "logs"
+            }
+          ],
+          "query": "junos_command.keyword:delete* AND NOT junos_command.keyword:*check* AND junos_hostname.keyword:[[device]] AND login_session.keyword:[[SID]]",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "custom",
+          "fill": true,
+          "fillColor": "rgb(24, 39, 70)",
+          "line": false,
+          "lineColor": "rgba(31, 96, 196, 0.6)",
+          "op": "gt",
+          "value": 0,
+          "yaxis": "left"
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "DELETE Timeline (Count)",
+      "tooltip": {
+        "shared": false,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "junos_hostname",
+                "Time",
+                "Count",
+                "junos_command"
+              ]
+            }
+          }
+        }
+      ],
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": -1,
+          "format": "none",
+          "label": "Number of Commands",
+          "logBase": 1,
+          "max": null,
+          "min": "1",
+          "show": true
+        },
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "Count": "light-red"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Elasticsearch-Junos-Log",
+      "description": "The Number of Commit Command were executed on All Devices within the Time Range",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          }
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 15,
+        "y": 7
+      },
+      "hiddenSeries": false,
+      "id": 40,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "rightSide": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 2,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true,
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pluginVersion": "7.4.3",
+      "pointradius": 4,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "junos_command.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "1",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "hide": false,
+          "metrics": [
+            {
+              "field": "junos_command.keyword",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "logs"
+            }
+          ],
+          "query": "junos_command.keyword:commit* AND junos_hostname.keyword:[[device]] AND login_session.keyword:[[SID]]",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "custom",
+          "fill": true,
+          "fillColor": "rgb(24, 39, 70)",
+          "line": false,
+          "lineColor": "rgba(31, 96, 196, 0.6)",
+          "op": "gt",
+          "value": 0,
+          "yaxis": "left"
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "COMMIT Timeline (Count)",
+      "tooltip": {
+        "shared": false,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "junos_hostname",
+                "Time",
+                "Count",
+                "junos_command"
+              ]
+            }
+          }
+        }
+      ],
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": -1,
+          "format": "none",
+          "label": "Number of Commands",
+          "logBase": 1,
+          "max": null,
+          "min": "1",
+          "show": true
+        },
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "datasource": "Elasticsearch-Junos-Log",
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "id": 14,
+      "panels": [],
+      "title": "Users's Access Information",
+      "type": "row"
+    },
+    {
+      "alignNumbersToRightEnabled": true,
+      "columnAliases": [
+        {
+          "$$hashKey": "object:259",
+          "alias": "Time",
+          "name": "@timestamp"
+        },
+        {
+          "$$hashKey": "object:260",
+          "alias": "Login User",
+          "name": "login_user"
+        },
+        {
+          "$$hashKey": "object:261",
+          "alias": "Login Source",
+          "name": "login_source"
+        },
+        {
+          "$$hashKey": "object:262",
+          "alias": "Protocol",
+          "name": "login_protocol"
+        },
+        {
+          "$$hashKey": "object:263",
+          "alias": "Device IP",
+          "name": "host"
+        },
+        {
+          "$$hashKey": "object:264",
+          "alias": "Device Name",
+          "name": "junos_hostname"
+        },
+        {
+          "$$hashKey": "object:265",
+          "alias": "PID",
+          "name": "junos_procsid"
+        },
+        {
+          "$$hashKey": "object:266",
+          "alias": "SID",
+          "name": "login_session"
+        }
+      ],
+      "columnFiltersEnabled": true,
+      "columnWidthHints": [
+        {
+          "$$hashKey": "object:275",
+          "name": "login_user",
+          "width": "100px"
+        },
+        {
+          "$$hashKey": "object:276",
+          "name": "@timestamp",
+          "width": "170px"
+        },
+        {
+          "$$hashKey": "object:277",
+          "name": "login_source",
+          "width": "100px"
+        },
+        {
+          "$$hashKey": "object:278",
+          "name": "login_session",
+          "width": "200px"
+        }
+      ],
+      "columns": [],
+      "compactRowsEnabled": true,
+      "datasource": "Elasticsearch-Junos-Log",
+      "datatablePagingType": "first_last_numbers",
+      "datatableTheme": "basic_theme",
+      "emptyData": false,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          }
+        },
+        "overrides": []
+      },
+      "fontSize": "80%",
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
+      "hoverEnabled": true,
+      "id": 2,
+      "infoEnabled": true,
+      "lengthChangeEnabled": true,
+      "orderColumnEnabled": true,
+      "pagingTypes": [
+        {
+          "$$hashKey": "object:345",
+          "text": "Page number buttons only",
+          "value": "numbers"
+        },
+        {
+          "$$hashKey": "object:346",
+          "text": "'Previous' and 'Next' buttons only",
+          "value": "simple"
+        },
+        {
+          "$$hashKey": "object:347",
+          "text": "'Previous' and 'Next' buttons, plus page numbers",
+          "value": "simple_numbers"
+        },
+        {
+          "$$hashKey": "object:348",
+          "text": "'First', 'Previous', 'Next' and 'Last' buttons",
+          "value": "full"
+        },
+        {
+          "$$hashKey": "object:349",
+          "text": "'First', 'Previous', 'Next' and 'Last' buttons, plus page numbers",
+          "value": "full_numbers"
+        },
+        {
+          "$$hashKey": "object:350",
+          "text": "'First' and 'Last' buttons, plus page numbers",
+          "value": "first_last_numbers"
+        }
+      ],
+      "panelHeight": null,
+      "pluginVersion": "7.0.3",
+      "rowNumbersEnabled": false,
+      "rowsPerPage": 7,
+      "scroll": false,
+      "scrollHeight": "default",
+      "searchEnabled": true,
+      "searchHighlightingEnabled": false,
+      "showCellBorders": true,
+      "showHeader": true,
+      "showRowBorders": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "sortByColumns": [
+        {
+          "$$hashKey": "object:283",
+          "columnData": 0,
+          "sortMethod": "desc"
+        }
+      ],
+      "sortByColumnsData": [
+        [
+          0,
+          "desc"
+        ]
+      ],
+      "stripedRowsEnabled": true,
+      "styles": [
+        {
+          "$$hashKey": "object:285",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "sanitize": true,
+          "splitPattern": "/ /",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:286",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "/.*timestamp/",
+          "splitPattern": "/ /",
+          "thresholds": [],
+          "type": "date",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "$$hashKey": "object:234",
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "hide": false,
+          "metrics": [
+            {
+              "$$hashKey": "object:232",
+              "field": "select field",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "logs"
+            }
+          ],
+          "query": "tags: login_trigger AND login_protocol.keyword:[[login_protocol]] AND junos_hostname.keyword:[[device]] AND login_session.keyword:[[SID]]",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "themeOptions": {
+        "dark": "./styles/dark.scss",
+        "light": "./styles/light.scss"
+      },
+      "themes": [
+        {
+          "$$hashKey": "object:326",
+          "disabled": false,
+          "text": "Basic",
+          "value": "basic_theme"
+        },
+        {
+          "$$hashKey": "object:327",
+          "disabled": true,
+          "text": "Bootstrap",
+          "value": "bootstrap_theme"
+        },
+        {
+          "$$hashKey": "object:328",
+          "disabled": true,
+          "text": "Foundation",
+          "value": "foundation_theme"
+        },
+        {
+          "$$hashKey": "object:329",
+          "disabled": true,
+          "text": "ThemeRoller",
+          "value": "themeroller_theme"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Users's Access Information",
+      "transform": "table",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "@timestamp",
+                "host",
+                "junos_hostname",
+                "junos_procsid",
+                "login_protocol",
+                "login_session",
+                "login_source",
+                "login_user"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "@timestamp": false
+            },
+            "indexByName": {
+              "@timestamp": 0,
+              "host": 4,
+              "junos_hostname": 5,
+              "junos_msg": 8,
+              "junos_procsid": 6,
+              "login_protocol": 3,
+              "login_session": 7,
+              "login_source": 2,
+              "login_user": 1,
+              "message": 9
+            },
+            "renameByName": {
+              "@timestamp": ""
+            }
+          }
+        }
+      ],
+      "type": "briangann-datatable-panel"
+    },
+    {
+      "alignNumbersToRightEnabled": true,
+      "columnAliases": [
+        {
+          "$$hashKey": "object:72",
+          "alias": "Time",
+          "name": "@timestamp"
+        },
+        {
+          "$$hashKey": "object:73",
+          "alias": "Login User",
+          "name": "login_user"
+        },
+        {
+          "$$hashKey": "object:74",
+          "alias": "Login Source",
+          "name": "login_source"
+        },
+        {
+          "$$hashKey": "object:75",
+          "alias": "Protocol",
+          "name": "login_protocol"
+        },
+        {
+          "$$hashKey": "object:76",
+          "alias": "Device IP",
+          "name": "host"
+        },
+        {
+          "$$hashKey": "object:77",
+          "alias": "Device Name",
+          "name": "junos_hostname"
+        },
+        {
+          "$$hashKey": "object:78",
+          "alias": "PID",
+          "name": "junos_procsid"
+        },
+        {
+          "$$hashKey": "object:79",
+          "alias": "SID",
+          "name": "login_session"
+        }
+      ],
+      "columnFiltersEnabled": true,
+      "columnWidthHints": [
+        {
+          "$$hashKey": "object:88",
+          "name": "@timestamp",
+          "width": "150px"
+        },
+        {
+          "$$hashKey": "object:89",
+          "name": "login_user",
+          "width": "80px"
+        },
+        {
+          "$$hashKey": "object:90",
+          "name": "host",
+          "width": "80px"
+        },
+        {
+          "$$hashKey": "object:91",
+          "name": "junos_hostname",
+          "width": "120px"
+        },
+        {
+          "$$hashKey": "object:92",
+          "name": "junos_procsid",
+          "width": "50px"
+        },
+        {
+          "$$hashKey": "object:93",
+          "name": "junos_command",
+          "width": "400px"
+        },
+        {
+          "$$hashKey": "object:94",
+          "name": "login_session",
+          "width": "80px"
+        },
+        {
+          "$$hashKey": "object:95",
+          "name": "login_source",
+          "width": "80px"
+        }
+      ],
+      "columns": [],
+      "compactRowsEnabled": true,
+      "datasource": "Elasticsearch-Junos-Log",
+      "datatablePagingType": "first_last_numbers",
+      "datatableTheme": "basic_theme",
+      "emptyData": false,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          }
+        },
+        "overrides": []
+      },
+      "fontSize": "80%",
+      "gridPos": {
+        "h": 14,
+        "w": 24,
+        "x": 0,
+        "y": 22
+      },
+      "hoverEnabled": false,
+      "id": 28,
+      "infoEnabled": true,
+      "lengthChangeEnabled": true,
+      "orderColumnEnabled": true,
+      "pagingTypes": [
+        {
+          "$$hashKey": "object:161",
+          "text": "Page number buttons only",
+          "value": "numbers"
+        },
+        {
+          "$$hashKey": "object:162",
+          "text": "'Previous' and 'Next' buttons only",
+          "value": "simple"
+        },
+        {
+          "$$hashKey": "object:163",
+          "text": "'Previous' and 'Next' buttons, plus page numbers",
+          "value": "simple_numbers"
+        },
+        {
+          "$$hashKey": "object:164",
+          "text": "'First', 'Previous', 'Next' and 'Last' buttons",
+          "value": "full"
+        },
+        {
+          "$$hashKey": "object:165",
+          "text": "'First', 'Previous', 'Next' and 'Last' buttons, plus page numbers",
+          "value": "full_numbers"
+        },
+        {
+          "$$hashKey": "object:166",
+          "text": "'First' and 'Last' buttons, plus page numbers",
+          "value": "first_last_numbers"
+        }
+      ],
+      "panelHeight": null,
+      "pluginVersion": "7.0.3",
+      "rowNumbersEnabled": false,
+      "rowsPerPage": 20,
+      "scroll": false,
+      "scrollHeight": "default",
+      "searchEnabled": true,
+      "searchHighlightingEnabled": false,
+      "showCellBorders": true,
+      "showHeader": true,
+      "showRowBorders": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "sortByColumns": [
+        {
+          "$$hashKey": "object:104",
+          "columnData": 0,
+          "sortMethod": "desc"
+        }
+      ],
+      "sortByColumnsData": [
+        [
+          0,
+          "desc"
+        ]
+      ],
+      "stripedRowsEnabled": true,
+      "styles": [
+        {
+          "$$hashKey": "object:106",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "sanitize": true,
+          "splitPattern": "/ /",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:107",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "/.*timestamp/",
+          "splitPattern": "/ /",
+          "thresholds": [],
+          "type": "date",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "$$hashKey": "object:42",
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "hide": false,
+          "metrics": [
+            {
+              "$$hashKey": "object:40",
+              "field": "select field",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "logs"
+            }
+          ],
+          "query": "junos_command:* AND junos_hostname.keyword:[[device]] AND login_session.keyword:[[SID]]",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "themeOptions": {
+        "dark": "./styles/dark.scss",
+        "light": "./styles/light.scss"
+      },
+      "themes": [
+        {
+          "$$hashKey": "object:142",
+          "disabled": false,
+          "text": "Basic",
+          "value": "basic_theme"
+        },
+        {
+          "$$hashKey": "object:143",
+          "disabled": true,
+          "text": "Bootstrap",
+          "value": "bootstrap_theme"
+        },
+        {
+          "$$hashKey": "object:144",
+          "disabled": true,
+          "text": "Foundation",
+          "value": "foundation_theme"
+        },
+        {
+          "$$hashKey": "object:145",
+          "disabled": true,
+          "text": "ThemeRoller",
+          "value": "themeroller_theme"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Users's Executed Commands",
+      "transform": "table",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "@timestamp",
+                "host",
+                "junos_command",
+                "junos_hostname",
+                "junos_procsid",
+                "login_session",
+                "login_user",
+                "login_source"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "@timestamp": false
+            },
+            "indexByName": {
+              "@timestamp": 0,
+              "host": 4,
+              "junos_hostname": 5,
+              "junos_msg": 8,
+              "junos_procsid": 6,
+              "login_protocol": 3,
+              "login_session": 7,
+              "login_source": 2,
+              "login_user": 1,
+              "message": 9
+            },
+            "renameByName": {
+              "@timestamp": ""
+            }
+          }
+        }
+      ],
+      "type": "briangann-datatable-panel"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 25,
+  "style": "dark",
+  "tags": [
+    "junos-log"
+  ],
+  "templating": {
+    "list": [
+      {
+        "datasource": "Elasticsearch",
+        "description": null,
+        "error": null,
+        "filters": [
+          {
+            "condition": "",
+            "key": "login_source.keyword",
+            "operator": "!=",
+            "value": "10.229.17.19"
+          },
+          {
+            "condition": "",
+            "key": "login_source.keyword",
+            "operator": "!=",
+            "value": "10.229.17.31"
+          },
+          {
+            "condition": "",
+            "key": "login_user.keyword",
+            "operator": "!=",
+            "value": "nims"
+          },
+          {
+            "condition": "",
+            "key": "login_session.keyword",
+            "operator": "!=",
+            "value": "junos_script"
+          },
+          {
+            "condition": "",
+            "key": "login_user.keyword",
+            "operator": "!=",
+            "value": "icinga"
+          }
+        ],
+        "hide": 2,
+        "label": "ES Filter ",
+        "name": "filter",
+        "skipUrlSync": false,
+        "type": "adhoc"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "Elasticsearch-Junos-Log",
+        "definition": "{\"find\": \"terms\", \"field\": \"junos_hostname.keyword\", \"query\": \"login_protocol:[[login_protocol]] AND tags:login_trigger AND NOT login_session.keyword:junos_script AND NOT [[ignore_user]]\"}",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "Device ",
+        "multi": true,
+        "name": "device",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"junos_hostname.keyword\", \"query\": \"login_protocol:[[login_protocol]] AND tags:login_trigger AND NOT login_session.keyword:junos_script AND NOT [[ignore_user]]\"}",
+        "refresh": 2,
+        "regex": ".*",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "login.user:(icinga OR nims)",
+          "value": "login.user:(icinga OR nims)"
+        },
+        "description": null,
+        "error": null,
+        "hide": 2,
+        "label": "ignore_user",
+        "name": "ignore_user",
+        "options": [
+          {
+            "selected": false,
+            "text": "login.user:(icinga OR nims)",
+            "value": "login.user:(icinga OR nims)"
+          }
+        ],
+        "query": "login.user:(icinga OR nims)",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "login_source:(10.229.17.31 OR 10.229.17.19)",
+          "value": "login_source:(10.229.17.31 OR 10.229.17.19)"
+        },
+        "description": null,
+        "error": null,
+        "hide": 2,
+        "label": "ignore_login_source",
+        "name": "ignore_login_source",
+        "options": [
+          {
+            "selected": false,
+            "text": "login_source:(10.229.17.31 OR 10.229.17.19)",
+            "value": "login_source:(10.229.17.31 OR 10.229.17.19)"
+          }
+        ],
+        "query": "login_source:(10.229.17.31 OR 10.229.17.19)",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "Elasticsearch-Junos-Log",
+        "definition": "{\"find\": \"terms\", \"field\": \"login_protocol.keyword\", \"query\": \"NOT login_protocol.keyword:junoscript\"}",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "Login Protocol",
+        "multi": true,
+        "name": "login_protocol",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"login_protocol.keyword\", \"query\": \"NOT login_protocol.keyword:junoscript\"}",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "Elasticsearch-Junos-Log",
+        "definition": "{\"find\": \"terms\", \"field\": \"login_session.keyword\", \"query\": \"login_protocol:[[login_protocol]] AND tags:login_trigger AND NOT [[ignore_login_session]] AND NOT [[ignore_user]]\"}",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "Session ID",
+        "multi": true,
+        "name": "SID",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"login_session.keyword\", \"query\": \"login_protocol:[[login_protocol]] AND tags:login_trigger AND NOT [[ignore_login_session]] AND NOT [[ignore_user]]\"}",
+        "refresh": 2,
+        "regex": ".*",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "login_session.keyword:(junoscript OR pending)",
+          "value": "login_session.keyword:(junoscript OR pending)"
+        },
+        "description": null,
+        "error": null,
+        "hide": 2,
+        "label": "ignore_login_session",
+        "name": "ignore_login_session",
+        "options": [
+          {
+            "selected": false,
+            "text": "login_session.keyword:(junoscript OR pending)",
+            "value": "login_session.keyword:(junoscript OR pending)"
+          }
+        ],
+        "query": "login_session.keyword:(junoscript OR pending)",
+        "skipUrlSync": false,
+        "type": "constant"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "Access Log Detail",
+  "uid": "access-log-detail"
+}

@@ -1,0 +1,896 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "$$hashKey": "object:7",
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "links": [],
+  "panels": [
+    {
+      "columns": [],
+      "datasource": "Report",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 4,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "",
+          "dateFormat": "MM/DD/YY h:mm:ss a",
+          "pattern": "/timestamp/",
+          "type": "date"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "pattern": "hostname",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "pattern": ".*CPU.*",
+          "thresholds": [
+            "60",
+            "80"
+          ],
+          "type": "number",
+          "unit": "percent"
+        }
+      ],
+      "targets": [
+        {
+          "hide": false,
+          "refId": "D",
+          "segments": [
+            "service",
+            "last_check_result.output",
+            "WHERE",
+            "vars.service_type",
+            "=",
+            "CPU",
+            "*"
+          ],
+          "target": "Icinga2LiveStatus",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "A",
+          "segments": [
+            "service",
+            "snmp",
+            "CPU_RE0",
+            "mean(value)"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "C",
+          "segments": [
+            "service",
+            "snmp",
+            "CPU_RE0",
+            "min(value) + timestamp",
+            "*"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        },
+        {
+          "refId": "B",
+          "segments": [
+            "service",
+            "snmp",
+            "CPU_RE0",
+            "max(value) + timestamp",
+            "*"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "E",
+          "segments": [
+            "service",
+            "snmp",
+            "CPU_RE1",
+            "mean(value)"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "F",
+          "segments": [
+            "service",
+            "snmp",
+            "CPU_RE1",
+            "max(value) + timestamp",
+            "*"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "G",
+          "segments": [
+            "service",
+            "snmp",
+            "CPU_RE1",
+            "max(value) + timestamp",
+            "*"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        }
+      ],
+      "title": "Juniper CPU RE",
+      "transform": "table",
+      "type": "icinga2-report-panel"
+    },
+    {
+      "columns": [],
+      "datasource": "Report",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 3,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "",
+          "dateFormat": "MM/DD/YY h:mm:ss a",
+          "link": false,
+          "pattern": "/timestamp/",
+          "type": "date"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": false,
+          "linkTargetBlank": false,
+          "linkUrl": "/grafana/${__cell}",
+          "pattern": "hostname",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "pattern": ".*CPU.*",
+          "thresholds": [
+            "60",
+            "80"
+          ],
+          "type": "number",
+          "unit": "percent"
+        }
+      ],
+      "targets": [
+        {
+          "hide": false,
+          "refId": "D",
+          "segments": [
+            "service",
+            "last_check_result.output",
+            "WHERE",
+            "vars.service_type",
+            "=",
+            "CPU",
+            "*"
+          ],
+          "target": "Icinga2LiveStatus",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "A",
+          "segments": [
+            "service",
+            "snmp",
+            "CPU_FPC",
+            "mean(value)"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "C",
+          "segments": [
+            "service",
+            "snmp",
+            "CPU_FPC",
+            "max(value) + timestamp",
+            "*"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        },
+        {
+          "refId": "B",
+          "segments": [
+            "service",
+            "snmp",
+            "CPU_FPC",
+            "min(value) + timestamp",
+            "*"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        }
+      ],
+      "title": "Juniper CPU FPC",
+      "transform": "table",
+      "type": "icinga2-report-panel"
+    },
+    {
+      "columns": [],
+      "datasource": "Report",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 10
+      },
+      "id": 5,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "",
+          "dateFormat": "MM/DD/YY h:mm:ss a",
+          "pattern": "/timestamp/",
+          "type": "date"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "pattern": "hostname",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "pattern": ".*MEM.*",
+          "thresholds": [
+            "60",
+            "80"
+          ],
+          "type": "number",
+          "unit": "percent"
+        }
+      ],
+      "targets": [
+        {
+          "hide": false,
+          "refId": "D",
+          "segments": [
+            "service",
+            "last_check_result.output",
+            "WHERE",
+            "vars.service_type",
+            "=",
+            "MEMORY",
+            "*"
+          ],
+          "target": "Icinga2LiveStatus",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "A",
+          "segments": [
+            "service",
+            "snmp",
+            "MEM_RE0",
+            "mean(value)"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "C",
+          "segments": [
+            "service",
+            "snmp",
+            "MEM_RE0",
+            "min(value) + timestamp",
+            "*"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "B",
+          "segments": [
+            "service",
+            "snmp",
+            "MEM_RE0",
+            "max(value) + timestamp",
+            "*"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "E",
+          "segments": [
+            "service",
+            "snmp",
+            "MEM_RE1",
+            "mean(value)"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "F",
+          "segments": [
+            "service",
+            "snmp",
+            "MEM_RE1",
+            "min(value) + timestamp",
+            "*"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "G",
+          "segments": [
+            "service",
+            "snmp",
+            "MEM_RE1",
+            "max(value) + timestamp",
+            "*"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        }
+      ],
+      "title": "Juniper MEM RE",
+      "transform": "table",
+      "type": "icinga2-report-panel"
+    },
+    {
+      "columns": [],
+      "datasource": "Report",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 10
+      },
+      "id": 6,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "",
+          "dateFormat": "MM/DD/YY h:mm:ss a",
+          "pattern": "/timestamp/",
+          "type": "date"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "pattern": "hostname",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "pattern": ".*MEM.*",
+          "thresholds": [
+            "60",
+            "80"
+          ],
+          "type": "number",
+          "unit": "percent"
+        }
+      ],
+      "targets": [
+        {
+          "hide": false,
+          "refId": "D",
+          "segments": [
+            "service",
+            "last_check_result.output",
+            "WHERE",
+            "vars.service_type",
+            "=",
+            "MEM",
+            "*"
+          ],
+          "target": "Icinga2LiveStatus",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "A",
+          "segments": [
+            "service",
+            "snmp",
+            "MEM_FPC",
+            "mean(value)"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "C",
+          "segments": [
+            "service",
+            "snmp",
+            "MEM_FPC",
+            "min(value) + timestamp",
+            "*"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "B",
+          "segments": [
+            "service",
+            "snmp",
+            "MEM_FPC",
+            "max(value) + timestamp",
+            "*"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        }
+      ],
+      "title": "Juniper MEM FPC",
+      "transform": "table",
+      "type": "icinga2-report-panel"
+    },
+    {
+      "columns": [],
+      "datasource": "Report",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 0,
+        "y": 20
+      },
+      "id": 7,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "",
+          "dateFormat": "MM/DD/YY h:mm:ss a",
+          "pattern": "/timestamp/",
+          "type": "date"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "pattern": "hostname",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "pattern": ".*TEMP.*",
+          "thresholds": [
+            "55",
+            "70"
+          ],
+          "type": "number",
+          "unit": "celsius"
+        }
+      ],
+      "targets": [
+        {
+          "hide": false,
+          "refId": "D",
+          "segments": [
+            "service",
+            "last_check_result.output",
+            "WHERE",
+            "vars.service_type",
+            "=",
+            "TEMPERATURE",
+            "*"
+          ],
+          "target": "Icinga2LiveStatus",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "A",
+          "segments": [
+            "service",
+            "snmp",
+            "TEMP_RE0",
+            "mean(value)"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "C",
+          "segments": [
+            "service",
+            "snmp",
+            "TEMP_RE0",
+            "min(value) + timestamp",
+            "*"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "B",
+          "segments": [
+            "service",
+            "snmp",
+            "TEMP_RE0",
+            "max(value) + timestamp",
+            "*"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "E",
+          "segments": [
+            "service",
+            "snmp",
+            "TEMP_RE1",
+            "mean(value)"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "F",
+          "segments": [
+            "service",
+            "snmp",
+            "TEMP_RE1",
+            "min(value) + timestamp",
+            "*"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "G",
+          "segments": [
+            "service",
+            "snmp",
+            "TEMP_RE1",
+            "max(value) + timestamp",
+            "*"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        }
+      ],
+      "title": "Juniper TEMP RE",
+      "transform": "table",
+      "type": "icinga2-report-panel"
+    },
+    {
+      "columns": [],
+      "datasource": "Report",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 12,
+        "y": 20
+      },
+      "id": 8,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "",
+          "dateFormat": "MM/DD/YY h:mm:ss a",
+          "pattern": "/timestamp/",
+          "type": "date"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "pattern": "hostname",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "pattern": ".*TEMP.*",
+          "thresholds": [
+            "55",
+            "70"
+          ],
+          "type": "number",
+          "unit": "celsius"
+        }
+      ],
+      "targets": [
+        {
+          "hide": false,
+          "refId": "D",
+          "segments": [
+            "service",
+            "last_check_result.output",
+            "WHERE",
+            "vars.service_type",
+            "=",
+            "TEMPERATURE",
+            "*"
+          ],
+          "target": "Icinga2LiveStatus",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "A",
+          "segments": [
+            "service",
+            "snmp",
+            "TEMP_FPC",
+            "mean(value)"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "C",
+          "segments": [
+            "service",
+            "snmp",
+            "TEMP_FPC",
+            "min(value) + timestamp",
+            "*"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        },
+        {
+          "hide": false,
+          "refId": "F",
+          "segments": [
+            "service",
+            "snmp",
+            "TEMP_FPC",
+            "max(value) + timestamp",
+            "*"
+          ],
+          "target": "InfluxdbDatasource",
+          "type": "timeserie"
+        }
+      ],
+      "title": "Juniper TEMP FPC",
+      "transform": "table",
+      "type": "icinga2-report-panel"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 22,
+  "style": "dark",
+  "tags": [
+    "report"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-2d",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Healthcheck-Report-MX",
+  "uid": "healthcheck-report-mx",
+  "variables": {
+    "list": []
+  }
+}

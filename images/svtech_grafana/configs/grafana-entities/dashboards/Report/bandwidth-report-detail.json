@@ -1,0 +1,5398 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "$$hashKey": "object:22",
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "iteration": 1618547489575,
+  "links": [],
+  "panels": [
+    {
+      "columns": [],
+      "datasource": "influxdb_nms",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "80%",
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 4,
+      "interval": "",
+      "links": [],
+      "pageSize": 10,
+      "showHeader": true,
+      "sort": {
+        "col": 3,
+        "desc": false
+      },
+      "styles": [
+        {
+          "alias": "Time",
+          "align": "auto",
+          "colorMode": null,
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": null,
+          "pattern": "Time",
+          "thresholds": [
+            ""
+          ],
+          "type": "date",
+          "unit": "dateTimeAsIso"
+        },
+        {
+          "alias": "Max_Bandwidth",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Max_Bandwidth",
+          "thresholds": [
+            "700000000",
+            "7000000000"
+          ],
+          "type": "number",
+          "unit": "decbytes"
+        }
+      ],
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "hostname"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "metric"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "service"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "Interface-check-command",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT max(\"value\") AS \"Max_Bandwidth\" FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"service\" =~ /^IfCheck-[[service]]$/ AND \"state\" = 'OK') AND $timeFilter GROUP BY \"hostname\", \"metric\", \"service\"",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [
+                  "Max_Bandwidth"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "hostname",
+              "operator": "=~",
+              "value": "/^$hostname$/"
+            },
+            {
+              "condition": "AND",
+              "key": "service",
+              "operator": "=~",
+              "value": "/^IfCheck-[[service]]$/"
+            },
+            {
+              "condition": "AND",
+              "key": "value",
+              "operator": "<",
+              "value": "44023414784"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "MAX Bandwidth Report ",
+      "transform": "table",
+      "type": "table-old"
+    },
+    {
+      "columns": [],
+      "datasource": "influxdb_nms",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "80%",
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 10,
+      "interval": "",
+      "links": [],
+      "pageSize": 10,
+      "showHeader": true,
+      "sort": {
+        "col": 3,
+        "desc": false
+      },
+      "styles": [
+        {
+          "$$hashKey": "object:258",
+          "alias": "Time",
+          "align": "auto",
+          "colorMode": null,
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": null,
+          "pattern": "Time",
+          "thresholds": [
+            ""
+          ],
+          "type": "date",
+          "unit": "dateTimeAsIso"
+        },
+        {
+          "$$hashKey": "object:259",
+          "alias": "Max_Bandwidth",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Max_Bandwidth",
+          "thresholds": [
+            "700000000",
+            "7000000000"
+          ],
+          "type": "number",
+          "unit": "decbytes"
+        }
+      ],
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "hostname"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "metric"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "service"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "Interface-check-command",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT max(\"value\") AS \"Max_Bandwidth\" FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"service\" =~ /^IfCheck-[[service]]$/ AND \"state\" = 'OK') AND $timeFilter GROUP BY \"hostname\", \"metric\", \"service\"",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "Max_Bandwidth"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "hostname",
+              "operator": "=~",
+              "value": "/^$hostname$/"
+            },
+            {
+              "condition": "AND",
+              "key": "service",
+              "operator": "=~",
+              "value": "/^IfCheck-[[service]]$/"
+            },
+            {
+              "condition": "AND",
+              "key": "value",
+              "operator": "<",
+              "value": "44023414784"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "AVERGAE Bandwidth Report ",
+      "transform": "table",
+      "type": "table-old"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 11
+      },
+      "id": 21,
+      "panels": [
+        {
+          "aliasColors": {
+            "MAX IN": "semi-dark-red",
+            "MAX POINT (IN)": "semi-dark-red",
+            "MAX POINT (OUT)": "dark-orange"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 0,
+            "y": 12
+          },
+          "hiddenSeries": false,
+          "id": 3,
+          "interval": "",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 3,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": "service",
+          "repeatDirection": "h",
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "AR.GAZ027",
+              "value": "AR.GAZ027"
+            },
+            "service": {
+              "selected": false,
+              "text": "ae0",
+              "value": "ae0"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "$$hashKey": "object:279",
+              "alias": "MAX POINT (IN)",
+              "legend": true,
+              "pointradius": 4,
+              "points": true
+            },
+            {
+              "$$hashKey": "object:1844",
+              "alias": "MAX POINT (OUT)",
+              "pointradius": 4,
+              "points": true
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$service (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "$service (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$service",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:671",
+              "decimals": 0,
+              "format": "decbytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "$$hashKey": "object:672",
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "MAX IN": "semi-dark-red",
+            "MAX POINT (IN)": "semi-dark-red",
+            "MAX POINT (OUT)": "dark-orange"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 8,
+            "y": 12
+          },
+          "hiddenSeries": false,
+          "id": 22,
+          "interval": "",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 3,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "h",
+          "repeatIteration": 1618547489575,
+          "repeatPanelId": 3,
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "AR.GAZ027",
+              "value": "AR.GAZ027"
+            },
+            "service": {
+              "selected": false,
+              "text": "ae2",
+              "value": "ae2"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "$$hashKey": "object:279",
+              "alias": "MAX POINT (IN)",
+              "legend": true,
+              "pointradius": 4,
+              "points": true
+            },
+            {
+              "$$hashKey": "object:1844",
+              "alias": "MAX POINT (OUT)",
+              "pointradius": 4,
+              "points": true
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$service (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "$service (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$service",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:671",
+              "decimals": 0,
+              "format": "decbytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "$$hashKey": "object:672",
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "MAX IN": "semi-dark-red",
+            "MAX POINT (IN)": "semi-dark-red",
+            "MAX POINT (OUT)": "dark-orange"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 16,
+            "y": 12
+          },
+          "hiddenSeries": false,
+          "id": 23,
+          "interval": "",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 3,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "h",
+          "repeatIteration": 1618547489575,
+          "repeatPanelId": 3,
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "AR.GAZ027",
+              "value": "AR.GAZ027"
+            },
+            "service": {
+              "selected": false,
+              "text": "ae20",
+              "value": "ae20"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "$$hashKey": "object:279",
+              "alias": "MAX POINT (IN)",
+              "legend": true,
+              "pointradius": 4,
+              "points": true
+            },
+            {
+              "$$hashKey": "object:1844",
+              "alias": "MAX POINT (OUT)",
+              "pointradius": 4,
+              "points": true
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$service (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "$service (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$service",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:671",
+              "decimals": 0,
+              "format": "decbytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "$$hashKey": "object:672",
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "MAX IN": "semi-dark-red",
+            "MAX POINT (IN)": "semi-dark-red",
+            "MAX POINT (OUT)": "dark-orange"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 0,
+            "y": 19
+          },
+          "hiddenSeries": false,
+          "id": 24,
+          "interval": "",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 3,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "h",
+          "repeatIteration": 1618547489575,
+          "repeatPanelId": 3,
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "AR.GAZ027",
+              "value": "AR.GAZ027"
+            },
+            "service": {
+              "selected": false,
+              "text": "ae21",
+              "value": "ae21"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "$$hashKey": "object:279",
+              "alias": "MAX POINT (IN)",
+              "legend": true,
+              "pointradius": 4,
+              "points": true
+            },
+            {
+              "$$hashKey": "object:1844",
+              "alias": "MAX POINT (OUT)",
+              "pointradius": 4,
+              "points": true
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$service (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "$service (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$service",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:671",
+              "decimals": 0,
+              "format": "decbytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "$$hashKey": "object:672",
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "MAX IN": "semi-dark-red",
+            "MAX POINT (IN)": "semi-dark-red",
+            "MAX POINT (OUT)": "dark-orange"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 8,
+            "y": 19
+          },
+          "hiddenSeries": false,
+          "id": 25,
+          "interval": "",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 3,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "h",
+          "repeatIteration": 1618547489575,
+          "repeatPanelId": 3,
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "AR.GAZ027",
+              "value": "AR.GAZ027"
+            },
+            "service": {
+              "selected": false,
+              "text": "ae3",
+              "value": "ae3"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "$$hashKey": "object:279",
+              "alias": "MAX POINT (IN)",
+              "legend": true,
+              "pointradius": 4,
+              "points": true
+            },
+            {
+              "$$hashKey": "object:1844",
+              "alias": "MAX POINT (OUT)",
+              "pointradius": 4,
+              "points": true
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$service (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "$service (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$service",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:671",
+              "decimals": 0,
+              "format": "decbytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "$$hashKey": "object:672",
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "MAX IN": "semi-dark-red",
+            "MAX POINT (IN)": "semi-dark-red",
+            "MAX POINT (OUT)": "dark-orange"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 16,
+            "y": 19
+          },
+          "hiddenSeries": false,
+          "id": 26,
+          "interval": "",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 3,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "h",
+          "repeatIteration": 1618547489575,
+          "repeatPanelId": 3,
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "AR.GAZ027",
+              "value": "AR.GAZ027"
+            },
+            "service": {
+              "selected": false,
+              "text": "ae4",
+              "value": "ae4"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "$$hashKey": "object:279",
+              "alias": "MAX POINT (IN)",
+              "legend": true,
+              "pointradius": 4,
+              "points": true
+            },
+            {
+              "$$hashKey": "object:1844",
+              "alias": "MAX POINT (OUT)",
+              "pointradius": 4,
+              "points": true
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$service (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "$service (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$service",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:671",
+              "decimals": 0,
+              "format": "decbytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "$$hashKey": "object:672",
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "MAX IN": "semi-dark-red",
+            "MAX POINT (IN)": "semi-dark-red",
+            "MAX POINT (OUT)": "dark-orange"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 0,
+            "y": 26
+          },
+          "hiddenSeries": false,
+          "id": 27,
+          "interval": "",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 3,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "h",
+          "repeatIteration": 1618547489575,
+          "repeatPanelId": 3,
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "AR.GAZ027",
+              "value": "AR.GAZ027"
+            },
+            "service": {
+              "selected": false,
+              "text": "ae5",
+              "value": "ae5"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "$$hashKey": "object:279",
+              "alias": "MAX POINT (IN)",
+              "legend": true,
+              "pointradius": 4,
+              "points": true
+            },
+            {
+              "$$hashKey": "object:1844",
+              "alias": "MAX POINT (OUT)",
+              "pointradius": 4,
+              "points": true
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$service (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "$service (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$service",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:671",
+              "decimals": 0,
+              "format": "decbytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "$$hashKey": "object:672",
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "MAX IN": "semi-dark-red",
+            "MAX POINT (IN)": "semi-dark-red",
+            "MAX POINT (OUT)": "dark-orange"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 8,
+            "y": 26
+          },
+          "hiddenSeries": false,
+          "id": 28,
+          "interval": "",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 3,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "h",
+          "repeatIteration": 1618547489575,
+          "repeatPanelId": 3,
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "AR.GAZ027",
+              "value": "AR.GAZ027"
+            },
+            "service": {
+              "selected": false,
+              "text": "ge-1/2/0",
+              "value": "ge-1/2/0"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "$$hashKey": "object:279",
+              "alias": "MAX POINT (IN)",
+              "legend": true,
+              "pointradius": 4,
+              "points": true
+            },
+            {
+              "$$hashKey": "object:1844",
+              "alias": "MAX POINT (OUT)",
+              "pointradius": 4,
+              "points": true
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$service (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "$service (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$service",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:671",
+              "decimals": 0,
+              "format": "decbytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "$$hashKey": "object:672",
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "MAX IN": "semi-dark-red",
+            "MAX POINT (IN)": "semi-dark-red",
+            "MAX POINT (OUT)": "dark-orange"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 16,
+            "y": 26
+          },
+          "hiddenSeries": false,
+          "id": 29,
+          "interval": "",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 3,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "h",
+          "repeatIteration": 1618547489575,
+          "repeatPanelId": 3,
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "AR.GAZ027",
+              "value": "AR.GAZ027"
+            },
+            "service": {
+              "selected": false,
+              "text": "ge-1/2/1",
+              "value": "ge-1/2/1"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "$$hashKey": "object:279",
+              "alias": "MAX POINT (IN)",
+              "legend": true,
+              "pointradius": 4,
+              "points": true
+            },
+            {
+              "$$hashKey": "object:1844",
+              "alias": "MAX POINT (OUT)",
+              "pointradius": 4,
+              "points": true
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$service (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "$service (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$service",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:671",
+              "decimals": 0,
+              "format": "decbytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "$$hashKey": "object:672",
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "MAX IN": "semi-dark-red",
+            "MAX POINT (IN)": "semi-dark-red",
+            "MAX POINT (OUT)": "dark-orange"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 0,
+            "y": 33
+          },
+          "hiddenSeries": false,
+          "id": 30,
+          "interval": "",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 3,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "h",
+          "repeatIteration": 1618547489575,
+          "repeatPanelId": 3,
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "AR.GAZ027",
+              "value": "AR.GAZ027"
+            },
+            "service": {
+              "selected": false,
+              "text": "ge-1/3/0",
+              "value": "ge-1/3/0"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "$$hashKey": "object:279",
+              "alias": "MAX POINT (IN)",
+              "legend": true,
+              "pointradius": 4,
+              "points": true
+            },
+            {
+              "$$hashKey": "object:1844",
+              "alias": "MAX POINT (OUT)",
+              "pointradius": 4,
+              "points": true
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$service (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "$service (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$service",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:671",
+              "decimals": 0,
+              "format": "decbytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "$$hashKey": "object:672",
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "MAX IN": "semi-dark-red",
+            "MAX POINT (IN)": "semi-dark-red",
+            "MAX POINT (OUT)": "dark-orange"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 8,
+            "y": 33
+          },
+          "hiddenSeries": false,
+          "id": 31,
+          "interval": "",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 3,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "h",
+          "repeatIteration": 1618547489575,
+          "repeatPanelId": 3,
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "AR.GAZ027",
+              "value": "AR.GAZ027"
+            },
+            "service": {
+              "selected": false,
+              "text": "ge-1/3/1",
+              "value": "ge-1/3/1"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "$$hashKey": "object:279",
+              "alias": "MAX POINT (IN)",
+              "legend": true,
+              "pointradius": 4,
+              "points": true
+            },
+            {
+              "$$hashKey": "object:1844",
+              "alias": "MAX POINT (OUT)",
+              "pointradius": 4,
+              "points": true
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$service (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "$service (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$service",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:671",
+              "decimals": 0,
+              "format": "decbytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "$$hashKey": "object:672",
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "MAX IN": "semi-dark-red",
+            "MAX POINT (IN)": "semi-dark-red",
+            "MAX POINT (OUT)": "dark-orange"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 16,
+            "y": 33
+          },
+          "hiddenSeries": false,
+          "id": 32,
+          "interval": "",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 3,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "h",
+          "repeatIteration": 1618547489575,
+          "repeatPanelId": 3,
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "AR.GAZ027",
+              "value": "AR.GAZ027"
+            },
+            "service": {
+              "selected": false,
+              "text": "xe-0/0/0",
+              "value": "xe-0/0/0"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "$$hashKey": "object:279",
+              "alias": "MAX POINT (IN)",
+              "legend": true,
+              "pointradius": 4,
+              "points": true
+            },
+            {
+              "$$hashKey": "object:1844",
+              "alias": "MAX POINT (OUT)",
+              "pointradius": 4,
+              "points": true
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$service (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "$service (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$service",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:671",
+              "decimals": 0,
+              "format": "decbytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "$$hashKey": "object:672",
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "MAX IN": "semi-dark-red",
+            "MAX POINT (IN)": "semi-dark-red",
+            "MAX POINT (OUT)": "dark-orange"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 0,
+            "y": 40
+          },
+          "hiddenSeries": false,
+          "id": 33,
+          "interval": "",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 3,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "h",
+          "repeatIteration": 1618547489575,
+          "repeatPanelId": 3,
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "AR.GAZ027",
+              "value": "AR.GAZ027"
+            },
+            "service": {
+              "selected": false,
+              "text": "xe-0/1/0",
+              "value": "xe-0/1/0"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "$$hashKey": "object:279",
+              "alias": "MAX POINT (IN)",
+              "legend": true,
+              "pointradius": 4,
+              "points": true
+            },
+            {
+              "$$hashKey": "object:1844",
+              "alias": "MAX POINT (OUT)",
+              "pointradius": 4,
+              "points": true
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$service (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "$service (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$service",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:671",
+              "decimals": 0,
+              "format": "decbytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "$$hashKey": "object:672",
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "MAX IN": "semi-dark-red",
+            "MAX POINT (IN)": "semi-dark-red",
+            "MAX POINT (OUT)": "dark-orange"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 8,
+            "y": 40
+          },
+          "hiddenSeries": false,
+          "id": 34,
+          "interval": "",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 3,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "h",
+          "repeatIteration": 1618547489575,
+          "repeatPanelId": 3,
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "AR.GAZ027",
+              "value": "AR.GAZ027"
+            },
+            "service": {
+              "selected": false,
+              "text": "xe-1/0/0",
+              "value": "xe-1/0/0"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "$$hashKey": "object:279",
+              "alias": "MAX POINT (IN)",
+              "legend": true,
+              "pointradius": 4,
+              "points": true
+            },
+            {
+              "$$hashKey": "object:1844",
+              "alias": "MAX POINT (OUT)",
+              "pointradius": 4,
+              "points": true
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$service (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "$service (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$service",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:671",
+              "decimals": 0,
+              "format": "decbytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "$$hashKey": "object:672",
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "MAX IN": "semi-dark-red",
+            "MAX POINT (IN)": "semi-dark-red",
+            "MAX POINT (OUT)": "dark-orange"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "influxdb_nms",
+          "decimals": 2,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 16,
+            "y": 40
+          },
+          "hiddenSeries": false,
+          "id": 35,
+          "interval": "",
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 3,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "h",
+          "repeatIteration": 1618547489575,
+          "repeatPanelId": 3,
+          "scopedVars": {
+            "hostname": {
+              "selected": true,
+              "text": "AR.GAZ027",
+              "value": "AR.GAZ027"
+            },
+            "service": {
+              "selected": false,
+              "text": "xe-1/1/0",
+              "value": "xe-1/1/0"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "$$hashKey": "object:279",
+              "alias": "MAX POINT (IN)",
+              "legend": true,
+              "pointradius": 4,
+              "points": true
+            },
+            {
+              "$$hashKey": "object:1844",
+              "alias": "MAX POINT (OUT)",
+              "pointradius": 4,
+              "points": true
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$service (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "$service (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (IN)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "in_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            },
+            {
+              "alias": "MAX POINT (OUT)",
+              "groupBy": [],
+              "measurement": "Interface-check-command",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"metric\" = 'in_bits' AND \"service\" =~ /^IfCheck-[[interface]]$/) AND $timeFilter GROUP BY time($__interval) fill(previous)\n",
+              "rawQuery": false,
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$hostname$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "service",
+                  "operator": "=~",
+                  "value": "/^IfCheck-[[service]]$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "operator": "=",
+                  "value": "out_bits"
+                },
+                {
+                  "condition": "AND",
+                  "key": "value",
+                  "operator": "<",
+                  "value": "44023414784"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$service",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:671",
+              "decimals": 0,
+              "format": "decbytes",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "$$hashKey": "object:672",
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        }
+      ],
+      "repeat": "hostname",
+      "scopedVars": {
+        "hostname": {
+          "selected": true,
+          "text": "AR.GAZ027",
+          "value": "AR.GAZ027"
+        }
+      },
+      "title": "$hostname",
+      "type": "row"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 25,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "LiveStatus",
+          "value": "LiveStatus"
+        },
+        "datasource": "grafana_thruk",
+        "definition": "SHOW datasources;",
+        "hide": 2,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "SHOW datasources;",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": "",
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "grafana_thruk",
+        "definition": "SELECT hosts.vars.device_type FROM $datasource",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Device Type",
+        "multi": true,
+        "name": "device_type",
+        "options": [],
+        "query": "SELECT hosts.vars.device_type FROM $datasource",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": "",
+        "current": {
+          "selected": true,
+          "text": "AR.GAZ027",
+          "value": [
+            "AR.GAZ027"
+          ]
+        },
+        "datasource": "influxdb_nms",
+        "definition": "SHOW TAG VALUES from hostalive  WITH KEY = \"hostname\" WHERE device_type =~ /$device_type/",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Hostname",
+        "multi": true,
+        "name": "hostname",
+        "options": [],
+        "query": "SHOW TAG VALUES from hostalive  WITH KEY = \"hostname\" WHERE device_type =~ /$device_type/",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": true
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "grafana_thruk",
+        "definition": "SELECT services.display_name FROM $datasource WHERE host_name ~ (${hostname:pipe});",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Interface",
+        "multi": true,
+        "name": "service",
+        "options": [],
+        "query": "SELECT services.display_name FROM $datasource WHERE host_name ~ (${hostname:pipe});",
+        "refresh": 1,
+        "regex": "/-([ae|xe|ge].*)/",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "1d",
+          "value": "1d"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "label": "Downsampling Period",
+        "multi": false,
+        "name": "downsampling",
+        "options": [
+          {
+            "$$hashKey": "object:1760",
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "$$hashKey": "object:1761",
+            "selected": false,
+            "text": "3d",
+            "value": "3d"
+          },
+          {
+            "$$hashKey": "object:1762",
+            "selected": false,
+            "text": "1w",
+            "value": "1w"
+          },
+          {
+            "$$hashKey": "object:1763",
+            "selected": false,
+            "text": "2w",
+            "value": "2w"
+          },
+          {
+            "$$hashKey": "object:1764",
+            "selected": false,
+            "text": "4w",
+            "value": "4w"
+          },
+          {
+            "$$hashKey": "object:1765",
+            "selected": true,
+            "text": "8w",
+            "value": "8w"
+          }
+        ],
+        "query": "1d, 3d, 1w, 2w, 4w, 8w",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Bandwidth-Report-Detail",
+  "uid": "bandwidth-report-detail"
+}

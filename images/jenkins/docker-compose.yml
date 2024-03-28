@@ -1,0 +1,24 @@
+version: '3.7'
+services:
+  jenkins:
+    image: 10.98.0.121:5000/svtechnmaa/jenkins:v1.0.2
+    privileged: true
+    user: root
+    ports:
+      - 80:8080
+      - 50000:50000
+    container_name: jenkins
+    restart: always
+    volumes:
+      - /var/jenkins_data/data:/var/jenkins_home
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/local/bin/docker:/usr/local/bin/docker
+      - /opt/auto_testing_build_vars:/opt/auto_testing_build_vars
+      - /opt/auto_testing_global_vars:/opt/auto_testing_global_vars
+      - /opt/SVTECH-installation-automation:/opt/SVTECH-installation-automation
+      - /opt/SVTECH-Junos-Automation:/opt/SVTECH-Junos-Automation
+      - /opt/SVTECH_CI_utilities:/opt/SVTECH_CI_utilities
+      - /opt/SVTECH_CI_utilities/auto_testing/ansible.cfg:/etc/ansible/ansible.cfg
+      - /opt/SVTECH_Projects_Container:/opt/SVTECH_Projects_Container

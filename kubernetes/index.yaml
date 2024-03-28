@@ -1,0 +1,123 @@
+apiVersion: v1
+entries:
+  components:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-03-28T10:04:58.526921901+07:00"
+    dependencies:
+    - condition: global.sharedVolume.enabled
+      name: sharedVolume
+      repository: ""
+      version: 1.x.x
+    - condition: global.preparation.enabled
+      name: preparation
+      repository: ""
+      version: 1.x.x
+    - condition: global.metallb.enabled
+      name: metallb
+      repository: ""
+      version: 3.x.x
+    - condition: global.proxy.enabled
+      name: proxy
+      repository: ""
+      version: 1.x.x
+    - condition: global.debuger.enabled
+      name: debuger
+      repository: ""
+      version: 1.x.x
+    - condition: global.mariadb-galera.enabled
+      name: mariadb-galera
+      repository: ""
+      version: 5.x.x
+    - condition: global.influxdb.enabled
+      name: influxdb
+      repository: ""
+      version: 2.x.x
+    - condition: global.icinga2.enabled
+      name: icinga2
+      repository: ""
+      version: 1.x.x
+    - condition: global.postfix.enabled
+      name: postfix
+      repository: ""
+      version: 1.x.x
+    - condition: global.thruk.enabled
+      name: thruk
+      repository: ""
+      version: 1.x.x
+    - condition: global.nagvis.enabled
+      name: nagvis
+      repository: ""
+      version: 1.x.x
+    - condition: global.gitlist.enabled
+      name: gitlist
+      repository: ""
+      version: 1.x.x
+    - condition: global.grafana.enabled
+      name: grafana
+      repository: ""
+      version: 1.x.x
+    - condition: global.icinga2-report.enabled
+      name: icinga2-report
+      repository: ""
+      version: 1.x.x
+    - condition: global.rundeck.enabled
+      name: rundeck
+      repository: ""
+      version: 1.x.x
+    - condition: global.rundeck-option-provider.enabled
+      name: rundeck-option-provider
+      repository: ""
+      version: 1.x.x
+    - condition: global.csv-view.enabled
+      name: csv-view
+      repository: ""
+      version: 1.x.x
+    - condition: global.hostPathPV.enabled
+      name: hostPathPV
+      repository: ""
+      version: 1.x.x
+    - condition: global.icingaweb.enabled
+      name: icingaweb
+      repository: ""
+      version: 1.x.x
+    - condition: global.maxscale.enabled
+      name: maxscale
+      repository: ""
+      version: 1.x.x
+    - condition: global.elasticsearch.enabled
+      name: elasticsearch
+      repository: ""
+      version: 1.x.x
+    - condition: global.kibana.enabled
+      name: kibana
+      repository: ""
+      version: 1.x.x
+    - condition: global.logstash.enabled
+      name: logstash
+      repository: ""
+      version: 1.x.x
+    - condition: global.filebeat.enabled
+      name: filebeat
+      repository: ""
+      version: 1.x.x
+    - condition: global.snmp-manager.enabled
+      name: snmp-manager
+      repository: ""
+      version: 0.x.x
+    - condition: global.syncthing.enabled
+      name: syncthing
+      repository: ""
+      version: 1.x.x
+    - condition: global.ingress-nginx.enabled
+      name: ingress-nginx
+      repository: ""
+      version: 1.x.x
+    description: SVTECH Project Containers all components charts
+    digest: 07872bbf7caa508a992e57bbc6974f5a017aec5ea03c76ed1d7e426017cdcd24
+    name: components
+    type: application
+    urls:
+    - components-0.1.0.tgz
+    version: 0.1.0
+generated: "2024-03-28T10:04:58.478872298+07:00"

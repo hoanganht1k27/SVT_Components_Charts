@@ -1,0 +1,11 @@
+FROM bitnami/nginx:1.22.0
+LABEL org.opencontainers.image.source=https://github.com/moophat/SVTECH_Projects_Container
+# COPY ./configs/proxy.conf /opt/bitnami/nginx/conf/server_blocks/proxy.conf
+COPY ./configs/html/images/ /app/images
+COPY ./configs/html/index.html /app
+RUN mkdir -p /opt/SVTECH-Junos-Automation/addition_toolkit/csv-to-html-table/static
+COPY ./configs/csv-to-html-table/static/ /opt/SVTECH-Junos-Automation/addition_toolkit/csv-to-html-table/static
+
+USER root
+ENTRYPOINT [ "/opt/bitnami/scripts/nginx/entrypoint.sh" ]
+CMD [ "/opt/bitnami/scripts/nginx/run.sh" ]

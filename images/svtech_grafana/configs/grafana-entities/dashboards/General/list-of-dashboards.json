@@ -1,0 +1,302 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "$$hashKey": "object:137",
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "links": [],
+  "panels": [
+    {
+      "content": "<center><h1> <span style=\"color: #ffffff;\">NMS</span> <span style=\"color: #ffffff;\"></span></h1></center>",
+      "datasource": null,
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 7,
+      "links": [],
+      "mode": "html",
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": null,
+      "folderId": null,
+      "gridPos": {
+        "h": 3,
+        "w": 24,
+        "x": 0,
+        "y": 2
+      },
+      "headings": false,
+      "id": 18,
+      "limit": 10,
+      "query": "",
+      "recent": false,
+      "search": true,
+      "starred": false,
+      "tags": [
+        "overview"
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Overview Infomation",
+      "transparent": true,
+      "type": "dashlist"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 5
+      },
+      "headings": false,
+      "id": 26,
+      "limit": 10,
+      "query": "",
+      "recent": false,
+      "search": true,
+      "starred": false,
+      "tags": [
+        "host_info"
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Hostinfo",
+      "transparent": true,
+      "type": "dashlist"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 5
+      },
+      "headings": false,
+      "id": 30,
+      "limit": 10,
+      "query": "",
+      "recent": false,
+      "search": true,
+      "starred": false,
+      "tags": [
+        "service_info"
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "ServiceInfo",
+      "transparent": true,
+      "type": "dashlist"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 11
+      },
+      "headings": false,
+      "id": 28,
+      "limit": 10,
+      "query": "",
+      "recent": false,
+      "search": true,
+      "starred": false,
+      "tags": [
+        "report"
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Report",
+      "transparent": true,
+      "type": "dashlist"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 11
+      },
+      "headings": false,
+      "id": 20,
+      "limit": 10,
+      "query": "",
+      "recent": false,
+      "search": true,
+      "starred": false,
+      "tags": [
+        "detail_graph"
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "DetailGraph",
+      "transparent": true,
+      "type": "dashlist"
+    },
+    {
+      "datasource": null,
+      "folderId": null,
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 0,
+        "y": 17
+      },
+      "headings": false,
+      "id": 24,
+      "limit": 10,
+      "query": "",
+      "recent": false,
+      "search": true,
+      "starred": false,
+      "tags": [
+        "event_history"
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "EventHistory",
+      "transparent": true,
+      "type": "dashlist"
+    },
+    {
+      "datasource": null,
+      "folderId": null,
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 12,
+        "y": 17
+      },
+      "headings": false,
+      "id": 22,
+      "limit": 10,
+      "query": "",
+      "recent": false,
+      "search": true,
+      "starred": false,
+      "tags": [
+        "device_inventory"
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "DeviceInventory",
+      "transparent": true,
+      "type": "dashlist"
+    },
+    {
+      "datasource": null,
+      "folderId": null,
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 0,
+        "y": 21
+      },
+      "headings": false,
+      "id": 16,
+      "limit": 10,
+      "query": "",
+      "recent": false,
+      "search": true,
+      "starred": false,
+      "tags": [
+        "audit"
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "AuditConfiguration",
+      "transparent": true,
+      "type": "dashlist"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 21
+      },
+      "headings": false,
+      "id": 32,
+      "limit": 10,
+      "query": "",
+      "recent": false,
+      "search": true,
+      "starred": false,
+      "tags": [
+        "general"
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "General",
+      "transparent": true,
+      "type": "dashlist"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 22,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": true,
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ],
+    "type": "timepicker"
+  },
+  "timezone": "browser",
+  "title": "List of Dashboards",
+  "uid": "list-of-dashboards",
+  "variables": {
+    "list": []
+  }
+}

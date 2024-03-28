@@ -1,0 +1,103 @@
+
+
+#**add these to rundeck and icinga pod
+
+export KUBE_EDITOR=nano
+
+  # container to watch vxlan interface
+      - name: vxlan-sidecar
+        command:
+          - /bin/sh
+          - -c
+          - |
+              # ping 8.8.8.8
+              sed -i '/while true; do/i $static_route' /bin/client_sidecar.sh
+              sed -i '/client_init.sh/a $static_route' /bin/client_sidecar.sh
+
+              /bin/client_sidecar.sh
+              # ip r add 100.1.20.0/27 via 192.168.10.1 dev vxlan0 # -> cannot add here, has to add inside client_sidecar.sh
+
+        env:
+        - name: static_route
+          value: 'ip r add 100.1.20.0/27 via 192.168.10.1 dev vxlan0'
+        - name: gateway
+          value: pod-gateway.default.svc.cluster.local # need to be in full form or else 'dig' command will have prob; AND expose pod-gateway under a ClusterIP named pod-gateway, port 4789, and type UDP; AND   clusterIP: None
+            # k expose deploy pod-gateway --cluster-ip=None
+
+          #pod-gateway.po-gateway.svc.cluster.local
+        # later add this to image
+        - name: VXLAN_GATEWAY_IP
+          value: 192.168.10.1 # "${VXLAN_IP_NETWORK}.1" how to supply this; VXLAN_IP_NETWORK is in pod-gateway-deploy.yaml pod-gateway cm
+        - name: DNS
+          value: 192.168.10.1
+        - name: DNS_ip
+          value: 192.168.10.1
+        - name: K8S_DNS_ips
+          value: 169.254.25.10
+        image: 12345679898/pod-gateway-custom:v6
+        imagePullPolicy: IfNotPresent
+        resources: {}
+        securityContext:
+            capabilities:
+                add:
+                - NET_ADMIN
+            runAsNonRoot: false
+            runAsUser: 0
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /config
+          name: gateway-configmap
+          readOnly: true
+
+  # add this to initContainer( below all other init containers )
+      - name: vxlan-init
+        command:
+          - /bin/sh
+          - -c
+          - |
+              # ping 8.8.8.8
+              /bin/client_init.sh
+        env:
+        - name: gateway
+          value: pod-gateway.default.svc.cluster.local # need to be in full form or else 'dig' command will have prob; AND expose pod-gateway under a ClusterIP named pod-gateway, port 4789, type UDP; AND   clusterIP: None
+            # k expose deploy pod-gateway --cluster-ip=None
+
+          #pod-gateway.po-gateway.svc.cluster.local
+        # later add this to image
+        - name: VXLAN_GATEWAY_IP
+          value: 192.168.10.1 # "${VXLAN_IP_NETWORK}.1" how to supply this; VXLAN_IP_NETWORK is in pod-gateway-deploy.yaml pod-gateway cm
+        - name: DNS
+          value: 192.168.10.1
+        - name: DNS_ip
+          value: 192.168.10.1
+        - name: K8S_DNS_ips
+          value: 169.254.25.10
+        image: 12345679898/pod-gateway-custom:v6
+        imagePullPolicy: IfNotPresent
+        resources: {}
+        securityContext:
+            capabilities:
+                add:
+                - NET_ADMIN
+            runAsNonRoot: false
+            runAsUser: 0
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /config
+          name: gateway-configmap
+          readOnly: true
+
+  # add this cm volume
+      volumes:
+      - configMap:
+          defaultMode: 511
+          name: pod-gateway
+        name: gateway-configmap
+
+
+
+
+
+

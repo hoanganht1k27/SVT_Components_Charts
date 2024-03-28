@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+
+  gitlist:
+    image: hadnat/svtech_gitlist:v1.0.0
+    container_name: gitlist
+
+    ports:
+      - 80:80
+      - "2222:22"

@@ -1,0 +1,918 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "$$hashKey": "object:27",
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "iteration": 1587099139342,
+  "links": [
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": true,
+      "tags": [],
+      "targetBlank": true,
+      "title": "DEFAULT",
+      "type": "dashboards"
+    }
+  ],
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 9,
+      "panels": [],
+      "repeat": "interface",
+      "scopedVars": {
+        "interface": {
+          "isNone": true,
+          "selected": true,
+          "text": "None",
+          "value": ""
+        }
+      },
+      "title": "$interface",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "influxdb_nms",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "hiddenSeries": false,
+      "id": 7,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [
+        {
+          "url": "/"
+        }
+      ],
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "repeat": "QoSType",
+      "repeatDirection": "h",
+      "scopedVars": {
+        "QoSType": {
+          "selected": true,
+          "text": "Queued",
+          "value": "Queued"
+        },
+        "interface": {
+          "isNone": true,
+          "selected": true,
+          "text": "None",
+          "value": ""
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "VoiceQueue-$interface",
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "5m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "snmp",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "hostname",
+              "operator": "=~",
+              "value": "/^$hostname$/"
+            },
+            {
+              "condition": "AND",
+              "key": "metric",
+              "operator": "=~",
+              "value": "/^$QoSType$/"
+            },
+            {
+              "condition": "AND",
+              "key": "service",
+              "operator": "=~",
+              "value": "/^VoiceQueue-$interface$/"
+            }
+          ]
+        },
+        {
+          "alias": "BusinessQueue-$interface",
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "5m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "snmp",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "hostname",
+              "operator": "=~",
+              "value": "/^$hostname$/"
+            },
+            {
+              "condition": "AND",
+              "key": "metric",
+              "operator": "=~",
+              "value": "/^$QoSType$/"
+            },
+            {
+              "condition": "AND",
+              "key": "service",
+              "operator": "=~",
+              "value": "/^BusinessQueue-$interface$/"
+            }
+          ]
+        },
+        {
+          "alias": "StreamingQueue-$interface",
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "5m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "snmp",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "hostname",
+              "operator": "=~",
+              "value": "/^$hostname$/"
+            },
+            {
+              "condition": "AND",
+              "key": "metric",
+              "operator": "=~",
+              "value": "/^$QoSType$/"
+            },
+            {
+              "condition": "AND",
+              "key": "service",
+              "operator": "=~",
+              "value": "/^StreamingQueue-$interface$/"
+            }
+          ]
+        },
+        {
+          "alias": "InternetQueue-$interface",
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "5m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "snmp",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "hostname",
+              "operator": "=~",
+              "value": "/^$hostname$/"
+            },
+            {
+              "condition": "AND",
+              "key": "metric",
+              "operator": "=~",
+              "value": "/^$QoSType$/"
+            },
+            {
+              "condition": "AND",
+              "key": "service",
+              "operator": "=~",
+              "value": "/^InternetQueue-$interface$/"
+            }
+          ]
+        },
+        {
+          "alias": "NetControlQueue-$interface",
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "5m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "snmp",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "E",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "hostname",
+              "operator": "=~",
+              "value": "/^$hostname$/"
+            },
+            {
+              "condition": "AND",
+              "key": "metric",
+              "operator": "=~",
+              "value": "/^$QoSType$/"
+            },
+            {
+              "condition": "AND",
+              "key": "service",
+              "operator": "=~",
+              "value": "/^NetControlQueue-$interface$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$QoSType-$interface-Total",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": null,
+          "format": "bytes",
+          "label": "",
+          "logBase": 2,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 2,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "influxdb_nms",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
+      "hiddenSeries": false,
+      "id": 11,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": false,
+        "show": true,
+        "total": true,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [
+        {
+          "url": "/"
+        }
+      ],
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "repeat": null,
+      "repeatDirection": "h",
+      "scopedVars": {
+        "interface": {
+          "isNone": true,
+          "selected": true,
+          "text": "None",
+          "value": ""
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "[[QoSQueue]]-[[interface]]-Queued",
+          "groupBy": [
+            {
+              "params": [
+                "5m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "snmp",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "hostname",
+              "operator": "=~",
+              "value": "/^$hostname$/"
+            },
+            {
+              "condition": "AND",
+              "key": "service",
+              "operator": "=~",
+              "value": "/^$QoSQueue-$interface$/"
+            },
+            {
+              "condition": "AND",
+              "key": "metric",
+              "operator": "=",
+              "value": "Queued"
+            }
+          ]
+        },
+        {
+          "alias": "[[QoSQueue]]-[[interface]]-TailDrop",
+          "groupBy": [
+            {
+              "params": [
+                "5m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "snmp",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "hostname",
+              "operator": "=~",
+              "value": "/^$hostname$/"
+            },
+            {
+              "condition": "AND",
+              "key": "service",
+              "operator": "=~",
+              "value": "/^$QoSQueue-$interface$/"
+            },
+            {
+              "condition": "AND",
+              "key": "metric",
+              "operator": "=",
+              "value": "TailDrop"
+            }
+          ]
+        },
+        {
+          "alias": "[[QoSQueue]]-[[interface]]-RedDrop",
+          "groupBy": [
+            {
+              "params": [
+                "5m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "previous"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "snmp",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "hostname",
+              "operator": "=~",
+              "value": "/^$hostname$/"
+            },
+            {
+              "condition": "AND",
+              "key": "service",
+              "operator": "=~",
+              "value": "/^$QoSQueue-$interface$/"
+            },
+            {
+              "condition": "AND",
+              "key": "metric",
+              "operator": "=",
+              "value": "RedDrop"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Specific-$interface-$QoSQueue",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": null,
+          "format": "bytes",
+          "label": "",
+          "logBase": 2,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 2,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 22,
+  "style": "dark",
+  "tags": [
+    "general"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "text": "AGG",
+          "value": "AGG"
+        },
+        "datasource": "influxdb_nms",
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "index": -1,
+        "label": "Device Type",
+        "multi": false,
+        "name": "device_type",
+        "options": [],
+        "query": "show tag values with key = \"device_type\";",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "ME_KAN050AGG01_RE0",
+          "value": "ME_KAN050AGG01_RE0"
+        },
+        "datasource": "influxdb_nms",
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "index": -1,
+        "label": "Device name",
+        "multi": false,
+        "name": "hostname",
+        "options": [],
+        "query": "SHOW TAG VALUES from hostalive  WITH KEY = \"hostname\" where device_type =~ /$device_type/ ",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "10.76.0.19",
+          "value": "10.76.0.19"
+        },
+        "datasource": "influxdb_nms",
+        "definition": "",
+        "hide": 2,
+        "includeAll": false,
+        "index": -1,
+        "label": "IP address",
+        "multi": false,
+        "name": "address",
+        "options": [],
+        "query": "SHOW TAG VALUES from hostalive  WITH KEY = \"address\" where device_type =~ /$device_type/  and hostname =~ /$hostname/ ",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "ae0",
+          "value": "ae0"
+        },
+        "datasource": "influxdb_nms",
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "index": -1,
+        "label": "Interface-check",
+        "multi": true,
+        "name": "interface",
+        "options": [],
+        "query": "SHOW TAG VALUES from /Interface-check-command/ WITH KEY = \"service\" where hostname =~ /$hostname/ ",
+        "refresh": 1,
+        "regex": "/-([ae|xe|ge].*)/",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "isNone": true,
+          "text": "None",
+          "value": ""
+        },
+        "datasource": "influxdb_nms",
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "index": -1,
+        "label": null,
+        "multi": false,
+        "name": "QoSQueue",
+        "options": [],
+        "query": "SHOW TAG VALUES from snmp WITH KEY = \"service\" where hostname =~ /$hostname/ and service =~ /^.*Queue.*$/",
+        "refresh": 1,
+        "regex": "(.*)-[ae|xe|ge].*",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "Queued",
+          "value": [
+            "Queued"
+          ]
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": true,
+        "name": "QoSType",
+        "options": [
+          {
+            "selected": true,
+            "text": "Queued",
+            "value": "Queued"
+          },
+          {
+            "selected": false,
+            "text": "TailDrop",
+            "value": "TailDrop"
+          },
+          {
+            "selected": false,
+            "text": "RedDrop",
+            "value": "RedDrop"
+          }
+        ],
+        "query": "Queued,TailDrop,RedDrop",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "QoS-Graph",
+  "uid": "qos-graph",
+  "variables": {
+    "list": []
+  }
+}

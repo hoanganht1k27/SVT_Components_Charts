@@ -1,0 +1,112 @@
+<html>
+    <head>
+        <link href="/static_upgrade/css/pure-min.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Switchover Confirmation</title>
+        <script type="text/javascript" src="/static_upgrade/js/jquery.js"></script>
+        <script type="text/javascript" src="/static_upgrade/js/socket.io.dev.js"></script>
+    </head>
+    <body>
+        <div class="pure-g">
+            <div class="pure-u-1-4"></div>
+            <div class="pure-u-1-2">
+                <h1>Switchover Confirmation</h1>
+
+                <div class="pure-form">
+                    <h2 id="aaa">Device Name: <span id="device-name"></span></h2>
+                    <h2>User's Confirm: <span id="user_confirm"></span></h2>
+
+                    <div class="pure-g" id="confirm">
+                        <div class="pure-u-1-6"><h3>CONFIRM:</h3></div>
+                        <div class="pure-u-5-6">
+                            <p>
+                                <!-- <input type=text id='http-user_confirm-set' placeholder="CONFIRM"> -->
+                                <select id='http-user_confirm-set'>
+                                    <option value="TRUE">TRUE</option>
+                                    <option value="FALSE">FALSE</option>
+                                </select>
+                                <button class="pure-button pure-button-primary" id="submit-http" onclick="submit_confirm()" disabled >Submit</button>
+                            </p>
+                        </div>
+                    </div>
+                    <hr><h4 id="noti"></h4>
+                </div>
+            </div>
+            <div class="pure-u-1-4"></div>
+        </div>
+
+        <script>
+            var current_path = window.location.pathname
+            var status_path = current_path.replace("/status", "/user_confirm")
+
+            window.setInterval(function() {
+                $.ajax({
+                    type: 'GET',
+                    url: status_path,
+                    success: function(data) {
+                        $('#device-name').text(data['device']);
+                        $('#user_confirm').text(data['user_confirm']);
+
+                        var user_confirm = document.getElementById("user_confirm").innerText;
+                        if ( user_confirm == "PENDING"){
+                            $("#user_confirm").css('color', '#8caba8');
+                            $("#submit-http").prop("disabled", false)
+                            $("#noti").text("");
+                        }
+                        else if ( user_confirm == "TRUE"){
+                            //window.location.replace(window.location.href + "/Started");
+                            //$("#confirm").hide();
+                            //alert("Switchover is Started !")
+                            $("#user_confirm").css('color', '#00ff00');
+                            $("#noti").text("Switchover is Started !");
+                            $("#noti").css('color', '#00ff00');
+                            $("#submit-http").prop("disabled", true)
+                        }
+                        else if ( user_confirm == "FALSE"){
+                            //window.location.replace(window.location.href + "/Canceled");
+                            //alert("Switchover is Canceled !")
+                            //$("#confirm").hide();
+                            $("#user_confirm").css('color', 'red');
+                            $("#noti").text("Switchover is Canceled !");
+                            $("#noti").css('color', 'red');
+                            $("#submit-http").prop("disabled", true)
+                        }
+                        else {
+                            //window.location.replace(window.location.href + "/None");
+                            //alert("Switchover is Failed !")
+                            //$("#confirm").hide();
+                            $("#noti").text("Switchover is Failed !");
+                            $("#noti").css('color', 'red');
+                        }
+                    },
+                    error:  function() {
+                        $("#submit-http").prop("disabled", true)
+                        $('#device-name').text("None");
+                        $('#user_confirm').text("None");
+                        $('#user_confirm').css('color', 'black');
+                        $("#noti").text("No Switchover running!");
+                        $("#noti").css('color', 'red');
+                    }
+                });
+            }, 1000);
+
+            function submit_confirm(){
+                var option = document.getElementById("http-user_confirm-set").value;
+                var confirm_submit = confirm("Are you sure ?");
+                if (confirm_submit == true) {
+                    $.ajax({
+                        type: 'POST',
+                        url: status_path,
+                        data: JSON.stringify({user_confirm: option}),
+                        contentType: 'application/json'
+                    });
+                    //$('#submit-http').disable = true
+                    //location.reload();
+                }
+                else{
+                    alert("Cancel !")
+                }
+            }
+        </script>
+    </body>
+</html>

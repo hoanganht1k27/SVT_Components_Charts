@@ -1,0 +1,88 @@
+# Server definitions
+#
+# Set the address of the server to the network
+# address of a MariaDB server.
+#
+
+#[db-01]
+#type=server
+#address=10.98.0.168
+#port=3306
+#protocol=MariaDBBackend
+#
+#[db-02]
+#type=server
+#address=10.98.0.169
+#port=3306
+#protocol=MariaDBBackend
+#
+#[db-03]
+#type=server
+#address=10.98.0.170
+#port=3306
+#protocol=MariaDBBackend
+
+
+# Monitor for the servers
+#
+# This will keep MaxScale aware of the state of the servers.
+# MariaDB Monitor documentation:
+# https://mariadb.com/kb/en/maxscale-25-monitors/
+
+#[MariaDB-Monitor]
+#type=monitor
+#module=mariadbmon
+#servers=db-01,db-02,db-03
+#user=maxscale_monitor
+#password=maxscale@123
+#monitor_interval=1000
+#failcount=3
+#auto_failover=true
+#auto_rejoin=true
+#enforce_read_only_slaves=on
+#enforce_writable_master=on
+#replication_user=repl_user
+#replication_password=repl_user@123
+#cooperative_monitoring_locks=majority_of_running
+
+# Service definitions
+#
+# Service Definition for a read-only service and
+# a read/write splitting service.
+#
+
+### READ-WRITE 
+#[maxscale-read-write-split]
+#type=service
+#router=readwritesplit
+#servers=db-01,db-02,db-03
+#user=maxscale
+#password=maxscale@123
+#master_accept_reads=true
+#master_failure_mode=error_on_write
+#master_reconnection=true
+#
+#[maxscale-read-write-listener]]
+#type=listener
+#service=maxscale-read-write-split
+#protocol=MariaDBClient
+#port=4006
+
+### BIN-LOG
+#[maxscale-binlog]
+#type=service
+#router=binlogrouter
+#cluster=MariaDB-Monitor
+#select_master=true
+#server_id=1
+#expire_log_duration=5h
+#expire_log_minimum_files=3
+#user=repl_user
+#password=repl_user@123
+#datadir=/var/lib/maxscale/binlogs
+#
+#[maxscale-binlog-listener]
+#type=listener
+#service=maxscale-binlog
+#protocol=MariaDBClient
+#port=3307

@@ -1,0 +1,637 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "$$hashKey": "object:2348",
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "iteration": 1618547627487,
+  "links": [],
+  "panels": [
+    {
+      "columns": [],
+      "datasource": "influxdb_nms",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "80%",
+      "gridPos": {
+        "h": 18,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 3,
+      "interval": "",
+      "links": [],
+      "pageSize": 20,
+      "showHeader": true,
+      "sort": {
+        "col": 1,
+        "desc": false
+      },
+      "styles": [
+        {
+          "$$hashKey": "object:2481",
+          "alias": "Time",
+          "align": "auto",
+          "colorMode": null,
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": null,
+          "pattern": "Time",
+          "thresholds": [
+            ""
+          ],
+          "type": "date",
+          "unit": "dateTimeAsIso"
+        },
+        {
+          "$$hashKey": "object:2482",
+          "alias": "Max Bandwidth",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Max_Bandwidth",
+          "thresholds": [
+            "700000000",
+            "7000000000"
+          ],
+          "type": "number",
+          "unit": "decbytes"
+        },
+        {
+          "$$hashKey": "object:2483",
+          "alias": "Device Name",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "${__cell_1}'s detail Information",
+          "linkUrl": "/grafana/d/bandwidth-report-detail/bandwidth-report-detail?orgId=1&var-datasource=LiveStatus&var-province=All&var-device_type=All&var-hostname=${__cell_1}&var-service=All&from=$__from&to=$__to",
+          "mappingType": 1,
+          "pattern": "hostname",
+          "preserveFormat": false,
+          "sanitize": false,
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:2537",
+          "alias": "Metric",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "metric",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:2574",
+          "alias": "Service",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "service",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": []
+        }
+      ],
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "hostname"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "metric"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "service"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "Interface-check-command",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT max(\"value\") AS \"Max_Bandwidth\" FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"service\" =~ /^IfCheck-[[service]]$/ AND \"state\" = 'OK') AND $timeFilter GROUP BY \"hostname\", \"metric\", \"service\"",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [
+                  "Max_Bandwidth"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "hostname",
+              "operator": "=~",
+              "value": "/^$hostname$/"
+            },
+            {
+              "condition": "AND",
+              "key": "service",
+              "operator": "=~",
+              "value": "/^IfCheck-[[service]]$/"
+            },
+            {
+              "condition": "AND",
+              "key": "value",
+              "operator": "<",
+              "value": "44023414784"
+            },
+            {
+              "condition": "AND",
+              "key": "metric",
+              "operator": "=~",
+              "value": "/.*bit.*/"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "MAX Bandwidth Report",
+      "transform": "table",
+      "type": "table-old"
+    },
+    {
+      "columns": [],
+      "datasource": "influxdb_nms",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "80%",
+      "gridPos": {
+        "h": 18,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 4,
+      "interval": "",
+      "links": [],
+      "pageSize": 20,
+      "showHeader": true,
+      "sort": {
+        "col": 1,
+        "desc": false
+      },
+      "styles": [
+        {
+          "$$hashKey": "object:2673",
+          "alias": "Time",
+          "align": "auto",
+          "colorMode": null,
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": null,
+          "pattern": "Time",
+          "thresholds": [
+            ""
+          ],
+          "type": "date",
+          "unit": "dateTimeAsIso"
+        },
+        {
+          "$$hashKey": "object:2674",
+          "alias": "Average_Bandwidth",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Average_Bandwidth",
+          "thresholds": [
+            "700000000",
+            "7000000000"
+          ],
+          "type": "number",
+          "unit": "decbytes"
+        },
+        {
+          "$$hashKey": "object:2702",
+          "alias": "Device Name",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "${__cell_1}''s detail Information",
+          "linkUrl": "/grafana/d/bandwidth-report-detail/bandwidth-report-detail?orgId=1&var-datasource=LiveStatus&var-province=All&var-device_type=All&var-hostname=${__cell_1}&var-service=All&from=$__from&to=$__to",
+          "mappingType": 1,
+          "pattern": "hostname",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:2730",
+          "alias": "Metric",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "metric",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:2741",
+          "alias": "Service",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "service",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "hostname"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "metric"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "service"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "Interface-check-command",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT max(\"value\") AS \"Max_Bandwidth\" FROM \"Interface-check-command\" WHERE (\"hostname\" =~ /^$hostname$/ AND \"service\" =~ /^IfCheck-[[service]]$/ AND \"state\" = 'OK') AND $timeFilter GROUP BY \"hostname\", \"metric\", \"service\"",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "Average_Bandwidth"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "hostname",
+              "operator": "=~",
+              "value": "/^$hostname$/"
+            },
+            {
+              "condition": "AND",
+              "key": "service",
+              "operator": "=~",
+              "value": "/^IfCheck-[[service]]$/"
+            },
+            {
+              "condition": "AND",
+              "key": "value",
+              "operator": "<",
+              "value": "44023414784"
+            },
+            {
+              "condition": "AND",
+              "key": "metric",
+              "operator": "=~",
+              "value": "/.*bit.*/"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "AVERAGE Bandwidth Report ",
+      "transform": "table",
+      "type": "table-old"
+    }
+  ],
+  "schemaVersion": 25,
+  "style": "dark",
+  "tags": [
+    "report"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "LiveStatus",
+          "value": "LiveStatus"
+        },
+        "datasource": "grafana_thruk",
+        "definition": "SHOW datasources;",
+        "hide": 2,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "SHOW datasources;",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": "",
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "grafana_thruk",
+        "definition": "SELECT hosts.vars.device_type FROM $datasource ",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Device Type",
+        "multi": true,
+        "name": "device_type",
+        "options": [],
+        "query": "SELECT hosts.vars.device_type FROM $datasource ",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": "",
+        "current": {
+          "selected": true,
+          "text": "AR.GAZ027",
+          "value": [
+            "AR.GAZ027"
+          ]
+        },
+        "datasource": "influxdb_nms",
+        "definition": "SHOW TAG VALUES from hostalive  WITH KEY = \"hostname\" WHERE  device_type =~ /$device_type/",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Hostname",
+        "multi": true,
+        "name": "hostname",
+        "options": [],
+        "query": "SHOW TAG VALUES from hostalive  WITH KEY = \"hostname\" WHERE  device_type =~ /$device_type/",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": true
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "influxdb_nms",
+        "definition": "SHOW TAG VALUES from /Interface-check-command/ WITH KEY = \"service\" where hostname =~ /$hostname/ ",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Interface",
+        "multi": true,
+        "name": "service",
+        "options": [],
+        "query": "SHOW TAG VALUES from /Interface-check-command/ WITH KEY = \"service\" where hostname =~ /$hostname/ ",
+        "refresh": 1,
+        "regex": "/-([ae|xe|ge].*)/",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "tags": [],
+          "text": "1d",
+          "value": "1d"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "label": "Downsampling Period",
+        "multi": false,
+        "name": "downsampling",
+        "options": [
+          {
+            "$$hashKey": "object:267",
+            "selected": true,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "$$hashKey": "object:268",
+            "selected": false,
+            "text": "3d",
+            "value": "3d"
+          },
+          {
+            "$$hashKey": "object:269",
+            "selected": false,
+            "text": "1w",
+            "value": "1w"
+          },
+          {
+            "$$hashKey": "object:270",
+            "selected": false,
+            "text": "2w",
+            "value": "2w"
+          },
+          {
+            "$$hashKey": "object:271",
+            "selected": false,
+            "text": "4w",
+            "value": "4w"
+          },
+          {
+            "$$hashKey": "object:272",
+            "selected": false,
+            "text": "8w",
+            "value": "8w"
+          }
+        ],
+        "query": "1d, 3d, 1w, 2w, 4w, 8w",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Bandwidth-Report-Overview",
+  "uid": "bandwidth-report-overview"
+}

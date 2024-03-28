@@ -1,0 +1,28 @@
+#!/bin/sh
+# Copy config
+if [ -d /etc/snmptt/external_command ] && [ -d /etc/snmptt/trapconf ] && [ -f /etc/snmptt/snmptt.ini ] && [ -f /etc/snmptt/snmptrapd.conf ]; then
+  echo "Configurations existed"
+else
+  echo "Configurations do not existed. Copy default configuration into /etc/snmptt"
+  cp -R /data/snmptt/* /etc/snmptt/
+  chown -R snmptt:root /etc/snmptt/
+fi
+
+chown -R snmptt:root /var/log/snmptt/
+
+# kill the old processes
+pkill snmptt
+pkill snmptrapd
+pkill snmpd
+
+# Start snmpd
+nohup snmpd -LS0-6d > /dev/null 2>&1 &
+
+# Start snmptrapd
+nohup snmptrapd -f -Lo -c /etc/snmptt/snmptrapd.conf > /dev/null 2>&1 &
+
+# Start snmptt
+if [ -f /var/run/snmptt.pid ]; then
+  rm -rf /var/run/snmptt.pid
+fi
+nohup snmptt --daemon > /dev/null 2>&1 &

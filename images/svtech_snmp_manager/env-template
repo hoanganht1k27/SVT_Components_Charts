@@ -1,0 +1,19 @@
+# Image info
+repository="vyvuvivo/snmp-manager"
+tag="v1.2.0"
+# ENV for send external command to icinga (using in process_check_result.sh)
+ICINGA_HOST="10.98.10.181"
+ICINGA_PORT="5665"
+ICINGA_USER="icingaweb"
+ICINGA_PASSWORD="icingaweb"
+# ENV for snmptrap output to mysql (using in snmptt.ini)
+## Set the environment variable to enable logging events to the database. 1: enable, 0: disable
+MYSQL_DBI_ENABLE="0"
+## Set db connection info
+MYSQL_DBI_HOST="localhost"
+MYSQL_DBI_PORT="3306"
+MYSQL_DBI_DATABASE="snmptt"
+MYSQL_DBI_TABLE="snmptt"
+MYSQL_DBI_TABLE_UNKNOWN="snmptt_unknown"
+MYSQL_DBI_USERNAME="snmptt"
+MYSQL_DBI_PASSWORD="snmptt"

@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+
+  nagvis:
+    image: 10.98.0.121:5000/hadnat/svtech_nagvis:v1.0.0
+    container_name: svtech_nagvis
+    # entrypoint:
+    #   - /bin/bash
+    #   - -c
+    #   - |
+    #     sleep 100000
+
+    environment:
+      BACKEND_NAME: HNI-01
+      BACKEND_ID: HNI-01
+      BACKEND_TYPE: mklivestatus
+      BACKEND_IP: 10.98.0.117
+      BACKEND_PORT: 6558
+      # APACHE_RUN_DIR: /usr/share/nagvis/etc
+    ports:
+      - 80:80

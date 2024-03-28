@@ -1,0 +1,17 @@
+{
+  "type": "panel",
+  "name": "Table-icinga-report",
+  "id": "table-icinga-report",
+
+  "info": {
+    "author": {
+      "name": "Grafana Project",
+      "url": "https://grafana.com"
+},
+    "logos": {
+      "small": "img/icn-table-panel.svg",
+      "large": "img/icn-table-panel.svg"
+    }
+  }
+}
+

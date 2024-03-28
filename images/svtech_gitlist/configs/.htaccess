@@ -1,0 +1,21 @@
+Alias /gitlist "/usr/local/apache2/htdocs/gitlist"
+
+<Directory "/usr/local/apache2/htdocs/gitlist">
+        AllowOverride None
+        Order allow,deny
+        Allow from all
+
+<IfModule mod_rewrite.c>
+    Options -MultiViews +SymLinksIfOwnerMatch
+
+    RewriteEngine On
+    RewriteBase /gitlist/
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ index.php/$1 [L,NC]
+</IfModule>
+<Files config.ini>
+    order allow,deny
+    deny from all
+</Files>
+</Directory>

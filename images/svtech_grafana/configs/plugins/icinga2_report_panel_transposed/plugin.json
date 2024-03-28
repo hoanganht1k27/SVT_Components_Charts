@@ -1,0 +1,29 @@
+{
+  "type": "panel",
+  "name": "Icinga2 Report test version",
+  "id": "icinga2-report-panel-transposed",
+
+  "info": {
+    "description": "Companion panel for Icinga2 Report",
+    "author": {
+      "name": "kien.nguyen",
+      "url": "https://github.com/trungkien210493"
+    },
+    "keywords": ["icinga2", "panel"],
+    "logos": {
+      "small": "logo_small.png",
+      "large": "logo_large.png"
+    },
+    "links": [
+      {"name": "Project site", "url": "https://github.com/moophat/icinga2-report"},
+      {"name": "Apache License 2.0", "url": " http://www.apache.org/licenses/LICENSE-2.0"}
+    ],
+    "version": "0.0.1",
+    "updated": "2017-11-20"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "4.6",
+    "plugins": []
+  }
+}

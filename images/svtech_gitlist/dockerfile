@@ -1,0 +1,42 @@
+FROM php:7.3.10-apache
+
+RUN a2enmod headers \
+&& a2enmod rewrite \
+&& a2enmod proxy \
+&& a2enmod ssl \
+&& a2enmod proxy_fcgi \
+&& a2enmod proxy_balancer \
+&& a2enmod proxy_http
+
+RUN apt-get update \
+&& apt-get -qq --no-install-recommends -y  install git rsync sshpass openssh-server tzdata \
+&& apt-get autoclean \
+&& rm -r /var/lib/apt/lists/*
+
+COPY ./configs/gitlist-1.0.2.tar /tmp
+RUN cd /tmp \
+&& tar -xvf gitlist-1.0.2.tar \
+&& mv gitlist /var/www/html \
+&& rm -rf /tmp/gitlist-1.0.2.tar
+
+COPY ./configs/config.ini /var/www/html/gitlist
+
+COPY ./configs/conf.d/ /etc/apache2/sites-enabled
+COPY ./configs/php.ini /usr/local/etc/php/php.ini
+
+RUN mkdir -p /opt/gitlist/backup_config \
+&& mkdir -p /var/www/html/gitlist/cache \
+&& chmod 777 -R /var/www/html/gitlist/cache \
+&& chmod 777 -R /opt/gitlist
+
+RUN useradd gitlist -d /home/gitlist -s /bin/bash \
+&& /bin/bash -c 'echo -e "juniper@123\njuniper@123" | passwd gitlist' \
+&& mkdir /home/gitlist \
+&& chown gitlist:gitlist /opt/ -R
+
+
+COPY ./scripts/entrypoint.sh /entrypoint.sh
+ENTRYPOINT [ "/entrypoint.sh" ]
+
+# ENTRYPOINT [ "sleep", "100000000" ]
+

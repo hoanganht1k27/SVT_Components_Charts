@@ -1,0 +1,20 @@
+FROM python:3.6.11-slim-buster
+LABEL maintainer "HaDN"
+LABEL org.opencontainers.image.source=https://github.com/moophat/SVTECH_Projects_Container
+
+
+USER root
+
+RUN apt-get -y update && \
+    apt-get -qq --no-install-recommends install vim && \
+    apt-get autoclean
+
+COPY ./requirements.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt --no-cache-dir
+
+RUN mkdir -p /opt/SVTECH-Junos-Automation/addition_toolkit/csv-to-html-table
+COPY ./csv-to-html-table/ /opt/SVTECH-Junos-Automation/addition_toolkit/csv-to-html-table
+
+EXPOSE 8000
+WORKDIR /opt/SVTECH-Junos-Automation/addition_toolkit/csv-to-html-table
+ENTRYPOINT [ "python", "server.py" ]
