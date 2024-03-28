@@ -427,7 +427,7 @@ preparation:
     repoList: "SVTECH-Junos-Automation:latest"
 
     # GH_TOKEN with Base64 encode
-    GH_TOKEN: Z2hwX3pweThLUnZPZ0pXemtXNUdPUXIxSHFIN2JJTXIxMDNESkVhYQ==
+    GH_TOKEN: Z2hwXzJiNDhBUUhJOEtNcFdSSWNnUWlRMmdTVEpyZTJ3czNuTHNEaA==
 
   affinity: {}
     # podAffinity:
