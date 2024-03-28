@@ -87,7 +87,7 @@ spec:
       {{- end }}
       containers:
         - name: influxdb
-          image: {{ include "influxdb.image" . }}
+          image: {{ include "common.images.image" ( dict "imageRoot" .Values.image ) }}
           imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
           {{- if .Values.influxdb.securityContext.enabled }}
           securityContext:

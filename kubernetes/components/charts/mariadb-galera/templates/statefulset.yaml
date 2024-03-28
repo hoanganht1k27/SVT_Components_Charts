@@ -69,7 +69,7 @@ spec:
       {{- end }}
       containers:
         - name: "mariadb-galera"
-          image: {{ template "mariadb-galera.image" . }}
+          image: {{ include "common.images.image" ( dict "imageRoot" .Values.image ) }}
           imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
           command:
             - bash
