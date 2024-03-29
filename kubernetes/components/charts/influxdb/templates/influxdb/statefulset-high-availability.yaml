@@ -61,7 +61,7 @@ spec:
       {{- if and .Values.volumePermissions.enabled .Values.persistence.enabled }}
       initContainers:
         - name: init-chmod-data
-          image: {{ include "influxdb.volumePermissions.image" . }}
+          image: {{ include "common.images.image" (dict "imageRoot" .Values.volumePermissions.image ) }}
           imagePullPolicy: {{ .Values.volumePermissions.image.pullPolicy | quote }}
           command:
             - /bin/bash
