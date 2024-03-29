@@ -13,7 +13,7 @@ spec:
       restartPolicy: Never
       initContainers:
         - name: wait-for-init-repo
-          image: {{ include "common.images.image" ( dict "imageRoot" .Values.init.image "global" .Values.global ) }}
+          image: {{ include "common.images.image" ( dict "imageRoot" .Values.init.image ) }}
           imagePullPolicy: {{ .Values.init.image.pullPolicy | quote }}
           command:
             - /bin/sh
