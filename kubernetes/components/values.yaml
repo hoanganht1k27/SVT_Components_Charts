@@ -409,9 +409,8 @@ preparation:
 
   initRepo:
     image:
-      registry: docker.io
-      repository: svtechnmaa/svtech_debuger
-      tag: "v1.0.0"
+      repository: svtechnmaa/debuger
+      tag: "v1.0.1"
       pullPolicy: IfNotPresent
 
     GH_USERNAME: moophat
@@ -494,8 +493,7 @@ proxy:
 ############################################################
 debuger:
   image:
-    registry: docker.io
-    repository: svtechnmaa/svtech_debuger
+    repository: svtechnmaa/debuger
     tag: "v1.0.1"
     pullPolicy: IfNotPresent
 

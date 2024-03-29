@@ -7,7 +7,6 @@ commonAnnotations: {}
 
 initRepo:
   image:
-    registry: docker.io
     repository: svtechnmaa/svtech_debuger
     tag: "latest"
 
